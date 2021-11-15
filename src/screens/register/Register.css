@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100&family=Roboto:wght@100;300&display=swap');
+
+.body{
+    background-color: #667EEA;
+}
+
+.card-daftar{
+    margin: 0 auto;
+    float: none;
+    width: 30rem;
+    background-color: #FFFFFF;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+.title-daftar{
+    margin-bottom: 5%;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    font-size: 30px;
+    color: #667EEA;
+    text-align: center;
+}
+
+.mb-2{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+}
+
+.to-login{
+    text-align: right;
+    font-family: 'Roboto', sans-serif;
+    pointer-events: all;
+    cursor: pointer;
+}
