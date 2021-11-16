@@ -1,15 +1,27 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100&family=Roboto:wght@100;300&display=swap');
 
-
 .btn-add {
     margin-top: 30px;
     margin-left: 30px;
     background-color: #667EEA !important;
     text-align: center; 
     font-family: 'Roboto', sans-serif;
-    font-weight: bold;
     font-size: 17px;
     border-radius: 8px;
+}
+
+.btn-add:hover{
+    background-color: #00ad17!important;
+    font-weight: bold;
+    border-color: #00ad17 !important;
+}
+
+.card {
+    margin-top: 30px;
+    margin-left: 30px;
+    box-shadow: 5px 5px #7d7d7d;
+    width: 100px;
+    height: 350px;
 }
 
 .balance{
@@ -25,19 +37,23 @@
     color: black !important;
 }
 
-.car-name{
-    font-weight: bold;
-    font-family: 'Roboto', sans-serif;
+.card-img{
+    width: 400px !important;
+    height: 350px !important;
 }
 
-.card {
-    margin-top: 30px;
-    margin-left: 30px;
+
+.car-name{
+    font-family: 'Roboto', sans-serif !important;
+    font-weight: bold !important;
+    font-size: 20px !important;
 }
+
 
 .car-price{
-    font-weight: bold;
-    font-family: 'Roboto', sans-serif;
     color: #667EEA;
+    font-family: 'Roboto', sans-serif !important;
+    font-weight: bold !important;
+    margin-bottom: 0px;
 }
 
