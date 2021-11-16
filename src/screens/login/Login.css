@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100&family=Roboto:wght@100;300&display=swap');
 
-.card-login{
+.card-login {
     margin: 0 auto !important;
     float: none !important;
     width: 30rem;
@@ -8,6 +8,8 @@
     margin-bottom: 10px !important;
     margin-top: 100px !important;
     box-shadow: 5px 5px #667EEA;
+    width: 400px !important;
+    height: 420px !important;
 }
 .login-title{
     text-align: center;

@@ -4,7 +4,9 @@
     background-color: #667EEA;
 }
 
-.card-daftar{
+.card-daftar {
+    width: 500px !important;
+    height: 550px !important;
     margin: 0 auto !important;
     float: none;
     width: 30rem;

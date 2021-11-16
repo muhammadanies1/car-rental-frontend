@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100&family=Roboto:wght@100;300&display=swap');
 
 .btn-add {
-    margin-top: 30px;
-    margin-left: 30px;
+    margin-top: 30px !important;
+    margin-left: 30px !important;
     background-color: #667EEA !important;
     text-align: center; 
     font-family: 'Roboto', sans-serif;
@@ -16,17 +16,17 @@
     border-color: #00ad17 !important;
 }
 
-.card {
-    margin-top: 30px;
-    margin-left: 30px;
+.card-partner {
+    margin-top: 30px !important;
+    margin-left: 30px !important;
     box-shadow: 5px 5px #7d7d7d;
-    width: 100px;
-    height: 350px;
+    width: 400px !important;
+    height: 400px !important;
 }
 
-.balance{
-    margin-top: 30px;
-    margin-left: 10px;
+.balance {
+    margin-top: 30px !important;
+    margin-left: 10px !important;
     background-color: #D2DAFF !important;
     border-color: #D2DAFF !important;
     text-align: center; 

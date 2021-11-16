@@ -1,0 +1,54 @@
+
+.balance {
+    margin-left: 3rem !important;
+    margin-top: 3rem !important;
+}
+
+.flex-container {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.flex-container > div {
+    margin-left: 3rem !important;
+    margin-top: 3rem !important;
+}
+
+.card-approve-partner {
+    cursor: pointer;
+    width: 190px !important;
+    height: 100px !important;
+    text-align: center;
+    border-radius: 20px;
+    background-color: rgb(0, 255, 55);
+    color: rgb(255, 255, 255);
+}
+
+.card-approve-partner:hover {
+    background-color: rgb(0, 172, 37);
+    font-weight: bold;
+}
+
+.card-approve-car {
+    cursor: pointer;
+    width: 190px !important;
+    height: 100px !important;
+    text-align: center;
+    border-radius: 20px;
+    background-color: rgba(255, 0, 0, 0.952);
+    color: rgb(255, 255, 255);
+}
+
+.card-approve-car:hover {
+    background-color: rgba(184, 0, 0, 0.952);
+    font-weight: bold;
+}
+
+.total {
+    background-color: rgb(212, 212, 212);
+    margin-left: 50px !important;
+    margin-right: 50px !important;
+    margin-bottom: 100px !important;
+    padding-bottom: 0px;
+    border-radius: 20px;
+}
