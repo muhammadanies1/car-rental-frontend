@@ -14,7 +14,7 @@ function InputCar(props) {
                         <FloatingLabel controlId="floatingInput" label="Stnk Number" className="mb-2">
                             <Form.Control name="stnk" type="text" placeholder="Enter your stnk number" />
                         </FloatingLabel>
-                        <Form.Control name="image" type="file" />
+                        <Form.Control name="image" type="file" placeholder="Choose your car photos" />
                         <FloatingLabel controlId="floatingInput" label="Description" className="mb-2">
                             <Form.Control name="loan" type="text" placeholder="Enter your car description" />
                         </FloatingLabel>

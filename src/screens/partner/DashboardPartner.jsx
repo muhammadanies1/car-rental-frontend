@@ -1,17 +1,18 @@
-import { Button, Card, Row, Col, Modal } from "react-bootstrap";
+import { Button, Card, Row, Col } from "react-bootstrap";
 import InputCar from "../../components/modals/InputCar";
 import "./DashboardPartner.css";
-import gambar from './mcqueen.jpg';
-import React, { useRef, useEffect, useState } from 'react';
+import { useState } from "react";
+
+import gambar from "./mcqueen.jpg";
 
 function DashboardPartner(){
-    const [modalShow, setModalShow] = React.useState(false);
+    const [modalShow, setModalShow] = useState(false);
     return (
         <>
             <Button className="btn-add" variant="primary" size="sm" onClick={() => setModalShow(true)}> + Add Car </Button>
             <Button className="balance" variant="primary" size="sm" disabled> Balance: Rp 10.000 </Button>
             <Card className="card" style={{ width: '25rem' }}>
-                <Card.Img variant="top" src={gambar} />
+                <Card.Img className="card-img" variant="top" src={gambar} />
                     <Card.Body>
                     <Row>
                         <Col>
@@ -24,8 +25,7 @@ function DashboardPartner(){
                     </Row>
                     </Card.Body>
             </Card>
-            <InputCar show={modalShow}
-        onHide={() => setModalShow(false)} />
+            <InputCar show={modalShow} onHide={() => setModalShow(false)} />
         </>
     )
 }

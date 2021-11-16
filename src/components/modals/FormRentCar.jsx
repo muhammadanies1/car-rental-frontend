@@ -23,7 +23,7 @@ function FormRentCar(props) {
                     </Form>
             </Modal.Body>
             <Modal.Footer>
-                <Button onClick={props.onHide}>Close</Button>
+                <Button onClick={props.onHide}>Save</Button>
             </Modal.Footer>
         </Modal>
     );
