@@ -30,12 +30,26 @@ function Login(){
 
     function loginHandler(events){
         events.preventDefault();
-        axios.post(`/api/authenticate`,form).then((response) => {
-            let token = response.data.data;
-            // console.log(token);
-            let decoded = jwt_decode(token);
-            // console.log(decoded);
-        })
+        let username = form.username;
+            let password = form.password;
+
+            if(username === "" && password === ""){
+                alert("tidak boleh kosong ya!");
+            } else{
+                axios.post(`/api/authenticate`,form).then((response) => {
+                    let token = response.data.data;
+                    localStorage.setItem("token", token);
+                    
+                    let decoded = jwt_decode(token);
+                    localStorage.setItem("username", decoded.sub);
+                    localStorage.setItem("user_id", decoded.user_id);
+                    localStorage.setItem("role_id", decoded.role_id);
+                    alert("Login berhasil.")
+                    navigate("/member/dashboard");        
+                }, (error) => {
+                    alert("Username atau password salah!");
+                });
+            }
     }   
 
     function toRegister(events){

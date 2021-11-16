@@ -12,6 +12,7 @@ const loginSlices = createSlice({
             console.log("Button Login.");
         },
         logout(state){
+            localStorage.clear();
             state.isLogin = false;
         },
     },

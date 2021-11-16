@@ -6,8 +6,6 @@ import "./Header.css";
 const Header = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    
-    
 
     return (
         <header className="header">

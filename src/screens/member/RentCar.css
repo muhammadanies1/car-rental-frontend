@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100&family=Roboto:wght@100;300&display=swap');
+
+.name-partner {
+    margin-left: 35px;
+    margin-right: 35px;
+    font-weight: bold;
+    font-size: 30px;
+    border-bottom: 2px solid #6a6b6a;
+}
+
+.name-car {
+    font-weight: bold;
+    font-family: 'Roboto', sans-serif;
+}
+
+.price {
+    font-weight: bold;
+    font-family: 'Roboto', sans-serif;
+    color: #667EEA;
+}
+
+.btn-book {
+    border-radius: 20px;
+    font-size: small;
+    margin: 0 auto;
+    background-color: #667EEA;
+}
+
+.card-detail-car{
+    margin-left: 30px;
+    font-family: 'Roboto', sans-serif;
+    height: 500px;
+}
+
+.card-maps{
+    margin-right: 35px;
+    height: 500px;
+}
+
+.map-container{
+    height: 410px;
+}
