@@ -2,10 +2,16 @@
 import "./DashboardMember.css";
 import { Form, Container, Card, Button, Col, Row } from "react-bootstrap";
 import gambar from './mcqueen.jpg';
-
-
+import { useNavigate } from "react-router-dom";
 
 function DashboardMember(){
+    let navigate = useNavigate();
+
+    function bookHandler(events){
+        events.preventDefault();
+        navigate("/member/rentcar");
+    }
+
     return (
         <div>
             <Container className="container">
@@ -21,7 +27,7 @@ function DashboardMember(){
                         </Col>
                         <Col md="auto">
                             <Card.Text> Rp 100.000 </Card.Text>
-                            <Button variant="primary">Book Now</Button></Col>
+                            <Button variant="primary" onClick={bookHandler}>Book Now</Button></Col>
                     </Row>
                     </Card.Body>
                 </Card>
