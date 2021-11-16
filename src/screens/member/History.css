@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100&family=Roboto:wght@100;300&display=swap');
+
+.car-name{
+    font-weight: bold;
+    font-family: 'Roboto', sans-serif;
+}
+
+.car-price {
+    font-weight: bold;
+    font-family: 'Roboto', sans-serif;
+    color: #667EEA;
+}
+
+.btn-status{
+    border-radius: 20px;
+    font-size: small;
+    margin: 0 auto;
+    font-weight: 700;
+    background-color: #10C200 !important;
+    border-color: #10C200 !important;
+}
