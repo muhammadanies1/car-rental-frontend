@@ -11,7 +11,7 @@ function DashboardPartner(){
         <>
             <Button className="btn-add" variant="primary" size="sm" onClick={() => setModalShow(true)}> + Add Car </Button>
             <Button className="balance" variant="primary" size="sm" disabled> Balance: Rp 10.000 </Button>
-            <Card className="card" style={{ width: '25rem' }}>
+            <Card className="card-partner" style={{ width: '25rem' }}>
                 <Card.Img className="card-img" variant="top" src={gambar} />
                     <Card.Body>
                     <Row>
