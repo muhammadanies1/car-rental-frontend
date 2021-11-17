@@ -5,16 +5,20 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import "./Login.css";
+import Header from "../../components/headers/Header";
+import { loginActions } from "../../store/login";
+import { applyMiddleware } from "@reduxjs/toolkit";
+import { LoginApi } from "../../api/AuthApi";
 
-function Login(){
-
-    const dispatch = useDispatch();
-    let navigate = useNavigate();
-
-    const state = useSelector((state) => {
-        return state.login;
-    });
+function Login() {
     
+    const isLogin = useSelector((state) => {
+        return state.login.isLogin;
+    });
+
+    let navigate = useNavigate();
+    const dispatch = useDispatch();
+        
     const [form, setForm] = useState({
         username: "",
         password: "",
@@ -30,26 +34,21 @@ function Login(){
 
     function loginHandler(events){
         events.preventDefault();
-        let username = form.username;
-            let password = form.password;
 
-            if(username === "" && password === ""){
-                alert("tidak boleh kosong ya!");
-            } else{
-                axios.post(`/api/authenticate`,form).then((response) => {
-                    let token = response.data.data;
-                    localStorage.setItem("token", token);
-                    
-                    let decoded = jwt_decode(token);
-                    localStorage.setItem("username", decoded.sub);
-                    localStorage.setItem("user_id", decoded.user_id);
-                    localStorage.setItem("role_id", decoded.role_id);
-                    alert("Login berhasil.")
-                    navigate("/member/dashboard");        
-                }, (error) => {
-                    alert("Username atau password salah!");
-                });
-            }
+        let username = form.username;
+        let password = form.password;
+
+        if(username === "" && password === ""){
+            alert("tidak boleh kosong ya!");
+        } else{
+            LoginApi(form).then((response) => {
+                let token = response.data.data;
+                dispatch(loginActions.login(token));
+            })
+            .catch((error) => {
+                alert("Login gagal.")
+            })
+        }
     }   
 
     function toRegister(events){
@@ -58,6 +57,7 @@ function Login(){
     }
 
     return(
+        <>
         <Card className="card-login">
             <Card.Body>
                 <Card.Title className="login-title">Login</Card.Title>
@@ -75,6 +75,7 @@ function Login(){
                 </Form>
             </Card.Body>
         </Card>
+        </>
     )
 }
 

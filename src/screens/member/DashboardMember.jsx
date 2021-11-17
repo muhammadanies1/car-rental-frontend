@@ -3,6 +3,8 @@ import "./DashboardMember.css";
 import { Form,FormControl, Card, Button, Col, Row } from "react-bootstrap";
 import gambar from './mcqueen.jpg';
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { getData } from "../../api/AuthApi";
 
 function DashboardMember(){
     let navigate = useNavigate();
@@ -11,6 +13,12 @@ function DashboardMember(){
         events.preventDefault();
         navigate("/member/rentcar");
     }
+
+    // useEffect(() => {
+    //     getData(`/api/cars`).then((response) => {
+
+    //     })
+    // }, [input])
 
     return (
     <>
