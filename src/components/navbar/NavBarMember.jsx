@@ -6,14 +6,19 @@ function NavBarMember(){
     
     let navigate = useNavigate();
 
-    function toDashboard(events){
+    function toDashboard(events) {
         events.preventDefault();
         navigate("/member/dashboard");
     }
 
-    function toHistory(events){
+    function toHistory(events) {
         events.preventDefault();
         navigate("/member/history");
+    }
+
+    function joinPartner(events){
+        events.preventDefault();
+        navigate("/partner/register");
     }
     
     function logout(events){
@@ -35,7 +40,7 @@ function NavBarMember(){
                             <Nav.Link onClick={ toDashboard }>Dashboard</Nav.Link>
                             <Nav.Link href="#link">About Us</Nav.Link>
                             <NavDropdown title="Member Name" id="basic-nav-dropdown">
-                                <NavDropdown.Item href="#action/3.1" >Join Partner</NavDropdown.Item>
+                                <NavDropdown.Item onClick={ joinPartner } >Join Partner</NavDropdown.Item>
                                 <NavDropdown.Item onClick={ toHistory }>History</NavDropdown.Item>
                                 <NavDropdown.Divider />
                                 <NavDropdown.Item onClick={ logout }>Logout</NavDropdown.Item>
