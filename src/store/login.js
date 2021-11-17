@@ -5,6 +5,8 @@ const initialState = {
     isLogin: false,
     token: null,
     userDetail:{},
+    isAdmin: false,
+    isPartner: false,
 }
 
 const loginSlices = createSlice({
@@ -23,11 +25,15 @@ const loginSlices = createSlice({
         },
         logout(state){
             localStorage.clear();
-            state.isLogin = false;
         },
-    },
+        admin(state){
+            state.isAdmin = true;
+        },
+        partner(state){
+            state.isPartner = true;
+        }
+    }
 });
 
 export const loginActions = loginSlices.actions;
-
 export default loginSlices.reducer;
