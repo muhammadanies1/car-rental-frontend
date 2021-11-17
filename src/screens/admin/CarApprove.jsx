@@ -1,11 +1,31 @@
 import { Button, Table } from "react-bootstrap";
-import { useState } from "react";
+import {useState , useEffect} from "react";
 import DetailCars from "../../components/modals/DetailCars";
 import "./CarApprove.css";
-
+import axios from "axios";
+import { useParams} from "react-router-dom";
 
 function CarApprove() {
+    let param = useParams();
     const [modalShow, setModalShow] = useState(false);
+    const [detailCar, setdetailCar] = useState("");
+
+    const modalTampil = (status,car_id) => {
+        setModalShow(status);
+        setdetailCar(car_id)
+
+    }
+    const [partner, setPartner] = useState([]);    
+    useEffect(()=>{
+        axios
+        .get("/api/partners")
+        .then((res)=>{
+            // console.log(res.data.data);
+            setPartner(res.data.data);
+        })
+    },[setPartner]);
+    // console.log(partner);
+
     return(
         <>
             <Button className="balance" variant="secondary" size="lg" disabled>
@@ -21,17 +41,21 @@ function CarApprove() {
                     </tr>
                 </thead>
                 <tbody >
+                    {partner.map((value,index)=>{
+                        return (
                     <tr>
-                        <td>1</td>
-                        <td>Mark</td>
+                        <td>{index +1}</td>
+                        <td>{value.partner_name}</td>
                         <td>
-                            <Button variant="primary" size="sm" onClick={() => setModalShow(true)}> Details </Button>
+                            <Button variant="primary" size="sm" onClick={() => modalTampil(true,value.partner_id)}> Details </Button>
                         </td>
                     </tr>
+                        );
+                    })}
                 </tbody>
             </Table>
             </div>
-            <DetailCars show={modalShow} onHide={() => setModalShow(false)} />
+            <DetailCars show={modalShow} car_id ={detailCar} onHide={() => setModalShow(false)} />
         </>
     )
 }
