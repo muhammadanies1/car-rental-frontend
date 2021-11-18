@@ -1,20 +1,13 @@
 import { Button, Table } from "react-bootstrap";
 import {useState , useEffect} from "react";
-import DetailCars from "../../components/modals/DetailCars";
+// import DetailCars from "../../components/modals/DetailCars";
 import "./CarApprove.css";
 import axios from "axios";
-import { useParams} from "react-router-dom";
+import { useParams ,useNavigate} from "react-router-dom";
 
 function CarApprove() {
-    let param = useParams();
-    const [modalShow, setModalShow] = useState(false);
-    const [detailCar, setdetailCar] = useState("");
+    let navigate = useNavigate();
 
-    const modalTampil = (status,car_id) => {
-        setModalShow(status);
-        setdetailCar(car_id)
-
-    }
     const [partner, setPartner] = useState([]);    
     useEffect(()=>{
         axios
@@ -25,6 +18,10 @@ function CarApprove() {
         })
     },[setPartner]);
     // console.log(partner);
+
+    function toPartnerCar(partnerId){
+        navigate('/admin/partner/detail/car/'+partnerId)
+    }
 
     return(
         <>
@@ -47,7 +44,7 @@ function CarApprove() {
                         <td>{index +1}</td>
                         <td>{value.partner_name}</td>
                         <td>
-                            <Button variant="primary" size="sm" onClick={() => modalTampil(true,value.partner_id)}> Details </Button>
+                            <Button variant="primary" size="sm" onClick={()=> toPartnerCar(value.partner_id)}>Detail</Button>
                         </td>
                     </tr>
                         );
@@ -55,7 +52,6 @@ function CarApprove() {
                 </tbody>
             </Table>
             </div>
-            <DetailCars show={modalShow} car_id ={detailCar} onHide={() => setModalShow(false)} />
         </>
     )
 }
