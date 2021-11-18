@@ -25,6 +25,7 @@ function DashboardPartner(){
     const user_id = JSON.parse(localStorage.getItem("user_id"));
 
     const setUlang = (payload) => {
+        console.log(payload);
         setCars(payload)
     }
 
