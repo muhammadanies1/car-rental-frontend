@@ -31,14 +31,17 @@ function App() {
 
   const cekAuth = async () => {
     if(token && role_id == 3){
-      await dispatch(loginActions.admin) 
-      navigate("/admin/dashboard")
+      await dispatch(loginActions.admin) ;
+      <RouteAdmin />
+      // navigate("/admin/dashboard")
     } else if(token && role_id == 2){
-      await dispatch(loginActions.partner)
-      navigate("/partner/dashboard")
+      await dispatch(loginActions.partner);
+      <RoutePartner />
+      // navigate("/partner/dashboard")
     } else if(token && role_id == 1){
-      await dispatch(loginActions.login)
-      navigate("/member/dashboard")
+      await dispatch(loginActions.login);
+      <RouteMember />
+      // navigate("/member/dashboard")
     } else if(!token){
       navigate("/")
     }

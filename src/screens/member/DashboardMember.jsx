@@ -25,12 +25,13 @@ function DashboardMember() {
     useEffect(() => {
         axios.get(`/api/cars/status/true`)
             .then(res => {
+                console.log(res);
                 dispatch(carActions.getAllCarTrue(res.data))
                 setCars(res.data.data)
             })
             
     }, [dispatch])
-
+    // console.log(cars);
     return (
         <>
             <Form className="d-flex search-input">

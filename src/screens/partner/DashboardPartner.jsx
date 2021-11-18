@@ -1,4 +1,4 @@
-import { Button, Card, Row, Col } from "react-bootstrap";
+import { Button, Card, Row, Col, Container } from "react-bootstrap";
 import InputCar from "../../components/modals/InputCar";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -36,6 +36,7 @@ function DashboardPartner(){
             .then(res => {
                 console.log(res.data.data)
                 dispatch(partnerActions.getPartner(res.data.data))
+
                 setPartner(res.data.data);
                 setBalance(res.data.data.user.balance);
                 axios.get(`/api/car/${res.data.data.partner_id}`)
@@ -55,20 +56,23 @@ function DashboardPartner(){
             <Button className="balance" variant="primary" size="sm" disabled> Balance: Rp {balance} </Button>
             {cars.map((value) => {
                 return (
-                    <Card className="card-car" style={{ width: '25rem' }}>
-                        <Card.Img className="card-img" variant="top" src= {value.image} />
-                        <Card.Body>
-                            <Row>
-                                <Col>
-                                    <Card.Title className="car-name">{value.merk}</Card.Title>
-                                    <Card.Subtitle className="card-subtitle">{value.partner.city}, {value.partner.partner_name}</Card.Subtitle>
-                                </Col>
-                                <Col md="auto">
-                                    <Card.Text className="car-price"> Rp {value.price} </Card.Text>
-                                    <Button variant="primary" className="btn-status" disabled> Available </Button></Col>
-                            </Row>
-                        </Card.Body>
-                    </Card>
+                    <Container className="container">
+                        <Card className="card-car" style={{ width: '25rem' }}>
+                            <Card.Img className="card-img" variant="top" src= {value.image} />
+                            <Card.Body>
+                                <Row>
+                                    <Col>
+                                        <Card.Title className="car-name">{value.merk}</Card.Title>
+                                        <Card.Subtitle className="card-subtitle">{value.partner.city}, {value.partner.partner_name}</Card.Subtitle>
+                                    </Col>
+                                    <Col md="auto">
+                                        <Card.Text className="car-price"> Rp {value.price} </Card.Text>
+                                        <Button variant="primary" className="btn-status" disabled> Available </Button></Col>
+                                </Row>
+                            </Card.Body>
+                        </Card>
+                    </Container>
+                    
                 )
             })}
             <InputCar show={modalShow} partner={partner} setUlang={setUlang} onHide={() => setModalShow(false)} />

@@ -23,7 +23,6 @@ function DashboardAdmin () {
                     <Card.Body>
                         <p>Partner</p>
                         <div className="total">
-                            <p> 0 </p>
                         </div>
                     </Card.Body>
                 </Card>
@@ -31,7 +30,6 @@ function DashboardAdmin () {
                     <Card.Body>
                         <p>Car</p>
                         <div className="total">
-                            <p> 0 </p>
                         </div>
                     </Card.Body>
                 </Card>
