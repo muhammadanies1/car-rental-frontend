@@ -1,7 +1,11 @@
 .table-partner{
-    margin-left: 3rem !important;
-    margin-right: 3rem !important;
-    margin-top: 3rem !important;
-    padding-right: 500px !important;
+    margin-left: 3rem ;
+    margin-right: 3rem ;
+    margin-top: 3rem ;
+    padding-right: 500px ;
+    text-align: center;
+}
+
+.justify-content-center {
     text-align: center;
 }

@@ -9,14 +9,18 @@ function DetailCars(props){
         // console.log(props.car_id);
         axios.get(`/api/car/${props.car_id}`)
         .then((res) => {
-            // console.log(res.data.data);
+            // console.log(...res.data.data);
             // car = res.data.data;
             setCar(...res.data.data);
+            // setCar((prevsValue)=>{
+            //     return [prevsValue,...res.data.data]
+            // })
         })
     });
 
     console.log(Car);
     return(
+
         <Modal {...props} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
             <Modal.Header closeButton>
                 <Modal.Title id="contained-modal-title-vcenter"> Cars need approve </Modal.Title>
