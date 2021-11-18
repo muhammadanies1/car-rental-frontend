@@ -19,19 +19,25 @@ function DashboardPartner(){
     const [cars, setCars] = useState([]);
     const [partner, setPartner] = useState({});
     const [modalShow, setModalShow] = useState(false);
+    const [balance, setBalance] = useState(0);
+    
     const user_id = JSON.parse(localStorage.getItem("user_id"));
 
     useEffect(() => {
+        setIsLoading(true);
         axios.get(`/api/partner/user/${user_id}`)
             .then(res => {
+                console.log(res.data.data)
                 dispatch(partnerActions.getPartner(res.data.data))
                 setPartner(res.data.data);
+                setBalance(res.data.data.user.balance);
                 // console.log(res.data.data.partner_id);
                 axios.get(`/api/car/${res.data.data.partner_id}`)
                 .then(res =>{
                     dispatch(carActions.getCarByPartner(res.data))
                     // console.log(res.data.data);
                     setCars(res.data.data)
+                    setIsLoading(false);
                 })
             })
             
@@ -41,7 +47,7 @@ function DashboardPartner(){
     return (
         <>
             <Button className="btn-add" variant="primary" size="sm" onClick={() => setModalShow(true)}> + Add Car </Button>
-            <Button className="balance" variant="primary" size="sm" disabled> Balance: Rp {partner.user.balance} </Button>
+            <Button className="balance" variant="primary" size="sm" disabled> Balance: Rp {balance} </Button>
             {cars.map((value) => {
                 return (
                     <Card className="card-car" style={{ width: '25rem' }}>
