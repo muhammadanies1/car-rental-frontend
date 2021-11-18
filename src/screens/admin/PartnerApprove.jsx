@@ -7,7 +7,9 @@ function PartnerApprove() {
   const [modalShow, setModalShow] = useState(false);
   const [partner, setPartner] = useState([]);
   useEffect(() => {
-    axios.get("/api/partners").then((res) => {
+    axios
+    .get("/api/partner/false")
+    .then((res) => {
       // console.log(res.data.data);
       setPartner(res.data.data);
     });
@@ -25,6 +27,8 @@ function PartnerApprove() {
             <tr>
               <th>No</th>
               <th>Partner Name</th>
+              <th>City</th>
+              <th>Status Acc</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -34,12 +38,14 @@ function PartnerApprove() {
                 <tr>
                   <td>{index + 1}</td>
                   <td>{value.partner_name}</td>
+                  <td>{value.city}</td>
+                  <td>{"" + value.status_acc  +""}</td>
                   <td>
                     <Button
                       variant="success"
                       size="sm"
                     >
-                      Details
+                      Acc Partner
                     </Button>
                   </td>
                 </tr>

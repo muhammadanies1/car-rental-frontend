@@ -30,9 +30,9 @@ const columns = [
     name: "Status Acc",
     selector: row => {
       let data = row.status_acc ? 
-      <span className="btn btn-success">Accepted</span>
+      <span className="btn btn-success btn-md">Accepted</span>
       : 
-      <span className="btn btn-danger">Not Acc</span>
+      <span className="btn btn-danger btn-md">Not Acc</span>
       return data;
     },
     sortable: true,
@@ -40,7 +40,7 @@ const columns = [
   {
     name: "Action",
     selector: row => {
-     return <button className="btn btn-primary btn-lg">Acc</button>
+     return <button className="btn btn-primary btn-md">Acc</button>
     },
     sortable: true,
   },
