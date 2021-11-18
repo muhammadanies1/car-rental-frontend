@@ -1,9 +1,16 @@
 import { Button, Modal, Form, FloatingLabel } from "react-bootstrap";
 import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { carActions } from "../../store/car";
 
 function InputCar(props) {
     console.log(props.partner.partner_id);
+    let navigate = useNavigate();
+    // const [cars, setCars] = useState([]);
+    const listCar = useSelector((state) => state.car);
+    const dispatch = useDispatch();
 
     let [image, setImage] = useState();
     const [photo, setPhoto] = useState({
@@ -53,6 +60,13 @@ function InputCar(props) {
         .then((res)=>{
             console.log("ok");
             alert("berhasil");
+                axios.get(`/api/car/${props.partner.partner_id}`)
+                .then(res =>{
+                    dispatch(carActions.getCarByPartner(res.data))
+                    props.setUlang(res.data.data)
+                    // setIsLoading(false);
+                })
+            props.onHide();
         });
     }
 
