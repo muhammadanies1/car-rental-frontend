@@ -54,9 +54,11 @@ function InputCar(props) {
         formData.append('stnk_number', car.stnk_number);
         formData.append('description', car.description);
         formData.append('price', car.price);
-
+        console.log(props);
+        let partner_id = props.partner.partner_id
         console.log(props.partner.partner_id);
-        axios.post(`/api/car/add/` + props.partner.partner_id,formData)
+        console.log(formData);
+        axios.post(`/api/car/add/${partner_id}`, formData)
         .then((res)=>{
             console.log("ok");
             alert("berhasil");
@@ -64,10 +66,14 @@ function InputCar(props) {
                 .then(res =>{
                     dispatch(carActions.getCarByPartner(res.data))
                     props.setUlang(res.data.data)
+                    console.log("ok")
                     // setIsLoading(false);
                 })
             props.onHide();
-        });
+        })
+        .catch(err => {
+            alert(err)
+        })
     }
 
     console.log(car);
