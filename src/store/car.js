@@ -9,7 +9,7 @@ const carSlices = createSlice({
     name: "car",
     initialState: initialState,
     reducers: {
-        getAllCar(state, data){
+        getAllCarTrue(state, data){
             state.listCar = data.payload;
         },
         getCarByPartner(state, data){

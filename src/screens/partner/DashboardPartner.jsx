@@ -18,26 +18,30 @@ function DashboardPartner(){
     const dispatch = useDispatch();
     const [cars, setCars] = useState([]);
     const [partner, setPartner] = useState({});
+    // const [isLoading, setIsLoading] = useState(false);
     const [modalShow, setModalShow] = useState(false);
     const [balance, setBalance] = useState(0);
     
     const user_id = JSON.parse(localStorage.getItem("user_id"));
 
+    const setUlang = (payload) => {
+        setCars(payload)
+    }
+
     useEffect(() => {
-        setIsLoading(true);
+        console.log("MASUK KESINI PARTNER DASHBOARD")
+        // setIsLoading(true);
         axios.get(`/api/partner/user/${user_id}`)
             .then(res => {
                 console.log(res.data.data)
                 dispatch(partnerActions.getPartner(res.data.data))
                 setPartner(res.data.data);
                 setBalance(res.data.data.user.balance);
-                // console.log(res.data.data.partner_id);
                 axios.get(`/api/car/${res.data.data.partner_id}`)
                 .then(res =>{
                     dispatch(carActions.getCarByPartner(res.data))
-                    // console.log(res.data.data);
                     setCars(res.data.data)
-                    setIsLoading(false);
+                    // setIsLoading(false);
                 })
             })
             
@@ -66,7 +70,7 @@ function DashboardPartner(){
                     </Card>
                 )
             })}
-            <InputCar show={modalShow} partner={partner} onHide={() => setModalShow(false)} />
+            <InputCar show={modalShow} partner={partner} setUlang={setUlang} onHide={() => setModalShow(false)} />
         </>
     )
 }
