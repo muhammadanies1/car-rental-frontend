@@ -23,9 +23,9 @@ function DashboardMember() {
 
 
     useEffect(() => {
-        axios.get(`/api/cars`)
+        axios.get(`/api/cars/status/true`)
             .then(res => {
-                dispatch(carActions.getAllCar(res.data))
+                dispatch(carActions.getAllCarTrue(res.data))
                 setCars(res.data.data)
             })
             
