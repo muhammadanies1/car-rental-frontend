@@ -1,11 +1,28 @@
 import { Button, Table } from "react-bootstrap";
-import { useState } from "react";
-import DetailCars from "../../components/modals/DetailCars";
+import {useState , useEffect} from "react";
+// import DetailCars from "../../components/modals/DetailCars";
 import "./CarApprove.css";
-
+import axios from "axios";
+import { useParams ,useNavigate} from "react-router-dom";
 
 function CarApprove() {
-    const [modalShow, setModalShow] = useState(false);
+    let navigate = useNavigate();
+
+    const [partner, setPartner] = useState([]);    
+    useEffect(()=>{
+        axios
+        .get("/api/partners")
+        .then((res)=>{
+            // console.log(res.data.data);
+            setPartner(res.data.data);
+        })
+    },[setPartner]);
+    // console.log(partner);
+
+    function toPartnerCar(partnerId){
+        navigate('/admin/partner/detail/car/'+partnerId)
+    }
+
     return(
         <>
             <Button className="balance" variant="secondary" size="lg" disabled>
@@ -21,17 +38,20 @@ function CarApprove() {
                     </tr>
                 </thead>
                 <tbody >
+                    {partner.map((value,index)=>{
+                        return (
                     <tr>
-                        <td>1</td>
-                        <td>Mark</td>
+                        <td>{index +1}</td>
+                        <td>{value.partner_name}</td>
                         <td>
-                            <Button variant="primary" size="sm" onClick={() => setModalShow(true)}> Details </Button>
+                            <Button variant="primary" size="sm" onClick={()=> toPartnerCar(value.partner_id)}>Detail</Button>
                         </td>
                     </tr>
+                        );
+                    })}
                 </tbody>
             </Table>
             </div>
-            <DetailCars show={modalShow} onHide={() => setModalShow(false)} />
         </>
     )
 }

@@ -5,6 +5,8 @@
 /.pnp
 .pnp.js
 setupProxy.js
+package-lock.json
+package.json
 
 # testing
 /coverage
