@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     listCar: [],
+    listCarByPartner:[]
 }
 
 const carSlices = createSlice({
@@ -9,6 +10,9 @@ const carSlices = createSlice({
     initialState: initialState,
     reducers: {
         getAllCar(state, data){
+            state.listCar = data.payload;
+        },
+        getCarByPartner(state, data){
             state.listCar = data.payload;
         },
     },
