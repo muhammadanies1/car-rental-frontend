@@ -1,36 +1,69 @@
 import './App.css';
-import Login from './screens/login/Login';
-import Register from './screens/register/Register';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { Route, Routes } from "react-router-dom";
-import DashboardMember from './screens/member/DashboardMember';
-import RentCar from './screens/member/RentCar';
-import History from './screens/member/History';
-import DashboardPartner from './screens/partner/DashboardPartner';
-import DashboardAdmin from './screens/admin/DashboardAdmin';
-import RegisterPartner from './screens/partner/RegisterPartner';
+import "bootstrap/dist/css/bootstrap.min.css";
+import { useNavigate } from "react-router-dom";
+import { Fragment, useEffect } from 'react';
+import { useSelector, useDispatch } from "react-redux";
 
-import Header from "./components/headers/Header";
-import CarApprove from './screens/admin/CarApprove';
-import PartnerApprove from './screens/admin/PartnerApprove';
+import { loginActions } from "./store/login";
 
+import RoutePartner from "./route/RoutePartner";
+import RouteMember from "./route/RouteMember";
+import RouteAdmin from "./route/RouteAdmin";
+import UnregisteredRoute from "./route/UnregisteredRoute";
 
 function App() {
+  let navigate = useNavigate();
+  let role_id = localStorage.getItem("role");
+  let token = localStorage.getItem("token");
+  
+  const dispatch = useDispatch();
+  const isLogin = useSelector((state) => {
+    return state.login.isLogin;
+  });
+
+  const isAdmin = useSelector((state) => {
+    return state.login.isAdmin;
+  });
+
+  const isPartner = useSelector((state) => {
+    return state.login.isPartner;
+  });
+
+  const cekAuth = async () => {
+    if(token && role_id == 3){
+      await dispatch(loginActions.admin) 
+      navigate("/admin/dashboard")
+    } else if(token && role_id == 2){
+      await dispatch(loginActions.partner)
+      navigate("/partner/dashboard")
+    } else if(token && role_id == 1){
+      await dispatch(loginActions.login)
+      navigate("/member/dashboard")
+    } else if(!token){
+      navigate("/")
+    }
+  }
+  
+  useEffect(() => {
+    const getCekAuth = async () => {
+      await cekAuth();
+    }
+
+    getCekAuth();
+  }, [isAdmin, isPartner, isLogin]);
+  
   return (
-    <>
-      <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/member/dashboard" element={<DashboardMember />} />
-        <Route path="/member/rentcar" element={<RentCar />} />
-        <Route path="/member/history" element={<History />} />
-        <Route path="/partner/register" element={<RegisterPartner />} />
-        <Route path="/partner/dashboard" element={<DashboardPartner />} />
-        <Route path="/admin/dashboard" element={<DashboardAdmin />} />
-        <Route path="/admin/cars" element={<CarApprove />} />
-        <Route path="/admin/partners" element={<PartnerApprove />} />
-      </Routes>
-    </>
+    <Fragment>
+      {
+        token && role_id == 3 ? (
+          <RouteAdmin /> ) :
+        token && role_id == 2 ? (
+          <RoutePartner /> ) :
+        token && role_id == 1 ? (
+          <RouteMember /> ) : (
+          <UnregisteredRoute />)
+        }
+    </Fragment>
   );
 }
 

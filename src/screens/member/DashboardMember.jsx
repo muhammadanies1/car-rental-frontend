@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import axios from "axios";
 import { useState } from "react";
 import { carActions } from "../../store/car";
+import { getData } from "../../api/AuthApi";
 
 function DashboardMember() {
     const listCar = useSelector((state) => state.car);
@@ -19,6 +20,7 @@ function DashboardMember() {
         events.preventDefault();
         navigate("/member/rentcar");
     }
+
 
     useEffect(() => {
         axios.get(`/api/cars`)
