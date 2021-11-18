@@ -16,6 +16,10 @@ function NavBarPartner() {
         localStorage.clear();
     }
 
+    function toReturnboard(events) {
+        events.preventDefault();
+        navigate("/partner/returncar");
+    }
     return(
 
         <div>
@@ -30,7 +34,7 @@ function NavBarPartner() {
                             <Nav.Link href="#link">About Us</Nav.Link>
                             <NavDropdown title="Member Name" id="basic-nav-dropdown">
                                 <NavDropdown.Item href="#action/3.1" >Partner Name</NavDropdown.Item>
-                                <NavDropdown.Item onClick={ toDashboard }>MyRent</NavDropdown.Item>
+                                <NavDropdown.Item onClick={ toReturnboard }>MyRent</NavDropdown.Item>
                                 <NavDropdown.Divider />
                                 <NavDropdown.Item onClick={ logout }>Logout</NavDropdown.Item>
                             </NavDropdown>
