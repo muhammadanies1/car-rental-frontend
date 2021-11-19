@@ -35,7 +35,6 @@ function NavBarAdmin(){
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="me-auto">
                             <Nav.Link onClick={ toDashboard }>Dashboard</Nav.Link>
-                            <Nav.Link href="#link">About Us</Nav.Link>
                         </Nav>
                         <Nav className="me-auto">
                             <NavDropdown title={admin} id="basic-nav-dropdown" style={{marginLeft:"680px"}}>

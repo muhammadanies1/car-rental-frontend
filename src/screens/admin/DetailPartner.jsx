@@ -21,7 +21,7 @@ const DetailPartner = () => {
       setIsLoading(false)
     });
   }, [dispatch]);
-  console.log(listCarByPartnerId);
+  // console.log(listCarByPartnerId);
   const columns = [
     {
       name: "Merek",
