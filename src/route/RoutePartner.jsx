@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import NavBarPartner from "../components/navbar/NavBarPartner";
 import DashboardPartner from "../screens/partner/DashboardPartner";
+import ReturnCar from "../screens/partner/ReturnCar";
 
 function RoutePartner(){
     return(
@@ -8,6 +9,7 @@ function RoutePartner(){
             <NavBarPartner />
             <Routes>
                 <Route path="/partner/dashboard" element={<DashboardPartner />} />
+                <Route path="/partner/returncar" element={<ReturnCar />} />
             </Routes>
         </>
     )

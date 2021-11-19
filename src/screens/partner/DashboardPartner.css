@@ -12,9 +12,9 @@
 }
 
 .btn-add:hover{
-    background-color: #00ad17!important;
+    background-color: #00ad17;
     font-weight: bold;
-    border-color: #00ad17 !important;
+    border-color: #00ad17 ;
 }
 
 .card-partner {
@@ -60,3 +60,11 @@
     margin-bottom: 0px;
 }
 
+#btn-status{
+    border-radius: 20px;
+    font-size: small;
+    margin: 0 auto;
+    font-weight: 700;
+    /* background-color: #10C200 ; */
+    /* border-color: #10C200 ; */
+}
