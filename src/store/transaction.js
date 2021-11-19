@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     listTransaction: [],
+    listTransactionByUser: [],
 }
 
 const transactionSlices = createSlice({
@@ -10,7 +11,11 @@ const transactionSlices = createSlice({
     reducers: {
         getAllTransaction(state, data){
             state.listTransaction = data.payload;
+
         },
+        getAllTransactionByUser(state, data){
+            state.listTransactionByUser = data.payload;
+        }
     },
 });
 
