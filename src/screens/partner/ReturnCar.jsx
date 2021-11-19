@@ -26,33 +26,57 @@ function ReturnCar(props){
             
     }, [dispatch])
 
-    console.log(transaction);
+    // console.log(transaction);
 
-    function collectCars(){
-        {transaction.map((value)=>{
-            console.log(value);
-        })}
-    }
+    // function collectCars(){
+    //     {transaction.map((value)=>{
+    //         console.log(value);
+    //     })}
+    // }
     
+    // const setUlang = (payload) => {
+    //     // console.log(payload);
+    //     setCars(payload)
+    // }
+
+    const setUlangLagi = () => {
+        axios.get(`/api/member_transaction/${user_id}`)
+            .then(res => {
+                console.log(res.data.data)
+                dispatch(transactionActions.getAllTransactionByUser(res.data.data))
+                setTransaction(res.data.data);
+            })
+    }
+
+    function updateStatusReturnCar(val) {
+        console.log(val);
+        axios.put("/api/car/waiting/" + val.transaction_id).then((res) => {
+        //   alert("berhasil update status");
+          window.location.reload();
+          setUlangLagi();
+        });
+      }
+
+      console.log(transaction);
     return(
         <>
         {transaction.map((value)=>{
             let paid_status = value.paid_status;
-            return (
-                
-                paid_status == "Finish" ? 
+            return (      
+                paid_status == "Return" ? 
                 <div>
                     <Card className="card-car" style={{ width: '25rem' }}>
                         <Card.Img className="card-img" variant="top" src= {value.car.image} />
                         <Card.Body>
                             <Row>
                                 <Col>
-                                    <Card.Title className="car-name">{value.merk}</Card.Title>
+                                    <Card.Title className="car-name">{value.car.merk}</Card.Title>
                                     <Card.Subtitle className="card-subtitle">{value.car.partner.city}, {value.car.partner.partner_name}</Card.Subtitle>
                                 </Col>
                                 <Col md="auto">
                                     <Card.Text className="car-price"> Rp {value.car.price} </Card.Text>
-                                    <Button variant="primary" className="btn-status" disabled> Available </Button></Col>
+                                    <Button variant="primary" className="btn-status" onClick={() => updateStatusReturnCar(value)}> 
+                                    {value.car.status_loan == "available" ? <>Available</> : <>Non-Available</>} </Button></Col>
                             </Row>
                         </Card.Body>
                     </Card>
