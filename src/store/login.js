@@ -19,6 +19,7 @@ const loginSlices = createSlice({
             console.log(decode);
             localStorage.setItem("user_id", decode.user_id);
             localStorage.setItem("role", decode.role_id);
+            localStorage.setItem("username",decode.sub);
             state.userDetail = decode;
             state.token = data.payload;
             state.isLogin = true;
