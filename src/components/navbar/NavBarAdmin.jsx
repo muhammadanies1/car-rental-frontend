@@ -24,7 +24,7 @@ function NavBarAdmin(){
         navigate("/");
         localStorage.clear();
     }
-
+    let admin = localStorage.getItem("username");
     return(
         <div>
         <>
@@ -36,7 +36,9 @@ function NavBarAdmin(){
                         <Nav className="me-auto">
                             <Nav.Link onClick={ toDashboard }>Dashboard</Nav.Link>
                             <Nav.Link href="#link">About Us</Nav.Link>
-                            <NavDropdown title="Admin Name" id="basic-nav-dropdown">
+                        </Nav>
+                        <Nav className="me-auto">
+                            <NavDropdown title={admin} id="basic-nav-dropdown" style={{marginLeft:"680px"}}>
                                 <NavDropdown.Item onClick={ toPartner } >Rentals</NavDropdown.Item>
                                 <NavDropdown.Item onClick={ toCar }>Cars</NavDropdown.Item>
                                 <NavDropdown.Divider />
