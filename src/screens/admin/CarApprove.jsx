@@ -1,9 +1,10 @@
-import { Button, Table } from "react-bootstrap";
+import {Table } from "react-bootstrap";
 import {useState , useEffect} from "react";
 // import DetailCars from "../../components/modals/DetailCars";
 import "./CarApprove.css";
 import axios from "axios";
 import { useParams ,useNavigate} from "react-router-dom";
+import { Button } from '@mui/material';
 
 function CarApprove() {
     let navigate = useNavigate();
@@ -13,7 +14,6 @@ function CarApprove() {
         axios
         .get("/api/partners")
         .then((res)=>{
-            // console.log(res.data.data);
             setPartner(res.data.data);
         })
     },[setPartner]);
@@ -21,6 +21,9 @@ function CarApprove() {
 
     function toPartnerCar(partnerId){
         navigate('/admin/partner/detail/car/'+partnerId)
+    }
+    function goBack(){
+        navigate("/admin/dashboard");
     }
 
     return(
@@ -51,6 +54,7 @@ function CarApprove() {
                     })}
                 </tbody>
             </Table>
+            <Button variant="contained" color="primary" style={{float:"left"}} onClick={goBack}>Back</Button>
             </div>
         </>
     )

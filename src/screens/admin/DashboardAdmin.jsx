@@ -1,6 +1,7 @@
 import { Card, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import "./DashboardAdmin.css";
+import CardTransactionAdmin from "./CardTransactionAdmin";
 
 function DashboardAdmin () {
     let navigate = useNavigate();
@@ -12,6 +13,7 @@ function DashboardAdmin () {
     function toCars(){
         navigate("/admin/cars");
     }
+    
     
     return (
         <>
@@ -33,6 +35,8 @@ function DashboardAdmin () {
                         </div>
                     </Card.Body>
                 </Card>
+                <CardTransactionAdmin/>
+               
             </div>
             
         </>
