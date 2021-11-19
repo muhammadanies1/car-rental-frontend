@@ -11,7 +11,7 @@ function RouteMember(){
             <NavBarMember />
             <Routes>
                 <Route path="/member/dashboard" element={<DashboardMember />} />
-                <Route path="/member/rentcar" element={<RentCar />} />
+                <Route path="/member/rentcar/:car_id" element={<RentCar />} />
                 <Route path="/member/history" element={<History />} />
                 <Route path="/partner/register" element={<RegisterPartner />} />
             </Routes>
