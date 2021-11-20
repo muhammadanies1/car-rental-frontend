@@ -2,7 +2,6 @@ import { Button, Modal, Form, FloatingLabel } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 
 function FormRentCar(props) {
     let carID = props.carId;
