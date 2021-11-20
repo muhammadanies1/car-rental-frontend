@@ -1,17 +1,38 @@
 import { Button, Modal, Form, FloatingLabel } from "react-bootstrap";
 
 import { useState } from "react";
+import axios from "axios";
 
 function FormRentCar(props) {
-    const [form, setForm] = useState(0);
-    let user_id = localStorage.getItem("user_id");
-    console.log(user_id);
+    let carID = props.carId;
+    let userID = props.userId;
+
+    const [form, setForm] = useState({
+        loan_time:"",
+        booking_date:"",
+        user:{user_id: 0},
+        car:{car_id: 0}
+    });
+
+    
+    
+
+    function addTransaction(events){
+        events.preventDefault();
+        console.log(form);
+        axios.post(`/api/membertransaction/add`,form).then((res) => {
+            alert("Transaksi berhasil ditambahkan!");
+            
+        });
+    }
 
     function formHandler(events){
         console.log(events.target.value);
         return setForm({
             ...form,
             [events.target.name]: events.target.value,
+            user:{user_id: userID},
+            car:{car_id: carID}
         });
     };
 
@@ -31,7 +52,7 @@ function FormRentCar(props) {
                     </Form>
             </Modal.Body>
             <Modal.Footer>
-                <Button onClick={props.onHide}>Save</Button>
+                <Button onClick={addTransaction}>Save</Button>
             </Modal.Footer>
         </Modal>
     );

@@ -22,6 +22,7 @@ const RentCar = () => {
     const [showPopup, togglePopup] = useState(true);
 
     let param = useParams();
+    let userID = localStorage.getItem("user_id");
     let car_id = param.car_id;
     useEffect(() => {
         axios.get(`/api/car/id/${car_id}`)
@@ -36,7 +37,15 @@ const RentCar = () => {
             
     }, [dispatch,setDetailCar]);
 
-    
+    // function bookNow(carId){
+    //     axios.get(`/api/car/id/${car_id}`).then((res) => {
+    //         setDetailCar(res.data.data);
+    //             setCity(res.data.data.partner.city);
+    //             setPartnerName(res.data.data.partner.partner_name);
+    //             setLat(parseFloat(res.data.data.partner.latitude));
+    //             setLong(parseFloat(res.data.data.partner.longtitude));
+    //     });
+    // }
 
     const [viewport, setViewport] = useState({
         width: "57vw",
@@ -110,7 +119,7 @@ const RentCar = () => {
                     </Card>
                 </Col>
             </Row>
-            <FormRentCar show={modalShow} onHide={() => setModalShow(false)} />
+            <FormRentCar userId={userID} carId={car_id} show={modalShow} onHide={() => setModalShow(false)} />
         </>
         
     )
