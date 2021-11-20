@@ -1,4 +1,5 @@
 import {Table } from "react-bootstrap";
+import {Button as BtnBoo} from "react-bootstrap"
 import {useState , useEffect} from "react";
 // import DetailCars from "../../components/modals/DetailCars";
 import "./CarApprove.css";
@@ -47,7 +48,7 @@ function CarApprove() {
                         <td>{index +1}</td>
                         <td>{value.partner_name}</td>
                         <td>
-                            <Button variant="primary" size="sm" onClick={()=> toPartnerCar(value.partner_id)}>Detail</Button>
+                            <BtnBoo variant="primary" size="sm" onClick={()=> toPartnerCar(value.partner_id)}>Detail</BtnBoo>
                         </td>
                     </tr>
                         );
