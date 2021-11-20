@@ -1,5 +1,5 @@
 import { Button, Modal, Form, FloatingLabel } from "react-bootstrap";
-
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -19,8 +19,7 @@ function FormRentCar(props) {
     
     
 
-    function addTransaction(events){
-        events.preventDefault();
+    function addTransaction(){
         console.log(form);
         axios.post(`/api/membertransaction/add`,form).then((res) => {
             alert("Transaksi berhasil ditambahkan!");
