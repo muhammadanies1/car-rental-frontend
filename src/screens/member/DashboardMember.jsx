@@ -40,8 +40,7 @@ function DashboardMember() {
                 console.log(res.data.data[0]);
                 setCarProcess(res.data.data[0]);
                 if(res.data.data[0] != null){
-                    // console.log("masuk sini");
-                    // setUserTransaction(res.data.data[0].user.user_id);
+                    setUserTransaction(res.data.data[0].user.user_id);
                 }
                 // dispatch(carActions.getAllCarTrue(res.data))
                 // setCars(res.data.data)
