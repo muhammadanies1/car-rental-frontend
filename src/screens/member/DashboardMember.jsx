@@ -37,9 +37,12 @@ function DashboardMember() {
 
         axios.get(`/api/process/${user_id}`)
             .then(res => {
-                // console.log(res.data.data[0]);
+                console.log(res.data.data[0]);
                 setCarProcess(res.data.data[0]);
-                setUserTransaction(res.data.data[0].user.user_id);
+                if(res.data.data[0] != null){
+                    // console.log("masuk sini");
+                    // setUserTransaction(res.data.data[0].user.user_id);
+                }
                 // dispatch(carActions.getAllCarTrue(res.data))
                 // setCars(res.data.data)
             })
