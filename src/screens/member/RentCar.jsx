@@ -104,30 +104,6 @@ const RentCar = () => {
                         </div>
                         </Popup>
                     }
-                    {/* { newCoordinate && (
-
-                        <Popup latitude={newCoordinate.lat} 
-                        longitude={newCoordinate.long} 
-                        closeButton={true} 
-                        closeOnClick={false} 
-                        anchor="left" 
-                        onClose={() => setNewCoordinate(null) }
-                        >
-                        <div className="card-pop-up">
-                            <form onSubmit={handleSubmit}>
-                                <label>Name Partner</label>
-                                    <input name="partner_name" 
-                                    placeholder="Enter your rent name"
-                                    onChange={handleForm} />
-                                <label>City</label>
-                                    <input name="city" 
-                                    placeholder="Enter your city"
-                                    onChange={handleForm} />
-                                <button className="submitButton" type="submit">Add Pin</button>
-                            </form>
-                        </div>
-                        </Popup>
-                    )} */}
                 </ReactMapGL>
                             </div> 
                         </Card.Body>

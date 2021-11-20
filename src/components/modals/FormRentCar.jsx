@@ -1,6 +1,20 @@
 import { Button, Modal, Form, FloatingLabel } from "react-bootstrap";
 
+import { useState } from "react";
+
 function FormRentCar(props) {
+    const [form, setForm] = useState(0);
+    let user_id = localStorage.getItem("user_id");
+    console.log(user_id);
+
+    function formHandler(events){
+        console.log(events.target.value);
+        return setForm({
+            ...form,
+            [events.target.name]: events.target.value,
+        });
+    };
+
     return (
         <Modal {...props} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
             <Modal.Header closeButton>
@@ -8,17 +22,11 @@ function FormRentCar(props) {
             </Modal.Header>
             <Modal.Body>
             <Form  className="d-grid gap-2">
-                        <FloatingLabel controlId="floatingInput" label="Fullname" className="mb-2">
-                            <Form.Control name="fullname" type="text" placeholder="Enter your name" />
-                        </FloatingLabel>
-                        <FloatingLabel controlId="floatingInput" label="Address" className="mb-2">
-                            <Form.Control name="address" type="text" placeholder="Enter your address" />
-                        </FloatingLabel>
-                        <FloatingLabel controlId="floatingInput" label="Phone Number" className="mb-2">
-                            <Form.Control name="phone" type="text" placeholder="Enter your phone number" />
-                        </FloatingLabel>
                         <FloatingLabel controlId="floatingInput" label="Loan Time" className="mb-2">
-                            <Form.Control name="loan" type="number" placeholder="Enter your time loan" />
+                            <Form.Control name="loan_time" type="number" placeholder="Enter loan time" onChange={formHandler} />
+                        </FloatingLabel>
+                        <FloatingLabel controlId="floatingInput" label="Booking Date" className="mb-2">
+                            <Form.Control name="booking_date" type="date" placeholder="Enter booking date"onChange={formHandler} />
                         </FloatingLabel>
                     </Form>
             </Modal.Body>
