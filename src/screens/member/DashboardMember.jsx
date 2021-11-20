@@ -11,7 +11,7 @@ import { carActions } from "../../store/car";
 import { getData } from "../../api/AuthApi";
 import { useParams } from "react-router-dom";
 
-function DashboardMember() {
+function DashboardMember(props) {
     const listCar = useSelector((state) => state.car);
     let navigate = useNavigate();
     const dispatch = useDispatch();
@@ -24,7 +24,9 @@ function DashboardMember() {
 
     function bookHandler(events) {
         events.preventDefault();
-        navigate("/member/rentcar");
+        navigate("/member/rentcar/"+cars[0].car_id);
+        window.location.reload();
+        
     }
 
     useEffect(() => {
