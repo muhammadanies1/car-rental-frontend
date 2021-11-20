@@ -1,5 +1,5 @@
 import {Table, Container } from "react-bootstrap";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import "./PartnerApprove.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";

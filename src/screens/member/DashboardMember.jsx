@@ -1,26 +1,22 @@
-// import Header from "../../components/headers/Header";
 import { Form, FormControl, Card, Button, Col, Row } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import gambar from './mcqueen.jpg';
-import "./DashboardMember.css";
 import { useEffect } from "react";
-import axios from "axios";
 import { useState } from "react";
 import { carActions } from "../../store/car";
-import { getData } from "../../api/AuthApi";
-import { useParams } from "react-router-dom";
+import "./DashboardMember.css";
+import axios from "axios";
 
-function DashboardMember(props) {
+function DashboardMember() {
     const listCar = useSelector((state) => state.car);
     let navigate = useNavigate();
     const dispatch = useDispatch();
     const [cars, setCars] = useState([]);
     const [search, setSearch] = useState("");
     const [carProcess, setCarProcess] = useState(null);
-    let param = useParams();
     const user_id = JSON.parse(localStorage.getItem("user_id"));
-    const [userTransaction, setUserTransaction] = useState(0);
+    const [userTransaction, setUserTransaction] = useState();
+    const [paidStatus, setPaidStatus] = useState("");
 
     function bookHandler(carId) {
         // events.preventDefault();
@@ -30,26 +26,22 @@ function DashboardMember(props) {
     }
 
     useEffect(() => {
-        axios.get(`/api/cars/status/true`)
-            .then(res => {
-                // console.log(res);
-                dispatch(carActions.getAllCarTrue(res.data))
-                setCars(res.data.data)
-            })
-
         axios.get(`/api/process/${user_id}`)
             .then(res => {
-                console.log(res.data.data);
-                // console.log(user_id);
                 setCarProcess(res.data.data);
                 if(carProcess != null){
                     setUserTransaction(res.data.data.user.user_id);
                 }
-                // dispatch(carActions.getAllCarTrue(res.data))
-                // setCars(res.data.data)
             })
+
+        axios.get(`/api/cars/status/true`)
+            .then(res => {
+                dispatch(carActions.getAllCarTrue(res.data))
+                setCars(res.data.data)
+            })
+
     }, [dispatch])
-    console.log(userTransaction);
+
     function searchHandler(events) {
         setSearch(events.target.value);
     };

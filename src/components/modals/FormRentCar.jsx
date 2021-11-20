@@ -2,10 +2,12 @@ import { Button, Modal, Form, FloatingLabel } from "react-bootstrap";
 
 import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function FormRentCar(props) {
     let carID = props.carId;
     let userID = props.userId;
+    let navigate = useNavigate();
 
     const [form, setForm] = useState({
         loan_time:"",
@@ -22,6 +24,8 @@ function FormRentCar(props) {
         console.log(form);
         axios.post(`/api/membertransaction/add`,form).then((res) => {
             alert("Transaksi berhasil ditambahkan!");
+            navigate("/member/dashboard");
+            window.location.reload();
             
         });
     }

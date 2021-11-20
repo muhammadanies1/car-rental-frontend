@@ -11,6 +11,7 @@ function Register() {
     const validName = new RegExp('[a-zA-Z]+');
     const validUsername = new RegExp('[A-Za-z0-9]+[@]+[a-z]+[.]+[c][o][m]');
     const validPhoneNumber = new RegExp('\\d+');
+    const validPassword = new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[*\-\/:-@\\[-`{-~]).{6,64}$');
 
     const [form, setForm] = useState({
         username: "",
@@ -48,6 +49,8 @@ function Register() {
                 alert("Username harus menggunakan email");
             }else if(!validPhoneNumber.test(phone_number)){
                 alert("nomor telfon harus angka");
+            } else if(!validPassword.test(password)){
+                alert("Password min 6 karakter 1 Huruf besar, satu simbol dan satu angka")
             } else{
                 axios.post(`/api/register`,form).then((response) => {
 

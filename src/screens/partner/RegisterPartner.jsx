@@ -73,16 +73,7 @@ function RegisterPartner() {
                     mapStyle="mapbox://styles/muhammad-anies1/ckw4bf05v0ezn14nuofdmayiv"
                     onDblClick = { handleAddClick }
                     >
-                    
-                    {/* <Marker latitude={newCoordinate.lat} 
-                        longitude={newCoordinate.long} 
-                        offsetLeft={-20} 
-                        offsetTop={-10}
-                        closeButton={true} 
-                        closeOnClick={false}
-                        onClose={() => setNewCoordinate(null) } >
-                        <RoomIcon style={{ fontSize:viewport.zoom * 5, color: "slateblue" }}/>
-                    </Marker> */}
+                
                     { newCoordinate && (
 
                         <Popup latitude={newCoordinate.lat} 

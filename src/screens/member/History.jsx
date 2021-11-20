@@ -1,11 +1,7 @@
-import { Card, Button, Col, Row, Table } from "react-bootstrap";
-
-import gambar from './mcqueen.jpg';
-import "./History.css";
-import { useState } from "react";
-import { useEffect } from "react";
+import { Table } from "react-bootstrap";
+import { useState, useEffect } from "react";
 import axios from "axios";
-import { useSelector, useDispatch } from "react-redux";
+import "./History.css";
 
 function History() {
 
@@ -21,8 +17,6 @@ function History() {
             })
 
     }, [])
-
-    // console.log(transaction);
 
     let i = 0;
     return (

@@ -1,10 +1,9 @@
 import {Table } from "react-bootstrap";
 import {Button as BtnBoo} from "react-bootstrap"
 import {useState , useEffect} from "react";
-// import DetailCars from "../../components/modals/DetailCars";
 import "./CarApprove.css";
 import axios from "axios";
-import { useParams ,useNavigate} from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 import { Button } from '@mui/material';
 
 function CarApprove() {
