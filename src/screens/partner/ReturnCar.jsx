@@ -2,72 +2,72 @@ import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
-import { Button, Card, Row, Col } from "react-bootstrap";
+import { Button, Card, Row, Col, Table } from "react-bootstrap";
 import { transactionActions } from "../../store/transaction";
 
 function ReturnCar(props){
 
     const dispatch = useDispatch();
     const [transaction, setTransaction] = useState([]);
+    const [partner, setPartner] = useState({});
+    const [cars, setCars] = useState([]);
+    
     const user_id = JSON.parse(localStorage.getItem("user_id"));
 
     useEffect(() => {
-        axios.get(`/api/member_transaction/${user_id}`)
+        axios.get(`/api/partner/user/${user_id}`)
             .then(res => {
                 console.log(res.data.data)
-                dispatch(transactionActions.getAllTransactionByUser(res.data.data))
-                setTransaction(res.data.data);
+                setPartner(res.data.data)
+                axios.get(`/api/transaction/partner/${res.data.data.partner_id}`)
+                .then(res => {
+                    console.log(res.data);
+                    setTransaction(res.data.data);
+                })
             })
             
     }, [dispatch])
 
-    const setUlangLagi = () => {
-        axios.get(`/api/member_transaction/${user_id}`)
-            .then(res => {
-                console.log(res.data.data)
-                dispatch(transactionActions.getAllTransactionByUser(res.data.data))
-                setTransaction(res.data.data);
-            })
-    }
-
-    function updateStatusReturnCar(val) {
-        console.log(val);
-        axios.put("/api/car/waiting/" + val.transaction_id).then((res) => {
-        //   alert("berhasil update status");
+    console.log(transaction);
+    
+    function updateStatusReturnCar(transaction_id) {
+        axios.put("/api/car/waiting/" + transaction_id).then((res) => {
+            console.log(res);
             window.location.reload();
-            setUlangLagi();
         });
     }
 
-    console.log(transaction);
     return(
         <>
-        {transaction.map((value)=>{
-            let paid_status = value.paid_status;
-            return (      
-                paid_status == "Return" ? 
-                <div>
-                    <Card className="card-car" style={{ width: '25rem' }}>
-                        <Card.Img className="card-img" variant="top" src= {value.car.image} />
-                        <Card.Body>
-                            <Row>
-                                <Col>
-                                    <Card.Title className="car-name">{value.car.merk}</Card.Title>
-                                    <Card.Subtitle className="card-subtitle">{value.car.partner.city}, {value.car.partner.partner_name}</Card.Subtitle>
-                                </Col>
-                                <Col md="auto">
-                                    <Card.Text className="car-price"> Rp {value.car.price} </Card.Text>
-                                    <Button variant="primary" className="btn-status" onClick={() => updateStatusReturnCar(value)}> 
-                                    {value.car.status_loan == "available" ? <>Available</> : <>Non-Available</>} </Button></Col>
-                            </Row>
-                        </Card.Body>
-                    </Card>
-                </div>
-                : 
-                ""
-                )
-        })}
-            
+        <Table className="table-cars" striped bordered hover size="sm">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Car Merk</th>
+                        <th>Partner Name</th>
+                        <th>Total payment</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody >
+                    {transaction.map((value,index)=>{
+                        return (
+                            <tr>
+                        <td>{index +1}</td>
+                        <td>{value.car.merk}</td>
+                        <td>{value.car.partner.partner_name}</td>
+                        <td>Rp. {value.total_payment + value.penalty}</td>
+                        <td>{value.paid_status}</td>
+                        <td>
+                            <Button variant="primary" size="sm" onClick={()=> updateStatusReturnCar(value.transaction_id)}>Detail</Button>
+                        </td>
+                    </tr>
+                        );
+                    })}
+                </tbody>
+            </Table>
+         
         </>
     )
 }
