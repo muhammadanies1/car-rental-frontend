@@ -1,8 +1,5 @@
-import { Form, FormControl, Card, Button, Col, Row, Container } from "react-bootstrap";
+import { Card, Button, Col, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
-import { useState } from "react";
-import axios from "axios";
 
 function SearchBoard(props){
     console.log(props.cars);
