@@ -69,17 +69,21 @@ function DashboardMember() {
 
     return (
         <>
-        {
-            
-        }
-        <ButtonSearchBoard setCars={setCars} />
-            {/* <StatusFinish cars={cars} /> */}
-                        {cars.length !== 0 ?
-                            <SearchBoard cars={cars} />
-                            :
-                            ""
-                        }
-            {/* <NotFinish/> */}
+            <StatusFinish cars={cars} />
+            <div id="container-dashboard">
+                <ButtonSearchBoard setCars={setCars} />
+                <h4>More than 100+ cars</h4>
+                <hr className="more" />
+                {cars.length !== 0 ?
+                    <SearchBoard cars={cars} />
+                    :
+                    ""
+                }
+
+                {/* <div id="container-car">
+                        
+                        </div> */}
+            </div>
         </>
     )
 }
