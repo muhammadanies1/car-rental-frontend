@@ -1,8 +1,10 @@
 import { Navbar, Nav, Container, NavDropdown } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import "./Navbar.css";
 
 function NavBarAdmin(){
     let navigate = useNavigate();
+    let username = localStorage.getItem("username");
 
     function toDashboard(events){
         events.preventDefault();
@@ -24,7 +26,6 @@ function NavBarAdmin(){
         navigate("/");
         localStorage.clear();
     }
-    let admin = localStorage.getItem("username");
     return(
         <div>
         <>
@@ -33,14 +34,13 @@ function NavBarAdmin(){
                 <Navbar.Brand href="#home">RentCar</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
-                        <Nav className="me-auto">
+                        <Nav className="me-auto navbar-ul">
                             <Nav.Link onClick={ toDashboard }>Dashboard</Nav.Link>
-                        </Nav>
-                        <Nav className="me-auto">
-                            <NavDropdown title={admin} id="basic-nav-dropdown" style={{marginLeft:"680px"}}>
+                            <NavDropdown title="Admin" id="basic-nav-dropdown" >
+                                <NavDropdown.Item disabled > { username } </NavDropdown.Item>
+                                <NavDropdown.Divider />
                                 <NavDropdown.Item onClick={ toPartner } >Rentals</NavDropdown.Item>
                                 <NavDropdown.Item onClick={ toCar }>Cars</NavDropdown.Item>
-                                <NavDropdown.Divider />
                                 <NavDropdown.Item onClick={ logout }>Logout</NavDropdown.Item>
                             </NavDropdown>
                         </Nav>

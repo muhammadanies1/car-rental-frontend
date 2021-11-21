@@ -1,4 +1,4 @@
-import { Form, FormControl, Card, Button, Col, Row } from "react-bootstrap";
+import { Form, FormControl, Card, Button, Col, Row, Container } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
@@ -52,7 +52,7 @@ function DashboardMember() {
                 dispatch(carActions.getAllCarTrue(res.data.data))
                 setCars(res.data.data)
             }, (error) => {
-                alert("Tidak ada");
+                // alert("Tidak ada");
             })
     }
 
@@ -76,6 +76,9 @@ function DashboardMember() {
     return (
         <>
             {userTransaction == user_id ?
+            <div id="card-with-status">
+                <h4>Your Transaction</h4>
+                <hr />
                 <Card className="card-car" style={{ width: '25rem' }}>
                 <Card.Img className="card-img" variant="top" src={carProcess.car.image} />
                 <Card.Body>
@@ -94,14 +97,18 @@ function DashboardMember() {
                             </Col>
                     </Row>
                 </Card.Body>
-            </Card>
+                </Card>
+            </div>
                 :
                 <>
+                <div id="container-dashboard">
                     <Form className="d-flex search-input">
                         <FormControl type="search" placeholder="I need a car at" className="me-2" aria-label="Search" onChange={searchHandler} />
                         <Button variant="outline-success" onClick={buttonSearchHandler}> Search </Button>
                     </Form>
-                    <p className="title">More than 100+ cars</p>
+                    <h4>More than 100+ cars</h4>
+                    <hr className="more"/>
+                    <div id="container-car">
                     {cars.map((value) => {
                         return (
                             <Card className="card-car" style={{ width: '25rem' }}>
@@ -120,7 +127,8 @@ function DashboardMember() {
                             </Card>
                         )
                     })}
-
+                    </div>
+                </div>
                 </>
             }
         </>

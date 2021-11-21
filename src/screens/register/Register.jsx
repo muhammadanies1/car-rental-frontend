@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Card, FloatingLabel, Form, Button } from "react-bootstrap";
 import "./Register.css";
+import Swal from "sweetalert2";
 
 
 function Register() {
@@ -53,11 +54,25 @@ function Register() {
                 alert("Password min 6 karakter 1 Huruf besar, satu simbol dan satu angka")
             } else{
                 axios.post(`/api/register`,form).then((response) => {
-
-                    alert("Register berhasil.")
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Done!',
+                        text: 'Your registration success',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                    });
+                    
                     navigate("/");        
                 }, (error) => {
-                    alert("Silahkan pilih username lain");
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Registration Error',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                    });
                 });
             }
     }

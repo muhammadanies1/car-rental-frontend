@@ -17,9 +17,11 @@ function DashboardAdmin () {
     
     return (
         <>
+        <div id="container-dashboardAdmin">
             <Button className="balance" variant="secondary" size="lg" disabled>
                 Balance: Rp 50.000.000
             </Button>
+            <hr />
             <div className="flex-container">
                 <Card className="card-approve-partner" onClick={toPartners}>
                     <Card.Body>
@@ -36,9 +38,8 @@ function DashboardAdmin () {
                     </Card.Body>
                 </Card>
                 <CardTransactionAdmin/>
-               
-            </div>
-            
+            </div>    
+        </div>
         </>
     )
 }

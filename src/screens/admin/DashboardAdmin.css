@@ -1,17 +1,23 @@
 
-.balance {
-    margin-left: 3rem !important;
-    margin-top: 3rem !important;
+#container-dashboardAdmin{
+    margin-top: 30px;
+    margin-left: 122px;
+    margin-right: 130px;
+    margin-bottom: 50px;
+    border: 1px solid;
+    border-color: #ebebeb;
+    background-color: #ebebeb;
+    border-radius: 10px;
+    padding-left: 35px;
+    padding-right: 35px;
+    padding-bottom: 50px;
 }
 
 .flex-container {
+    padding-top: 30px;
     display: flex;
-    flex-wrap: nowrap;
-}
-
-.flex-container > div {
-    margin-left: 3rem !important;
-    margin-top: 3rem !important;
+    justify-content: space-around;
+    flex-wrap: wrap;
 }
 
 .card-approve-partner {

@@ -31,12 +31,13 @@ function PartnerApprove() {
 
   return (
     <>
-      <Container fluid>
+      <div id="container-adminPartner">
         <Button className="balance" variant="secondary" size="lg" disabled>
           Balance: Rp 50.000.000
         </Button>
+        <hr />
         <div className="justify-content-center mt-3 m-3">
-          <Table striped bordered hover size="md">
+          <Table className="table-approvePartner" striped bordered hover size="md">
             <thead>
               <tr>
                 <th>No</th>
@@ -66,7 +67,7 @@ function PartnerApprove() {
           </Table>
           <Button variant="contained" color="primary" style={{float:"left"}} onClick={goBack}>Back</Button>
         </div>
-      </Container>
+      </div>
     </>
   );
 }
