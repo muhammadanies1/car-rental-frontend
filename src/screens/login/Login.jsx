@@ -1,14 +1,11 @@
-import axios from "axios";
 import { useState } from "react";
 import { Card, Button, Form, FloatingLabel } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import jwt_decode from "jwt-decode";
 import "./Login.css";
-import Header from "../../components/headers/Header";
 import { loginActions } from "../../store/login";
-import { applyMiddleware } from "@reduxjs/toolkit";
 import { LoginApi } from "../../api/AuthApi";
+import Swal from "sweetalert2";
 
 function Login() {
     
@@ -39,14 +36,28 @@ function Login() {
         let password = form.password;
 
         if(username === "" && password === ""){
-            alert("tidak boleh kosong ya!");
+            Swal.fire({
+                icon: 'info',
+                title: 'Attention...',
+                text: 'username and password cannot be empty!',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+            });
         } else{
             LoginApi(form).then((response) => {
                 let token = response.data.data;
                 dispatch(loginActions.login(token));
             })
             .catch((error) => {
-                alert("Login gagal.")
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Login Failed!',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                });
             })
         }
     }   

@@ -1,9 +1,11 @@
 import { Navbar, Nav, Container, NavDropdown } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import "./Navbar.css";
 
 function NavBarPartner() {
     
     let navigate = useNavigate();
+    let username = localStorage.getItem("username");
 
     function toDashboard(events) {
         events.preventDefault();
@@ -26,16 +28,16 @@ function NavBarPartner() {
         <>
         <Navbar bg="light" expand="lg" className="navbar-member">
             <Container>
-                <Navbar.Brand href="#home">RentCar</Navbar.Brand>
+                <Navbar.Brand href="#home"><h4>RentCar</h4></Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
-                        <Nav className="me-auto">
+                        <Nav className="me-auto navbar-ul">
                             <Nav.Link onClick={ toDashboard }>Dashboard</Nav.Link>
                             <Nav.Link href="#link">About Us</Nav.Link>
-                            <NavDropdown title="Member Name" id="basic-nav-dropdown">
-                                <NavDropdown.Item href="#action/3.1" >Partner Name</NavDropdown.Item>
-                                <NavDropdown.Item onClick={ toReturnboard }>MyRent</NavDropdown.Item>
+                            <NavDropdown title="Partner" id="basic-nav-dropdown">
+                                <NavDropdown.Item disabled >{username}</NavDropdown.Item>
                                 <NavDropdown.Divider />
+                                <NavDropdown.Item onClick={ toReturnboard }>MyRent</NavDropdown.Item>
                                 <NavDropdown.Item onClick={ logout }>Logout</NavDropdown.Item>
                             </NavDropdown>
                         </Nav>

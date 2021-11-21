@@ -1,20 +1,15 @@
 import { useSelector, useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { partnerActions } from "../../store/partner";
 import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
-import { carActions } from "../../store/car";
 import { Button, Card, Row, Col } from "react-bootstrap";
 import { transactionActions } from "../../store/transaction";
 
 function ReturnCar(props){
 
-    const listTransactionByUser = useSelector((state) => state.transaction);
     const dispatch = useDispatch();
     const [transaction, setTransaction] = useState([]);
     const user_id = JSON.parse(localStorage.getItem("user_id"));
-    const [cars, setCars] = useState([]);
 
     useEffect(() => {
         axios.get(`/api/member_transaction/${user_id}`)
@@ -25,19 +20,6 @@ function ReturnCar(props){
             })
             
     }, [dispatch])
-
-    // console.log(transaction);
-
-    // function collectCars(){
-    //     {transaction.map((value)=>{
-    //         console.log(value);
-    //     })}
-    // }
-    
-    // const setUlang = (payload) => {
-    //     // console.log(payload);
-    //     setCars(payload)
-    // }
 
     const setUlangLagi = () => {
         axios.get(`/api/member_transaction/${user_id}`)
@@ -52,12 +34,12 @@ function ReturnCar(props){
         console.log(val);
         axios.put("/api/car/waiting/" + val.transaction_id).then((res) => {
         //   alert("berhasil update status");
-          window.location.reload();
-          setUlangLagi();
+            window.location.reload();
+            setUlangLagi();
         });
-      }
+    }
 
-      console.log(transaction);
+    console.log(transaction);
     return(
         <>
         {transaction.map((value)=>{

@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom";
 import { Button } from '@mui/material';
 import { useDispatch, useSelector } from "react-redux";
 import {carActions} from '../../store/car'
+import "./DetailPartner.css";
+
 const DetailPartner = () => {
   let param = useParams();
   let navigate = useNavigate();
@@ -59,7 +61,7 @@ const DetailPartner = () => {
     {
       name: "Action",
       selector: row => {
-       return <button className="btn btn-secondary btn-md" onClick={()=> updateStatus(row.car_id)}>Acc Car</button>
+        return <button className="btn btn-secondary btn-md" onClick={()=> updateStatus(row.car_id)}>Acc Car</button>
       },
       sortable: true,
     },
@@ -78,14 +80,17 @@ const DetailPartner = () => {
   }
   return (
     <>
-    <DataTable
-      title="Partner Cars"
-      columns={columns}
-      data={listCarByPartnerId}
-      progressPending={isLoading}
-      pagination
-    />
-    <Button variant="contained" color="primary" style={{float:"left"}} onClick={goBack}>Back</Button>
+    
+    <div className="container-detailPartner">
+      <DataTable className="dataTbl-Partner"
+        title="Partner Cars"
+        columns={columns}
+        data={listCarByPartnerId}
+        progressPending={isLoading}
+        pagination
+        />
+      <Button variant="contained" color="primary" style={{float:"left"}} onClick={goBack}>Back</Button>
+    </div>
     </>
   );
 };

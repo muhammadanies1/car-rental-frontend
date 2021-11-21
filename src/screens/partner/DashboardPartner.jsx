@@ -1,4 +1,4 @@
-import { Button, Card, Row, Col, Container } from "react-bootstrap";
+import { Button, Card, Row, Col } from "react-bootstrap";
 import InputCar from "../../components/modals/InputCar";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -6,7 +6,6 @@ import { partnerActions } from "../../store/partner";
 import "./DashboardPartner.css";
 import { useState } from "react";
 import { useEffect } from "react";
-import gambar from "./mcqueen.jpg";
 import axios from "axios";
 import { carActions } from "../../store/car";
 
@@ -67,11 +66,13 @@ function DashboardPartner() {
     // console.log(partner);
     return (
         <>
+        <div id="container-dashboardPartner">
             <Button className="btn-add" variant="primary" size="sm" onClick={() => setModalShow(true)}> + Add Car </Button>
             <Button className="balance" variant="primary" size="sm" disabled> Balance: Rp {balance} </Button>
+            <hr />
+            <div id="flexbox-car">
             {cars.map((value) => {
                 return (
-                    <Container className="container">
                         <Card className="card-car" style={{ width: '25rem' }}>
                             <Card.Img className="card-img" variant="top" src={value.image} />
                             <Card.Body>
@@ -84,7 +85,7 @@ function DashboardPartner() {
                                         <Card.Text className="car-price"> Rp {value.price} </Card.Text>
                                         {
                                             value.status_loan == "available" ?
-                                                <Button variant="success" id="btn-status" onClick={() => updateStatusLoanCar(value)}>
+                                            <Button variant="success" id="btn-status" onClick={() => updateStatusLoanCar(value)}>
                                                     Available</Button>
                                                 :
                                                 <Button variant="danger" id="btn-status" onClick={() => updateStatusLoanCar(value)}>
@@ -94,11 +95,11 @@ function DashboardPartner() {
                                 </Row>
                             </Card.Body>
                         </Card>
-                    </Container>
-
                 )
             })}
+            </div>
             <InputCar show={modalShow} partner={partner} setUlang={setUlang} onHide={() => setModalShow(false)} />
+        </div>
         </>
     )
 }
