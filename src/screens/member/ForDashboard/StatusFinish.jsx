@@ -21,9 +21,9 @@ function StatusFinish(props){
                 <FormControl type="search" placeholder="I need a car at" className="me-2" aria-label="Search" />
                 <Button variant="outline-success"> Search </Button>
             </Form> */}
-            {/* <h4>More than 100+ cars</h4> */}
-            {/* <hr className="more"/> */}
-            {/* <div id="container-car"> */}
+            <h4>More than 100+ cars</h4>
+            <hr className="more"/>
+            <div id="container-car">
             {props.cars.map((value) => {
                 return (
                     <Card className="card-car" style={{ width: '25rem' }}>
@@ -42,7 +42,7 @@ function StatusFinish(props){
                     </Card>
                 )
             })}
-            {/* </div> */}
+            </div>
         </div>
         </>
     )

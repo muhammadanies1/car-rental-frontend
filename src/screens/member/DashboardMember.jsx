@@ -6,7 +6,9 @@ import { useState } from "react";
 import { carActions } from "../../store/car";
 import StatusFinish from "./ForDashboard/StatusFinish";
 import "./DashboardMember.css";
+import './ForDashboard/NotFinish'
 import axios from "axios";
+import NotFinish from "./ForDashboard/NotFinish";
 import SearchBoard from "./ForDashboard/SearchBoard";
 import ButtonSearchBoard from "./ForDashboard/ButtonSearchBoard";
 
@@ -21,13 +23,12 @@ function DashboardMember() {
     const [userTransaction, setUserTransaction] = useState();
     const [isLoading, setIsLoading] = useState(false);
 
-    function bookHandler(carId) {
-        // events.preventDefault();
-        navigate("/member/rentcar/" + carId);
-        window.location.reload();
+    // function bookHandler(carId) {
+    //     // events.preventDefault();
+    //     navigate("/member/rentcar/" + carId);
+    //     window.location.reload();
 
-    }
-
+    // }
     useEffect(() => {
         setIsLoading(true);
         axios.get(`/api/process/${user_id}`)
@@ -67,8 +68,29 @@ function DashboardMember() {
 
     // }
 
+    console.log(cars);
     return (
         <>
+        <ButtonSearchBoard setCars={setCars} />
+            {carProcess != null && carProcess.paid_status != "Finish"
+                ?
+                <NotFinish />
+                :
+                cars.length != 0
+                ?
+
+                //     ?
+                //     <>
+                    // <p>Test</p>
+                    <StatusFinish cars={cars} />
+                //     </>
+                    :
+                    // <p>Test2</p>
+                    <SearchBoard cars={cars} />
+                    
+
+            }
+            {/* <>
             {isLoading == true ?
                 <div>
                     <StatusFinish cars={cars} />
@@ -85,8 +107,10 @@ function DashboardMember() {
                     </div>
                 </div>
                 :
-                ""
-            }
+                
+            <NotFinish /> */}
+
+            {/* } */}
         </>
         // <>
         //     {isLoading == false ?
@@ -116,6 +140,8 @@ function DashboardMember() {
         //     </div>
         // </>
 
+        // </div>
+        // </>
     )
 }
 
