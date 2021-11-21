@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { useState } from "react";
 import { carActions } from "../../store/car";
+import StatusFinish from "./ForDashboard/StatusFinish";
 import "./DashboardMember.css";
 import axios from "axios";
 import SearchBoard from "./ForDashboard/SearchBoard";
@@ -18,7 +19,6 @@ function DashboardMember() {
     const [carProcess, setCarProcess] = useState(null);
     const user_id = JSON.parse(localStorage.getItem("user_id"));
     const [userTransaction, setUserTransaction] = useState();
-    const [paidStatus, setPaidStatus] = useState("");
 
     function bookHandler(carId) {
         // events.preventDefault();
@@ -67,6 +67,7 @@ function DashboardMember() {
 
     return (
         <>
+            <StatusFinish cars={cars} />
             <div id="container-dashboard">
                 <ButtonSearchBoard setCars={setCars} />
                 <h4>More than 100+ cars</h4>
@@ -78,7 +79,7 @@ function DashboardMember() {
                 }
 
                 {/* <div id="container-car">
-                           
+                        
                         </div> */}
             </div>
         </>
