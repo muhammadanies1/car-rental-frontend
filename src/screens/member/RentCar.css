@@ -67,3 +67,7 @@
 .map-container{
     height: 420px;
 }
+
+.marker{
+    cursor: pointer;
+}

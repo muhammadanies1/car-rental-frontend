@@ -11,7 +11,7 @@ import { carActions } from "../../store/car";
 import { getData } from "../../api/AuthApi";
 import { useParams } from "react-router-dom";
 
-function DashboardMember() {
+function DashboardMember(props) {
     const listCar = useSelector((state) => state.car);
     let navigate = useNavigate();
     const dispatch = useDispatch();
@@ -22,9 +22,11 @@ function DashboardMember() {
     const user_id = JSON.parse(localStorage.getItem("user_id"));
     const [userTransaction, setUserTransaction] = useState(0);
 
-    function bookHandler(events) {
-        events.preventDefault();
-        navigate("/member/rentcar");
+    function bookHandler(carId) {
+        // events.preventDefault();
+        navigate("/member/rentcar/"+carId);
+        window.location.reload();
+        
     }
 
     useEffect(() => {
@@ -37,16 +39,17 @@ function DashboardMember() {
 
         axios.get(`/api/process/${user_id}`)
             .then(res => {
-                console.log(res.data.data[0]);
-                setCarProcess(res.data.data[0]);
-                if(res.data.data[0] != null){
-                    setUserTransaction(res.data.data[0].user.user_id);
+                console.log(res.data.data);
+                // console.log(user_id);
+                setCarProcess(res.data.data);
+                if(carProcess != null){
+                    setUserTransaction(res.data.data.user.user_id);
                 }
                 // dispatch(carActions.getAllCarTrue(res.data))
                 // setCars(res.data.data)
             })
     }, [dispatch])
-
+    console.log(userTransaction);
     function searchHandler(events) {
         setSearch(events.target.value);
     };
@@ -119,7 +122,7 @@ function DashboardMember() {
                                         </Col>
                                         <Col md="auto">
                                             <Card.Text className="car-price"> Rp {value.price} </Card.Text>
-                                            <Button className="btn-book" variant="primary" onClick={bookHandler}>Book Now</Button></Col>
+                                            <Button className="btn-book" variant="primary" onClick={()=>bookHandler(value.car_id)}>Book Now</Button></Col>
                                     </Row>
                                 </Card.Body>
                             </Card>

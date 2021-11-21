@@ -1,15 +1,26 @@
-import { useState, useEffect } from 'react';
-import ReactMapGL, { Marker, Popup } from 'react-map-gl';
-import RoomIcon from '@mui/icons-material/Room';
-import StarIcon from '@mui/icons-material/Star';
-import axios from "axios";
+import { useState } from 'react';
+import ReactMapGL, {  Popup } from 'react-map-gl';
 
 import "./RegisterPartner.css";
+import { postJoinPartner } from '../../api/PartnerApi';
 
 function RegisterPartner() {
-    const [showPopup, togglePopup] = useState(false);
-    const [joinPartner, setJoinPartner] = useState(null);
     const [newCoordinate, setNewCoordinate] = useState(null);
+    const [form, setForm] = useState({
+        partner_name:"",
+        city:"",
+        latitude: "",
+        longtitude: "",
+    });
+
+    const handleForm= (events) => {
+        return setForm({
+            ...form,
+            [events.target.name]: events.target.value,
+            latitude: newCoordinate.lat,
+            longtitude: newCoordinate.long,
+        });
+    }
 
     const [viewport, setViewport] = useState({
         width: "93vw",
@@ -33,10 +44,20 @@ function RegisterPartner() {
 
     const handleAddClick = (events) => {
         const [long, lat] = events.lngLat;
-        setJoinPartner({
+        setNewCoordinate({
             lat:lat,
             long:long,
         });
+    }
+
+    const handleSubmit= (events) => {
+        events.preventDefault();
+        postJoinPartner(form).then((res) => {
+            alert("Join Berhasil!");
+        })
+        .catch((err) => {
+            alert("Gagal Join!");
+        })
     }
 
 
@@ -53,40 +74,37 @@ function RegisterPartner() {
                     onDblClick = { handleAddClick }
                     >
                     
-                    <Marker latitude={-6.261058} 
-                        longitude={106.642164} 
+                    {/* <Marker latitude={newCoordinate.lat} 
+                        longitude={newCoordinate.long} 
                         offsetLeft={-20} 
-                        offsetTop={-10}>
+                        offsetTop={-10}
+                        closeButton={true} 
+                        closeOnClick={false}
+                        onClose={() => setNewCoordinate(null) } >
                         <RoomIcon style={{ fontSize:viewport.zoom * 5, color: "slateblue" }}/>
-                    </Marker>
-                    { joinPartner && (
+                    </Marker> */}
+                    { newCoordinate && (
 
-                        <Popup latitude={joinPartner.lat} 
-                        longitude={joinPartner.long} 
+                        <Popup latitude={newCoordinate.lat} 
+                        longitude={newCoordinate.long} 
                         closeButton={true} 
                         closeOnClick={false} 
                         anchor="left" 
-                        onClose={() => setJoinPartner(null) }
+                        onClose={() => setNewCoordinate(null) }
                         >
-                        <div className="card-pop-up">
-                            <label>Name Store</label>
-                            <h4 className="store" >Jonathan RentCar</h4>
-                            <label>Address</label>
-                            <p className="desc">Bogor City</p>
-                            <label>Owner</label>
-                            <p className="desc">Jonathan Gabriel</p>
-                            <label>Rating</label>
-                            <div className="stars">
-                                <StarIcon className="star"/>
-                                <StarIcon className="star"/>
-                                <StarIcon className="star"/>
-                                <StarIcon className="star"/>
-                                <StarIcon className="star"/>
-                            </div>
-                            <label>Information</label>
-                            <span className="username">Created by <b>Jonathan</b> </span>
-                            <span className="date"> 1 hour ago </span>
+                            <form className="form-maps" onSubmit={ handleSubmit }>
+                                <div className="card-pop-up">
+                                <label>Name Store</label>
+                                <input className="input-maps-val" name="partner_name" type="text" 
+                                    placeholder="Enter your partner name"
+                                    onChange={ handleForm } />
+                                <label>Address</label>
+                                <input className="input-maps-val" name="city" type="text" 
+                                    placeholder="Enter your city"
+                                    onChange={ handleForm } />
+                                <button className="submitButton" type="submit">Add Pin</button>
                         </div>
+                            </form>
                         </Popup>
                     )}
                 </ReactMapGL>
