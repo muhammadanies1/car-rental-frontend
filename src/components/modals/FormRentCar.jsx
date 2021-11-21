@@ -15,14 +15,13 @@ function FormRentCar(props) {
         car:{car_id: 0}
     });
 
-    
-    
-
     function addTransaction(){
         console.log(form);
         axios.post(`/api/membertransaction/add`,form).then((res) => {
             alert("Transaksi berhasil ditambahkan!");
             navigate("/member/dashboard");
+            window.location.reload();
+            
         });
     }
 
@@ -43,16 +42,16 @@ function FormRentCar(props) {
             </Modal.Header>
             <Modal.Body>
             <Form  className="d-grid gap-2">
-                        <FloatingLabel controlId="floatingInput" label="Loan Time" className="mb-2">
-                            <Form.Control name="loan_time" type="number" placeholder="Enter loan time" onChange={formHandler} />
-                        </FloatingLabel>
-                        <FloatingLabel controlId="floatingInput" label="Booking Date" className="mb-2">
-                            <Form.Control name="booking_date" type="date" placeholder="Enter booking date"onChange={formHandler} />
-                        </FloatingLabel>
-                    </Form>
+                <FloatingLabel controlId="floatingInput" label="Loan Time" className="mb-2">
+                    <Form.Control name="loan_time" type="number" placeholder="Enter loan time" onChange={formHandler} />
+                </FloatingLabel>
+                <FloatingLabel controlId="floatingInput" label="Booking Date" className="mb-2">
+                    <Form.Control name="booking_date" type="date" placeholder="Enter booking date"onChange={formHandler} />
+                </FloatingLabel>
+            </Form>
             </Modal.Body>
             <Modal.Footer>
-                <Button onClick={addTransaction}>Save</Button>
+                <Button onClick={ addTransaction }>Save</Button>
             </Modal.Footer>
         </Modal>
     );

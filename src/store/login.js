@@ -16,7 +16,7 @@ const loginSlices = createSlice({
         login(state, data){
             localStorage.setItem("token", data.payload);
             let decode = jwt_decode(data.payload);
-            console.log(decode);
+            
             localStorage.setItem("user_id", decode.user_id);
             localStorage.setItem("role", decode.role_id);
             localStorage.setItem("username",decode.sub);

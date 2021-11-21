@@ -11,13 +11,15 @@ export default function CardTransactionAdmin() {
     navigate("/admin/transaction");
 }
   return (
-    <Card sx={{ maxWidth: 345 }} style={{background:"yellow" ,color:"black"}}> 
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-            <LocalAtmIcon fontSize="large"/>
-            <h3 onClick={toTransaction} style={{cursor:"pointer"}}>Transaction</h3>
-        </Typography>
-      </CardContent>
-    </Card>
+    <>
+      <Card sx={{ maxWidth: 345 }} style={{background:"yellow" ,color:"black"}}> 
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="div">
+              <LocalAtmIcon fontSize="large"/>
+              <h3 onClick={toTransaction} style={{cursor:"pointer"}}>Transaction</h3>
+          </Typography>
+        </CardContent>
+      </Card>
+    </>
   );
 }

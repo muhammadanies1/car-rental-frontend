@@ -1,26 +1,22 @@
-// import Header from "../../components/headers/Header";
-import { Form, FormControl, Card, Button, Col, Row } from "react-bootstrap";
+import { Form, FormControl, Card, Button, Col, Row, Container } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import gambar from './mcqueen.jpg';
-import "./DashboardMember.css";
 import { useEffect } from "react";
-import axios from "axios";
 import { useState } from "react";
 import { carActions } from "../../store/car";
-import { getData } from "../../api/AuthApi";
-import { useParams } from "react-router-dom";
+import "./DashboardMember.css";
+import axios from "axios";
 
-function DashboardMember(props) {
+function DashboardMember() {
     const listCar = useSelector((state) => state.car);
     let navigate = useNavigate();
     const dispatch = useDispatch();
     const [cars, setCars] = useState([]);
     const [search, setSearch] = useState("");
     const [carProcess, setCarProcess] = useState(null);
-    let param = useParams();
     const user_id = JSON.parse(localStorage.getItem("user_id"));
-    const [userTransaction, setUserTransaction] = useState(0);
+    const [userTransaction, setUserTransaction] = useState();
+    const [paidStatus, setPaidStatus] = useState("");
 
     function bookHandler(carId) {
         // events.preventDefault();
@@ -30,26 +26,22 @@ function DashboardMember(props) {
     }
 
     useEffect(() => {
-        axios.get(`/api/cars/status/true`)
-            .then(res => {
-                // console.log(res);
-                dispatch(carActions.getAllCarTrue(res.data))
-                setCars(res.data.data)
-            })
-
         axios.get(`/api/process/${user_id}`)
             .then(res => {
-                console.log(res.data.data);
-                // console.log(user_id);
                 setCarProcess(res.data.data);
                 if(carProcess != null){
                     setUserTransaction(res.data.data.user.user_id);
                 }
-                // dispatch(carActions.getAllCarTrue(res.data))
-                // setCars(res.data.data)
             })
+
+        axios.get(`/api/cars/status/true`)
+            .then(res => {
+                dispatch(carActions.getAllCarTrue(res.data))
+                setCars(res.data.data)
+            })
+
     }, [dispatch])
-    console.log(userTransaction);
+
     function searchHandler(events) {
         setSearch(events.target.value);
     };
@@ -60,7 +52,7 @@ function DashboardMember(props) {
                 dispatch(carActions.getAllCarTrue(res.data.data))
                 setCars(res.data.data)
             }, (error) => {
-                alert("Tidak ada");
+                // alert("Tidak ada");
             })
     }
 
@@ -84,6 +76,9 @@ function DashboardMember(props) {
     return (
         <>
             {userTransaction == user_id ?
+            <div id="card-with-status">
+                <h4>Your Transaction</h4>
+                <hr />
                 <Card className="card-car" style={{ width: '25rem' }}>
                 <Card.Img className="card-img" variant="top" src={carProcess.car.image} />
                 <Card.Body>
@@ -102,14 +97,18 @@ function DashboardMember(props) {
                             </Col>
                     </Row>
                 </Card.Body>
-            </Card>
+                </Card>
+            </div>
                 :
                 <>
+                <div id="container-dashboard">
                     <Form className="d-flex search-input">
                         <FormControl type="search" placeholder="I need a car at" className="me-2" aria-label="Search" onChange={searchHandler} />
                         <Button variant="outline-success" onClick={buttonSearchHandler}> Search </Button>
                     </Form>
-                    <p className="title">More than 100+ cars</p>
+                    <h4>More than 100+ cars</h4>
+                    <hr className="more"/>
+                    <div id="container-car">
                     {cars.map((value) => {
                         return (
                             <Card className="card-car" style={{ width: '25rem' }}>
@@ -128,7 +127,8 @@ function DashboardMember(props) {
                             </Card>
                         )
                     })}
-
+                    </div>
+                </div>
                 </>
             }
         </>

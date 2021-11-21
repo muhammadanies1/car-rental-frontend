@@ -1,10 +1,9 @@
 import {Table } from "react-bootstrap";
 import {Button as BtnBoo} from "react-bootstrap"
 import {useState , useEffect} from "react";
-// import DetailCars from "../../components/modals/DetailCars";
 import "./CarApprove.css";
 import axios from "axios";
-import { useParams ,useNavigate} from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 import { Button } from '@mui/material';
 
 function CarApprove() {
@@ -29,11 +28,12 @@ function CarApprove() {
 
     return(
         <>
+        <div id="container-approveCar">
             <Button className="balance" variant="secondary" size="lg" disabled>
                 Balance: Rp 50.000.000
             </Button>
-            <div className="table-cars">
-            <Table striped bordered hover size="sm">
+            <hr />
+            <Table className="table-cars" striped bordered hover size="sm">
                 <thead>
                     <tr>
                         <th>No</th>
@@ -44,7 +44,7 @@ function CarApprove() {
                 <tbody >
                     {partner.map((value,index)=>{
                         return (
-                    <tr>
+                            <tr>
                         <td>{index +1}</td>
                         <td>{value.partner_name}</td>
                         <td>
@@ -56,7 +56,8 @@ function CarApprove() {
                 </tbody>
             </Table>
             <Button variant="contained" color="primary" style={{float:"left"}} onClick={goBack}>Back</Button>
-            </div>
+            
+        </div>
         </>
     )
 }

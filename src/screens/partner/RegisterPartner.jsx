@@ -23,7 +23,7 @@ function RegisterPartner() {
     }
 
     const [viewport, setViewport] = useState({
-        width: "93vw",
+        width: "71vw",
         height: "100vh",
         latitude: -6.261058,
         longitude: 106.642164,
@@ -63,9 +63,10 @@ function RegisterPartner() {
 
     return(
         <>
-            <p className="name-partner">Join Partner</p>
+        <div id="container-joinPartner">
+            <h4 className="title-joinPartner">Join Partner</h4>
+            <hr />
             <div className="container-join-partner" gap={3}>
-                <div className="bg-light border"> 
                 <ReactMapGL
                     {...viewport}
                     mapboxApiAccessToken="pk.eyJ1IjoibXVoYW1tYWQtYW5pZXMxIiwiYSI6ImNrdzFsOXdqamEzdGgzMHFwdXVncWdtengifQ.kulWbTY0gS5iPELC-iOWGA"
@@ -73,18 +74,9 @@ function RegisterPartner() {
                     mapStyle="mapbox://styles/muhammad-anies1/ckw4bf05v0ezn14nuofdmayiv"
                     onDblClick = { handleAddClick }
                     >
-                    
-                    {/* <Marker latitude={newCoordinate.lat} 
-                        longitude={newCoordinate.long} 
-                        offsetLeft={-20} 
-                        offsetTop={-10}
-                        closeButton={true} 
-                        closeOnClick={false}
-                        onClose={() => setNewCoordinate(null) } >
-                        <RoomIcon style={{ fontSize:viewport.zoom * 5, color: "slateblue" }}/>
-                    </Marker> */}
+                
                     { newCoordinate && (
-
+                        
                         <Popup latitude={newCoordinate.lat} 
                         longitude={newCoordinate.long} 
                         closeButton={true} 
@@ -108,8 +100,8 @@ function RegisterPartner() {
                         </Popup>
                     )}
                 </ReactMapGL>
-                </div>
             </div>
+        </div>
         </>
     )
 }

@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { transactionActions } from "../../store/transaction";
 import { useNavigate } from "react-router-dom";
 import { Button } from '@mui/material';
+import "./TransactionAdmin.css";
+
 const TransactionAdmin = () => {
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
@@ -73,13 +75,14 @@ const TransactionAdmin = () => {
 
   return (
     <>
+    <div className="container-adminTransaction">
       <DataTable
         title="All Transaction"
         columns={columns}
         data={listTransaction}
         progressPending={isLoading}
         pagination
-      />
+        />
       <ModalShowDetail
       detailcar={car} 
       paid_status={paidStatus}
@@ -88,6 +91,7 @@ const TransactionAdmin = () => {
       onHide={() => setModalShow(false)}
       />
       <Button variant="contained" color="primary" style={{float:"left"}} onClick={goBack}>Back</Button>
+      </div>
     </>
   );
 };

@@ -1,11 +1,7 @@
-import { Card, Button, Col, Row, Table } from "react-bootstrap";
-
-import gambar from './mcqueen.jpg';
-import "./History.css";
-import { useState } from "react";
-import { useEffect } from "react";
+import { Table } from "react-bootstrap";
+import { useState, useEffect } from "react";
 import axios from "axios";
-import { useSelector, useDispatch } from "react-redux";
+import "./History.css";
 
 function History() {
 
@@ -22,12 +18,11 @@ function History() {
 
     }, [])
 
-    // console.log(transaction);
-
     let i = 0;
     return (
-        <div>
-            <Table striped bordered hover size="sm">
+        <>
+        <div className="column-history">
+            <Table className="table-history" striped bordered hover size="sm">
                 <thead>
                     <tr>
                         <th>No</th>
@@ -41,7 +36,7 @@ function History() {
                     {transaction.map((value) => {
                         return (
                             value.paid_status == "Finish" ?
-                                <tr>
+                            <tr>
                                 <td>{++i}</td>
                                 <td>{value.car.partner.partner_name}</td>
                                 <td>{value.car.partner.city}</td>
@@ -50,14 +45,13 @@ function History() {
                             </tr>
                             :
                             ""
-                        );
-                    })}
+                            );
+                        })}
                 </tbody>
             </Table>
         </div>
 
-
-        // <Card className="card-car" style={{ width: '25rem' }}>
+        {/* // <Card className="card-car" style={{ width: '25rem' }}>
         //     <Card.Img className="card-img" variant="top" src={value.car.image} />
         //     <Card.Body>
         //         <Row>
@@ -71,8 +65,9 @@ function History() {
         //                 </Col>
         //         </Row>
         //     </Card.Body>
-        // </Card>
+        // </Card> */}
 
+        </>
     )
 }
 

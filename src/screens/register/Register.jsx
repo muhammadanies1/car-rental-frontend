@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Card, FloatingLabel, Form, Button } from "react-bootstrap";
 import "./Register.css";
+import Swal from "sweetalert2";
 
 
 function Register() {
@@ -11,6 +12,7 @@ function Register() {
     const validName = new RegExp('[a-zA-Z]+');
     const validUsername = new RegExp('[A-Za-z0-9]+[@]+[a-z]+[.]+[c][o][m]');
     const validPhoneNumber = new RegExp('\\d+');
+    const validPassword = new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[*\-\/:-@\\[-`{-~]).{6,64}$');
 
     const [form, setForm] = useState({
         username: "",
@@ -48,13 +50,29 @@ function Register() {
                 alert("Username harus menggunakan email");
             }else if(!validPhoneNumber.test(phone_number)){
                 alert("nomor telfon harus angka");
+            } else if(!validPassword.test(password)){
+                alert("Password min 6 karakter 1 Huruf besar, satu simbol dan satu angka")
             } else{
                 axios.post(`/api/register`,form).then((response) => {
-
-                    alert("Register berhasil.")
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Done!',
+                        text: 'Your registration success',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                    });
+                    
                     navigate("/");        
                 }, (error) => {
-                    alert("Silahkan pilih username lain");
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Registration Error',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                    });
                 });
             }
     }

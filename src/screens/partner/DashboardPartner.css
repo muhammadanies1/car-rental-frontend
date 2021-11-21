@@ -1,6 +1,27 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100&family=Roboto:wght@100;300&display=swap');
 
 
+#container-dashboardPartner{
+    margin-top: 30px;
+    margin-left: 122px;
+    margin-right: 130px;
+    margin-bottom: 50px;
+    border: 1px solid;
+    border-color: #ebebeb;
+    background-color: #ebebeb;
+    border-radius: 10px;
+    padding-left: 35px;
+    padding-right: 35px;
+    padding-bottom: 50px;
+}
+
+#flexbox-car {
+    margin-right: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
 .btn-add {
     margin-top: 30px !important;
     margin-left: 30px !important;

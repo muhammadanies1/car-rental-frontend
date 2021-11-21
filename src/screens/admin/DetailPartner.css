@@ -1,10 +1,4 @@
-.table-cars{
-    margin-top: 30px;
-    background-color: white;
-    text-align: center;
-}
-
-#container-approveCar{
+.container-detailPartner{
     margin-top: 30px;
     margin-left: 122px;
     margin-right: 130px;
@@ -16,4 +10,9 @@
     padding-left: 35px;
     padding-right: 35px;
     padding-bottom: 50px;
+    padding-top: 30px;
+}
+
+.dataTbl-Partner{
+    margin-top: 30px;
 }
