@@ -29,22 +29,22 @@ function DashboardMember() {
 
     // }
 
-    useEffect(() => {
-        // axios.get(`/api/process/${user_id}`)
-        //     .then(res => {
-        //         setCarProcess(res.data.data);
-        //         if (carProcess != null) {
-        //             setUserTransaction(res.data.data.user.user_id);
-        //         }
-        //     })
+    // useEffect(() => {
+    //     axios.get(`/api/process/${user_id}`)
+    //         .then(res => {
+    //             setCarProcess(res.data.data);
+    //             if (carProcess != null) {
+    //                 setUserTransaction(res.data.data.user.user_id);
+    //             }
+    //         })
 
-        axios.get(`/api/cars/status/true`)
-            .then(res => {
-                dispatch(carActions.getAllCarTrue(res.data))
-                setCars(res.data.data)
-            })
+    //     axios.get(`/api/cars/status/true`)
+    //         .then(res => {
+    //             dispatch(carActions.getAllCarTrue(res.data))
+    //             setCars(res.data.data)
+    //         })
 
-    }, [dispatch])
+    // }, [dispatch])
     // console.log(cars);
     // function searchHandler(events) {
     //     setSearch(events.target.value);
@@ -80,10 +80,9 @@ function DashboardMember() {
                     ""
                 }
 
-                {/* <div id="container-car">
-                        
-                        </div> */}
+               
             </div>
+            <NotFinish />
         </>
     )
 }
