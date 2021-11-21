@@ -76,8 +76,8 @@ function InputCar(props) {
         })
     }
 
-    console.log(car);
-    console.log(dataPhotos);
+    // console.log(car);
+    // console.log(dataPhotos);
     return (
         <Modal {...props} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
             <Modal.Header closeButton>

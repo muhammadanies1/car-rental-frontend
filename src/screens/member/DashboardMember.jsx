@@ -21,6 +21,7 @@ function DashboardMember() {
     const [carProcess, setCarProcess] = useState(null);
     const user_id = JSON.parse(localStorage.getItem("user_id"));
     const [userTransaction, setUserTransaction] = useState();
+    const [isLoading, setIsLoading] = useState(false);
 
     // function bookHandler(carId) {
     //     // events.preventDefault();
@@ -28,24 +29,24 @@ function DashboardMember() {
     //     window.location.reload();
 
     // }
+    useEffect(() => {
+        setIsLoading(true);
+        axios.get(`/api/process/${user_id}`)
+            .then(res => {
+                setCarProcess(res.data.data);
+                if (carProcess != null) {
+                    setUserTransaction(res.data.data.user.user_id);
+                }
+            })
 
-    // useEffect(() => {
-    //     axios.get(`/api/process/${user_id}`)
-    //         .then(res => {
-    //             setCarProcess(res.data.data);
-    //             if (carProcess != null) {
-    //                 setUserTransaction(res.data.data.user.user_id);
-    //             }
-    //         })
+        axios.get(`/api/cars/status/true`)
+            .then(res => {
+                dispatch(carActions.getAllCarTrue(res.data))
+                setCars(res.data.data)
+            })
+        setIsLoading(false);
+    }, [dispatch])
 
-    //     axios.get(`/api/cars/status/true`)
-    //         .then(res => {
-    //             dispatch(carActions.getAllCarTrue(res.data))
-    //             setCars(res.data.data)
-    //         })
-
-    // }, [dispatch])
-    // console.log(cars);
     // function searchHandler(events) {
     //     setSearch(events.target.value);
     // };
@@ -67,23 +68,80 @@ function DashboardMember() {
 
     // }
 
+    console.log(cars);
     return (
         <>
-            <StatusFinish cars={cars} />
-            <div id="container-dashboard">
-                <ButtonSearchBoard setCars={setCars} />
-                <h4>More than 100+ cars</h4>
-                <hr className="more" />
-                {cars.length !== 0 ?
-                    <SearchBoard cars={cars} />
-                    :
-                    ""
-                }
+        <ButtonSearchBoard setCars={setCars} />
+            {carProcess != null && carProcess.paid_status != "Finish"
+                ?
+                <NotFinish />
+                :
+                cars.length != 0
+                ?
 
-               
-            </div>
-            <NotFinish />
+                //     ?
+                //     <>
+                    // <p>Test</p>
+                    <StatusFinish cars={cars} />
+                //     </>
+                    :
+                    // <p>Test2</p>
+                    <SearchBoard cars={cars} />
+                    
+
+            }
+            {/* <>
+            {isLoading == true ?
+                <div>
+                    <StatusFinish cars={cars} />
+                    <div id="container-dashboard">
+                        <ButtonSearchBoard setCars={setCars} />
+                        <h4>More than 100+ cars</h4>
+                        <hr className="more" />
+                        {cars.length !== 0 ?
+                            <SearchBoard cars={cars} />
+                            :
+                            ""
+                        }
+
+                    </div>
+                </div>
+                :
+                
+            <NotFinish /> */}
+
+            {/* } */}
         </>
+        // <>
+        //     {isLoading == false ?
+        //         <>
+
+        //     <div>
+        //         <StatusFinish cars={cars} />
+        //         <div id="container-dashboard">
+        //             <ButtonSearchBoard setCars={setCars} />
+        //             <h4>More than 100+ cars</h4>
+        //             <hr className="more" />
+        //             {cars.length !== 0 ?
+        //                 <SearchBoard cars={cars} />
+        //                 :
+        //                 ""
+        //             }
+
+        //         </div>
+        //         </>
+        //         :
+        //         <></>
+        //     }
+
+        //         {/* <div id="container-car">
+
+        //                 </div> */}
+        //     </div>
+        // </>
+
+        // </div>
+        // </>
     )
 }
 
