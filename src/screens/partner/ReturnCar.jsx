@@ -60,7 +60,18 @@ function ReturnCar(props){
                         <td>Rp. {value.total_payment + value.penalty}</td>
                         <td>{value.paid_status}</td>
                         <td>
-                            <Button variant="primary" size="sm" onClick={()=> updateStatusReturnCar(value.transaction_id)}>Detail</Button>
+                            {value.paid_status === "Return"
+                            ?
+                            <Button variant="primary" size="sm" onClick={()=> updateStatusReturnCar(value.transaction_id)}>
+                                {value.paid_status}
+                            </Button>
+                            :
+                            value.paid_status == "Finish"
+                            ?
+                            <>Transaction is complete</>
+                            :
+                            <p></p>
+                        }
                         </td>
                     </tr>
                         );
