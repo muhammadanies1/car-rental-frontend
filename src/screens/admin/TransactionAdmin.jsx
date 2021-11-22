@@ -40,6 +40,26 @@ const TransactionAdmin = () => {
     navigate("/admin/dashboard");
   }
 
+  const customStyles = {
+    rows: {
+        style: {
+            minHeight: '72px', // override the row height
+        },
+    },
+    headCells: {
+        style: {
+            paddingLeft: '8px', // override the cell padding for head cells
+            paddingRight: '8px',
+        },
+    },
+    cells: {
+        style: {
+            paddingLeft: '8px', // override the cell padding for data cells
+            paddingRight: '8px',
+        },
+    },
+};
+
   const columns = [
     {
       name: "Transaction Id",
@@ -78,9 +98,6 @@ const TransactionAdmin = () => {
 
   return (
     <>
-    <Button className="container-balance" variant="secondary" size="lg" disabled>
-      Balance: Rp 50.000.000
-    </Button>
     <div className="container-adminTransaction">
       <DataTable
         title="All Transaction"
@@ -96,7 +113,7 @@ const TransactionAdmin = () => {
       show={modalShow} 
       onHide={() => setModalShow(false)}
       />
-      <Button variant="contained" color="primary" style={{float:"left"}} onClick={goBack}>Back</Button>
+      <Button variant="primary" style={{float:"left", marginTop:"10px", borderRadius:"10px"}} onClick={goBack}>Back</Button>
       </div>
     </>
   );

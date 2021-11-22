@@ -9,6 +9,18 @@
     border-radius: 10px;
     padding-left: 35px;
     padding-right: 35px;
-    padding-bottom: 50px;
+    padding-bottom: 80px;
     padding-top: 30px;
+}
+
+.dataTable-allTR{
+    margin-left: 122px;
+    margin-right: 130px;
+}
+
+.btnBack{
+    margin-top: 10px;
+    height: 30px;
+    width: 30px;
+    font-size: smaller;
 }

@@ -1,5 +1,5 @@
 import { Button, Table } from "react-bootstrap";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "./PartnerApprove.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -8,17 +8,17 @@ import {partnerActions} from '../../store/partner';
 
 
 function PartnerApprove() {
+
   const dispatch = useDispatch();
   const listPartnerAcc = useSelector((state) => state.partner.listPartnerAcc);
-  // const [partner, setPartner] = useState([]);
   let navigate = useNavigate();
+
   useEffect(() => {
     axios.get("/api/partner/false").then((res) => {
-      // setPartner(res.data.data);
       dispatch(partnerActions.getListPartnerAcc(res.data.data));
     });
   }, [dispatch]);
-  console.log(listPartnerAcc);
+  
   function updateStatusAccPartner(partnerId) {
     axios.put("/api/partner/acc/" + partnerId).then((res) => {
       alert("berhasil update status");
@@ -26,15 +26,13 @@ function PartnerApprove() {
       navigate("/admin/partners");
     });
   }
+
   function goBack(){
     navigate("/admin/dashboard");
   }
 
   return (
     <>
-      <Button className="container-balance" variant="secondary" size="lg" disabled>
-        Balance: Rp 50.000.000
-      </Button>
       <div id="container-adminPartner">
         <div className="justify-content-center mt-3 m-3">
           <Table className="table-approvePartner" striped bordered hover size="md">
@@ -65,7 +63,7 @@ function PartnerApprove() {
               })}
             </tbody>
           </Table>
-          <Button variant="contained" color="primary" style={{float:"left"}} onClick={goBack}>Back</Button>
+          <Button variant="primary" style={{float:"left", marginTop:"10px", borderRadius:"10px"}} onClick={goBack}>Back</Button>
         </div>
       </div>
     </>

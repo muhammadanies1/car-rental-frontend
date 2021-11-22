@@ -40,6 +40,7 @@ function DashboardMember() {
 
         axios.get(`/api/cars/status/true`)
             .then(res => {
+                console.log(res);
                 dispatch(carActions.getAllCarTrue(res.data))
                 setCars(res.data.data)
             })

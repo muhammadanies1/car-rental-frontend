@@ -1,11 +1,12 @@
 import { Card, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import "./DashboardAdmin.css";
-import CardTransactionAdmin from "./CardTransactionAdmin";
 
 function DashboardAdmin () {
     let navigate = useNavigate();
-
+    
     function toPartners(){
         navigate("/admin/partners");
     }
@@ -14,12 +15,12 @@ function DashboardAdmin () {
         navigate("/admin/cars");
     }
     
-    
+    function toTransaction(){
+        navigate("/admin/transaction")
+    }
+
     return (
         <>
-        <Button className="container-balance" variant="secondary" size="lg" disabled>
-                Balance: Rp 50.000.000
-        </Button>
         <div id="container-dashboardAdmin">
             <div className="flex-container">
                 <Card className="card-approve-partner" onClick={toPartners}>
@@ -36,7 +37,14 @@ function DashboardAdmin () {
                         </div>
                     </Card.Body>
                 </Card>
-                <CardTransactionAdmin/>
+
+                <Card className="card-transaction" onClick={toTransaction}>
+                    <Card.Body>
+                        <p>Transaction</p>
+                        <div className="total">
+                        </div>
+                    </Card.Body>
+                </Card>
             </div>    
         </div>
         </>

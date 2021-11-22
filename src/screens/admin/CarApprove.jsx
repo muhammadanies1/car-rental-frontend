@@ -5,17 +5,15 @@ import "./CarApprove.css";
 import axios from "axios";
 
 function CarApprove() {
+    
     let navigate = useNavigate();
+    const [partner, setPartner] = useState([]);
 
-    const [partner, setPartner] = useState([]);    
     useEffect(()=>{
-        axios
-        .get("/api/partners")
-        .then((res)=>{
+        axios.get("/api/partners").then((res)=>{
             setPartner(res.data.data);
-        })
+        });
     },[setPartner]);
-    // console.log(partner);
 
     function toPartnerCar(partnerId){
         navigate('/admin/partner/detail/car/'+partnerId)
@@ -26,9 +24,6 @@ function CarApprove() {
 
     return(
         <>
-        <Button className="container-balance" variant="secondary" size="lg" disabled>
-            Balance: Rp 50.000.000
-        </Button>
         <div id="container-approveCar">
             <Table className="table-cars" striped bordered hover size="sm">
                 <thead>
@@ -52,8 +47,9 @@ function CarApprove() {
                     })}
                 </tbody>
             </Table>
-            <Button variant="contained" color="primary" style={{float:"left"}} onClick={goBack}>Back</Button>
-            
+            <Button variant="primary" 
+                style={{float:"left", marginTop:"10px", borderRadius:"10px"}} 
+                onClick={goBack}> Back </Button>
         </div>
         </>
     )

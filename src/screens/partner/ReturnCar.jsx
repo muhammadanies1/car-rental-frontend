@@ -1,9 +1,8 @@
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
-import { Button, Card, Row, Col, Table } from "react-bootstrap";
-import { transactionActions } from "../../store/transaction";
+import { Button, Table } from "react-bootstrap";
 
 function ReturnCar(props){
 
@@ -60,14 +59,24 @@ function ReturnCar(props){
                         <td>Rp. {value.total_payment + value.penalty}</td>
                         <td>{value.paid_status}</td>
                         <td>
-                            <Button variant="primary" size="sm" onClick={()=> updateStatusReturnCar(value.transaction_id)}>Detail</Button>
+                            {value.paid_status === "Return"
+                            ?
+                            <Button variant="primary" size="sm" onClick={()=> updateStatusReturnCar(value.transaction_id)}>
+                                {value.paid_status}
+                            </Button>
+                            :
+                            value.paid_status == "Finish"
+                            ?
+                            <>Transaction is complete</>
+                            :
+                            <p></p>
+                        }
                         </td>
                     </tr>
                         );
                     })}
                 </tbody>
             </Table>
-         
         </>
     )
 }
