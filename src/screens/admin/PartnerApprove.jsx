@@ -1,11 +1,12 @@
-import {Table, Container } from "react-bootstrap";
+import { Button, Table } from "react-bootstrap";
 import { useEffect } from "react";
 import "./PartnerApprove.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { Button } from '@mui/material';
 import { useDispatch, useSelector } from "react-redux";
 import {partnerActions} from '../../store/partner';
+
+
 function PartnerApprove() {
   const dispatch = useDispatch();
   const listPartnerAcc = useSelector((state) => state.partner.listPartnerAcc);
@@ -31,11 +32,10 @@ function PartnerApprove() {
 
   return (
     <>
+      <Button className="container-balance" variant="secondary" size="lg" disabled>
+        Balance: Rp 50.000.000
+      </Button>
       <div id="container-adminPartner">
-        <Button className="balance" variant="secondary" size="lg" disabled>
-          Balance: Rp 50.000.000
-        </Button>
-        <hr />
         <div className="justify-content-center mt-3 m-3">
           <Table className="table-approvePartner" striped bordered hover size="md">
             <thead>

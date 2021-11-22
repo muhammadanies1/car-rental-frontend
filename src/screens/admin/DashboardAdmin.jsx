@@ -17,11 +17,10 @@ function DashboardAdmin () {
     
     return (
         <>
-        <div id="container-dashboardAdmin">
-            <Button className="balance" variant="secondary" size="lg" disabled>
+        <Button className="container-balance" variant="secondary" size="lg" disabled>
                 Balance: Rp 50.000.000
-            </Button>
-            <hr />
+        </Button>
+        <div id="container-dashboardAdmin">
             <div className="flex-container">
                 <Card className="card-approve-partner" onClick={toPartners}>
                     <Card.Body>

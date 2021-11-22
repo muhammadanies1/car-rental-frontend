@@ -1,10 +1,8 @@
-import {Table } from "react-bootstrap";
-import {Button as BtnBoo} from "react-bootstrap"
+import { Table, Button } from "react-bootstrap";
 import {useState , useEffect} from "react";
+import { useNavigate} from "react-router-dom";
 import "./CarApprove.css";
 import axios from "axios";
-import { useNavigate} from "react-router-dom";
-import { Button } from '@mui/material';
 
 function CarApprove() {
     let navigate = useNavigate();
@@ -28,11 +26,10 @@ function CarApprove() {
 
     return(
         <>
+        <Button className="container-balance" variant="secondary" size="lg" disabled>
+            Balance: Rp 50.000.000
+        </Button>
         <div id="container-approveCar">
-            <Button className="balance" variant="secondary" size="lg" disabled>
-                Balance: Rp 50.000.000
-            </Button>
-            <hr />
             <Table className="table-cars" striped bordered hover size="sm">
                 <thead>
                     <tr>
@@ -48,7 +45,7 @@ function CarApprove() {
                         <td>{index +1}</td>
                         <td>{value.partner_name}</td>
                         <td>
-                            <BtnBoo variant="primary" size="sm" onClick={()=> toPartnerCar(value.partner_id)}>Detail</BtnBoo>
+                            <Button variant="primary" size="sm" onClick={()=> toPartnerCar(value.partner_id)}>Detail</Button>
                         </td>
                     </tr>
                         );

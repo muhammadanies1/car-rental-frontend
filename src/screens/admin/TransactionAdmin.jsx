@@ -5,18 +5,19 @@ import ModalShowDetail from "./ModalShowDetail";
 import { useDispatch, useSelector } from "react-redux";
 import { transactionActions } from "../../store/transaction";
 import { useNavigate } from "react-router-dom";
-import { Button } from '@mui/material';
+import { Button } from 'react-bootstrap';
 import "./TransactionAdmin.css";
 
 const TransactionAdmin = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const dispatch = useDispatch();
-  let navigate = useNavigate();
   const listTransaction = useSelector((state) => state.transaction.listTransaction);
   const [transactionId, setTransactionId] = useState();
   const [paidStatus, setpaidStatus] = useState();
   const [car, setCar] = useState({});
   const [modalShow, setModalShow] = useState(false);
+  const dispatch = useDispatch();
+  let navigate = useNavigate();
+
   useEffect(() => {
     setIsLoading(true);
     axios.get(`/api/transactions`).then((res) => {
@@ -24,7 +25,8 @@ const TransactionAdmin = () => {
     setIsLoading(false);
     });
   }, []);
-  // console.log(listTransaction);
+
+
   function detailTransaction(carId,transactionId,paidStatus) {
     axios.get("/api/car/id/"+carId).then((res) => {
       setCar(res.data.data)
@@ -33,10 +35,11 @@ const TransactionAdmin = () => {
     });
     setModalShow(true);
   }
-  // console.log(transactionId);
+
   function goBack(){
     navigate("/admin/dashboard");
   }
+
   const columns = [
     {
       name: "Transaction Id",
@@ -75,6 +78,9 @@ const TransactionAdmin = () => {
 
   return (
     <>
+    <Button className="container-balance" variant="secondary" size="lg" disabled>
+      Balance: Rp 50.000.000
+    </Button>
     <div className="container-adminTransaction">
       <DataTable
         title="All Transaction"

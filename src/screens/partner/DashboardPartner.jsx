@@ -9,7 +9,7 @@ import { useEffect } from "react";
 import axios from "axios";
 import { carActions } from "../../store/car";
 
-function DashboardPartner() {
+function DashboardPartner(props) {
 
     const listCar = useSelector((state) => state.car);
     const thisPartner = useSelector((state) => state.partner);
@@ -63,7 +63,7 @@ function DashboardPartner() {
 
     }, [dispatch])
 
-    // console.log(partner);
+    console.log(partner);
     return (
         <>
         <div id="container-dashboardPartner">
