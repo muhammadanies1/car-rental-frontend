@@ -3,6 +3,7 @@ import { Form, FormControl, Card, Button, Col, Row, Container } from "react-boot
 import axios from "axios";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 const NotFinish = () => {
     const [carProcess, setCarProcess] = useState({});
     const user_id = JSON.parse(localStorage.getItem("user_id"));
@@ -33,29 +34,35 @@ const NotFinish = () => {
             console.log(" sampun mlebet" + carProcess.transaction_id);
             axios.put("/api/transaction/paidoff/" + carProcess.transaction_id)
             .then(res => {
+                console.log();
                 window.snap.pay(res.data.data,{
-                    onCapture : function (result){
+                    onSuccess : function (result){
                         navigate({
                           pathname: "/member/dashboard",
                         });
                         window.location.reload();
                     },
                     onPending : function (result) {
-                        alert("pending");
                         navigate({
                             pathname: "/member/dashboard",
                           });
                         window.location.reload();
                     },
                     onError: function (result) {
-                        alert("error")
                         navigate({
                             pathname: "/member/dashboard",
                           });
                           window.location.reload();
                       },
                     onClose: function () {
-                        alert("Transaction Was Not Paid")
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'You Have Unpaid Transaction!',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                        });
                         navigate({
                             pathname: "/member/dashboard",
                           });
