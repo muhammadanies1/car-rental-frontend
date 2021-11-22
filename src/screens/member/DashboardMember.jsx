@@ -17,18 +17,12 @@ function DashboardMember() {
     let navigate = useNavigate();
     const dispatch = useDispatch();
     const [cars, setCars] = useState([]);
-    const [search, setSearch] = useState("");
+    const [cekSearch, setCekSearch] = useState("");
     const [carProcess, setCarProcess] = useState(null);
     const user_id = JSON.parse(localStorage.getItem("user_id"));
     const [userTransaction, setUserTransaction] = useState();
     const [isLoading, setIsLoading] = useState(false);
 
-    // function bookHandler(carId) {
-    //     // events.preventDefault();
-    //     navigate("/member/rentcar/" + carId);
-    //     window.location.reload();
-
-    // }
     useEffect(() => {
         setIsLoading(true);
         axios.get(`/api/process/${user_id}`)
@@ -48,101 +42,28 @@ function DashboardMember() {
         setIsLoading(false);
     }, [dispatch])
 
-    // function searchHandler(events) {
-    //     setSearch(events.target.value);
-    // };
-
-    // function buttonReturnAndPaymentHandler(events) {
-    //     console.log(carProcess.transaction_id);
-    //     if (carProcess.paid_status == "Reserved") {
-    //         axios.put("/api/transaction/return/" + carProcess.transaction_id)
-    //             .then(res => {
-    //                 window.location.reload();
-    //             })
-    //     } else if (carProcess.paid_status == "Waiting for payment") {
-    //         console.log(" sampun mlebet" + carProcess.transaction_id);
-    //         axios.put("/api/transaction/paidoff/" + carProcess.transaction_id)
-    //             .then(res => {
-    //                 window.snap.pay(res.data.message);
-    //             })
-    //     }
-
-    // }
 
     console.log(cars);
     return (
         <>
-        <ButtonSearchBoard setCars={setCars} />
-            {carProcess != null && carProcess.paid_status != "Finish"
-                ?
-                <NotFinish />
-                :
-                cars.length != 0
-                ?
-
-                //     ?
-                //     <>
-                    // <p>Test</p>
-                    <StatusFinish cars={cars} />
-                //     </>
+            <div id="container-dashboard">
+                {carProcess != null && carProcess.paid_status != "Finish" ?
+                    <NotFinish />
                     :
-                    // <p>Test2</p>
-                    <SearchBoard cars={cars} />
-                    
-
-            }
-            {/* <>
-            {isLoading == true ?
-                <div>
-                    <StatusFinish cars={cars} />
-                    <div id="container-dashboard">
-                        <ButtonSearchBoard setCars={setCars} />
-                        <h4>More than 100+ cars</h4>
-                        <hr className="more" />
-                        {cars.length !== 0 ?
-                            <SearchBoard cars={cars} />
-                            :
-                            ""
-                        }
-
-                    </div>
-                </div>
-                :
-                
-            <NotFinish /> */}
-
-            {/* } */}
+                    cars.length != 0 ?
+                        <div>
+                            <ButtonSearchBoard setCars={setCars} />
+                            <StatusFinish cars={cars} />
+                        </div>
+                        :
+                        <div>
+                            <ButtonSearchBoard setCars={setCars} />
+                            <StatusFinish cars={cars} />
+                        </div>
+                }
+            </div>
         </>
-        // <>
-        //     {isLoading == false ?
-        //         <>
 
-        //     <div>
-        //         <StatusFinish cars={cars} />
-        //         <div id="container-dashboard">
-        //             <ButtonSearchBoard setCars={setCars} />
-        //             <h4>More than 100+ cars</h4>
-        //             <hr className="more" />
-        //             {cars.length !== 0 ?
-        //                 <SearchBoard cars={cars} />
-        //                 :
-        //                 ""
-        //             }
-
-        //         </div>
-        //         </>
-        //         :
-        //         <></>
-        //     }
-
-        //         {/* <div id="container-car">
-
-        //                 </div> */}
-        //     </div>
-        // </>
-
-        // </div>
-        // </>
     )
 }
 

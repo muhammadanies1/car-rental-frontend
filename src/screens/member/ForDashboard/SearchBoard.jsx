@@ -9,7 +9,6 @@ function SearchBoard(props){
     let navigate = useNavigate();
 
     function bookHandler(carId) {
-        // events.preventDefault();
         navigate("/member/rentcar/"+carId);
         window.location.reload();
         
@@ -29,7 +28,7 @@ function SearchBoard(props){
                                         </Col>
                                         <Col md="auto">
                                             <Card.Text className="car-price"> Rp {value.price} </Card.Text>
-                                            <Button className="btn-book" variant="primary" onClick={()=>bookHandler(value.car_id)}>Book Now</Button>
+                                            <Button className="btn-book" variant="primary" onClick={()=>bookHandler(value.car_id)}>Detail</Button>
                                             </Col>
                                     </Row>
                                 </Card.Body>
