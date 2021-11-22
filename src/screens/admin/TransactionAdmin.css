@@ -1,4 +1,7 @@
-.container-adminTransaction{
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700&display=swap');
+
+
+.container-adminTransaction {
     margin-top: 30px;
     margin-left: 122px;
     margin-right: 130px;
@@ -13,25 +16,32 @@
     padding-top: 30px;
 }
 
-.dataTable-allTR{
+.dataTable-allTR {
     margin-left: 122px;
     margin-right: 130px;
 }
 
-.btnBack{
+.btnBack {
     margin-top: 10px;
     height: 30px;
     width: 30px;
     font-size: smaller;
 }
 
-.p-allTR{
+.p-allTR {
     margin-top: 30px;
-    margin-left: 122px;
-    margin-right: 130px;
+    font-family: 'Merriweather', serif;
+    text-align: center;
+    font-size: 20px;
 }
 
-.garis-tr{
+
+.garis-tr {
     margin-left: 122px;
     width: 81%;
+}
+
+.br-Dcrumb {
+    margin-left: 130px;
+    margin-top: 30px;
 }

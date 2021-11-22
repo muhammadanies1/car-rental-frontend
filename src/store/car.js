@@ -4,6 +4,7 @@ const initialState = {
     listCar: [],
     listCarByPartner:[],
     listCarByPatnerId:[],
+    listDetailPartnerCars:[],
     objCarByCarId:{},
 }
 
@@ -22,6 +23,9 @@ const carSlices = createSlice({
         },
         getCarByCarId(state, data){
             state.objCarByCarId = data.payload;
+        },
+        listDetailPartnerCars(state, data){
+            state.listDetailPartnerCars = data.payload;
         }
     },
 });

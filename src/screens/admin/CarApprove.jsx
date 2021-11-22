@@ -1,19 +1,25 @@
-import { Table, Button } from "react-bootstrap";
-import {useState , useEffect} from "react";
+import { Button } from "react-bootstrap";
+import { useState , useEffect } from "react";
 import { useNavigate} from "react-router-dom";
+import DataTable from "react-data-table-component";
+import { useDispatch, useSelector } from "react-redux";
+import { carActions } from "../../store/car";
 import "./CarApprove.css";
 import axios from "axios";
 
 function CarApprove() {
-    
+
+    const listDetailPartnerCars = useSelector((state) => state.car.listDetailPartnerCars);
+    const [isLoading, setIsLoading] = useState(false);
     let navigate = useNavigate();
-    const [partner, setPartner] = useState([]);
+    let dispatch = useDispatch();
 
     useEffect(()=>{
         axios.get("/api/partners").then((res)=>{
-            setPartner(res.data.data);
+            dispatch(carActions.listDetailPartnerCars(res.data.data));
+            setIsLoading(false);
         });
-    },[setPartner]);
+    },[dispatch]);
 
     function toPartnerCar(partnerId){
         navigate('/admin/partner/detail/car/'+partnerId)
@@ -22,31 +28,33 @@ function CarApprove() {
         navigate("/admin/dashboard");
     }
 
+    const columns = [
+        {
+            name: "Partner Name",
+            selector: row => row.partner_name,
+            sortable: true,
+        },
+        {
+            name: "Action",
+            selector: row => {
+            return <Button variant="primary" 
+                    size="sm" onClick={()=> toPartnerCar(row.partner_id)}>Detail</Button>
+        },
+            sortable: true,
+        },
+    ];
+
     return(
         <>
+        <p className="p-allTR"> Cars Need Approve </p>
+        <hr className="garis-tr" />
         <div id="container-approveCar">
-            <Table className="table-cars" striped bordered hover size="sm">
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>Partner Name</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody >
-                    {partner.map((value,index)=>{
-                        return (
-                            <tr>
-                        <td>{index +1}</td>
-                        <td>{value.partner_name}</td>
-                        <td>
-                            <Button variant="primary" size="sm" onClick={()=> toPartnerCar(value.partner_id)}>Detail</Button>
-                        </td>
-                    </tr>
-                        );
-                    })}
-                </tbody>
-            </Table>
+        <DataTable
+        columns={columns}
+        data={listDetailPartnerCars}
+        progressPending={isLoading}
+        pagination
+        />
             <Button variant="primary" 
                 style={{float:"left", marginTop:"10px", borderRadius:"10px"}} 
                 onClick={goBack}> Back </Button>

@@ -79,12 +79,8 @@ const TransactionAdmin = () => {
 
   return (
     <>
-      {/* <p className="p-allTR">All Transaction</p>
-      <hr className="garis-tr" /> */}
-      <Breadcrumb>
-        <Breadcrumb.Item href="#">Dashboard</Breadcrumb.Item>
-        <Breadcrumb.Item active>Transaction</Breadcrumb.Item>
-      </Breadcrumb>
+      <p className="p-allTR">All Transaction</p>
+      <hr className="garis-tr" />
       <div className="container-adminTransaction">
         <DataTable
           // title="All Transaction"
