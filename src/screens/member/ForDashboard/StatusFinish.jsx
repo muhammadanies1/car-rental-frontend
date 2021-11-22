@@ -16,11 +16,7 @@ function StatusFinish(props){
 
     return(
         <>
-        <div id="container-dashboard">
-            {/* <Form className="d-flex search-input">
-                <FormControl type="search" placeholder="I need a car at" className="me-2" aria-label="Search" />
-                <Button variant="outline-success"> Search </Button>
-            </Form> */}
+        {/* <div id="container-dashboard"> */}
             <h4>More than 100+ cars</h4>
             <hr className="more"/>
             <div id="container-car">
@@ -36,14 +32,14 @@ function StatusFinish(props){
                                 </Col>
                                 <Col md="auto">
                                     <Card.Text className="car-price"> Rp {value.price} </Card.Text>
-                                    <Button className="btn-book" variant="primary" onClick={()=>bookHandler(value.car_id)}>Book Now</Button></Col>
+                                    <Button className="btn-book" variant="primary" onClick={()=>bookHandler(value.car_id)}>Detail</Button></Col>
                             </Row>
                         </Card.Body>
                     </Card>
                 )
             })}
             </div>
-        </div>
+        {/* </div> */}
         </>
     )
 }
