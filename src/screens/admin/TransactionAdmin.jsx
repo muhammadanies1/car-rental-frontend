@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { transactionActions } from "../../store/transaction";
 import { useNavigate } from "react-router-dom";
 import { Button } from 'react-bootstrap';
+import Breadcrumb from 'react-bootstrap/Breadcrumb'
 import "./TransactionAdmin.css";
 
 const TransactionAdmin = () => {
@@ -40,26 +41,6 @@ const TransactionAdmin = () => {
     navigate("/admin/dashboard");
   }
 
-  const customStyles = {
-    rows: {
-        style: {
-            minHeight: '72px', // override the row height
-        },
-    },
-    headCells: {
-        style: {
-            paddingLeft: '8px', // override the cell padding for head cells
-            paddingRight: '8px',
-        },
-    },
-    cells: {
-        style: {
-            paddingLeft: '8px', // override the cell padding for data cells
-            paddingRight: '8px',
-        },
-    },
-};
-
   const columns = [
     {
       name: "Transaction Id",
@@ -82,7 +63,7 @@ const TransactionAdmin = () => {
       selector: (row) => row.paid_status,
     },
     {
-      name: "Detail",
+      name: "Action",
       selector: (row) => {
         return (
           <button
@@ -98,22 +79,32 @@ const TransactionAdmin = () => {
 
   return (
     <>
-    <div className="container-adminTransaction">
-      <DataTable
-        title="All Transaction"
-        columns={columns}
-        data={listTransaction}
-        progressPending={isLoading}
-        pagination
+      {/* <p className="p-allTR">All Transaction</p>
+      <hr className="garis-tr" /> */}
+      <Breadcrumb>
+        <Breadcrumb.Item href="#">Dashboard</Breadcrumb.Item>
+        <Breadcrumb.Item active>Transaction</Breadcrumb.Item>
+      </Breadcrumb>
+      <div className="container-adminTransaction">
+        <DataTable
+          // title="All Transaction"
+          columns={columns}
+          data={listTransaction}
+          progressPending={isLoading}
+          pagination
+          />
+
+        <ModalShowDetail
+        detailcar={car} 
+        paid_status={paidStatus}
+        transaction_id = {transactionId}
+        show={modalShow} 
+        onHide={() => setModalShow(false)}
         />
-      <ModalShowDetail
-      detailcar={car} 
-      paid_status={paidStatus}
-      transaction_id = {transactionId}
-      show={modalShow} 
-      onHide={() => setModalShow(false)}
-      />
-      <Button variant="primary" style={{float:"left", marginTop:"10px", borderRadius:"10px"}} onClick={goBack}>Back</Button>
+
+      <Button variant="primary" 
+      style={{float:"left", marginTop:"10px", borderRadius:"10px"}} 
+      onClick={goBack}>Back</Button>
       </div>
     </>
   );

@@ -8,6 +8,7 @@ function RoutePartner(){
         <>
             <NavBarPartner />
             <Routes>
+                <Route path="/" element={<DashboardPartner />} />
                 <Route path="/partner/dashboard" element={<DashboardPartner />} />
                 <Route path="/partner/returncar" element={<ReturnCar />} />
             </Routes>

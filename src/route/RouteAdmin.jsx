@@ -13,6 +13,7 @@ function RouteAdmin(){
             <NavBarAdmin />
             <Balance />
             <Routes>
+                <Route path="/" element={<DashboardAdmin />} />
                 <Route path="/admin/dashboard" element={<DashboardAdmin />} />
                 <Route path="/admin/cars" element={<CarApprove />} />
                 <Route path="/admin/partners" element={<PartnerApprove />} />

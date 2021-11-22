@@ -2,20 +2,18 @@ import { useState } from "react";
 import { Form, FormControl, Card, Button, Col, Row, Container } from "react-bootstrap";
 import axios from "axios";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 const NotFinish = () => {
     const [carProcess, setCarProcess] = useState({});
     const user_id = JSON.parse(localStorage.getItem("user_id"));
     const [isLoading, setIsLoading] = useState(false);
     const [car, setCar] = useState({});
     const [partner, setPartner] = useState({});
-
-    // const [image, setimage] = useState();
+    let navigate = useNavigate();
     useEffect(() => {
         setIsLoading(true)
-        // console.log(isLoading);
         axios.get(`/api/process/${user_id}`)
         .then(res => {
-            // setimage(res.data.data.car.image)
             // setTimeout(()=>{
                 setCarProcess(res.data.data);
                 setCar(res.data.data.car)
@@ -25,11 +23,7 @@ const NotFinish = () => {
             
         })
     }, []);
-    // console.log(carProcess);
-    // console.log(isLoading);
-    // console.log(image);
     function buttonReturnAndPaymentHandler(events) {
-        // console.log(carProcess.transaction_id);
         if(carProcess.paid_status == "Reserved"){
         axios.put("/api/transaction/return/" + carProcess.transaction_id)
             .then(res => {
@@ -39,7 +33,36 @@ const NotFinish = () => {
             console.log(" sampun mlebet" + carProcess.transaction_id);
             axios.put("/api/transaction/paidoff/" + carProcess.transaction_id)
             .then(res => {
-                window.snap.pay(res.data.message);
+                window.snap.pay(res.data.data,{
+                    onCapture : function (result){
+                        navigate({
+                          pathname: "/member/dashboard",
+                        });
+                        window.location.reload();
+                    },
+                    onPending : function (result) {
+                        alert("pending");
+                        navigate({
+                            pathname: "/member/dashboard",
+                          });
+                        window.location.reload();
+                    },
+                    onError: function (result) {
+                        alert("error")
+                        navigate({
+                            pathname: "/member/dashboard",
+                          });
+                          window.location.reload();
+                      },
+                    onClose: function () {
+                        alert("Transaction Was Not Paid")
+                        navigate({
+                            pathname: "/member/dashboard",
+                          });
+                          window.location.reload();
+                    }    
+                
+                });
             })
         }
     }
