@@ -17,24 +17,26 @@ function StatusFinish(props){
         <p className="pMoreThan">More than 100+ cars</p>
         <hr className="garis-hr"/>
         <div id="containerCarFinish">
-        {props.cars.map((value) => {
-            return (
-                <Card className="card-car" style={{ width: '25rem' }}>
-                    <Card.Img className="card-img" variant="top" src={value.image} />
-                    <Card.Body>
-                        <Row>
-                            <Col>
-                                <Card.Title className="car-name">{value.merk}</Card.Title>
-                                <Card.Subtitle className="card-subtitle">{value.partner.city}, {value.partner.partner_name}</Card.Subtitle>
-                            </Col>
-                            <Col md="auto">
-                                <Card.Text className="car-price"> Rp {value.price} </Card.Text>
-                                <Button className="btn-book" variant="primary" onClick={()=>bookHandler(value.car_id)}>Detail</Button></Col>
-                        </Row>
-                    </Card.Body>
-                </Card>
-            )
-        })}
+            <div id="container-car">
+                {props.cars.map((value) => {
+                    return (
+                        <Card className="card-car" style={{ width: '25rem' }}>
+                            <Card.Img className="card-img" variant="top" src={value.image} />
+                            <Card.Body>
+                                <Row>
+                                    <Col>
+                                        <Card.Title className="car-name">{value.merk}</Card.Title>
+                                        <Card.Subtitle className="card-subtitle">{value.partner.city}, {value.partner.partner_name}</Card.Subtitle>
+                                    </Col>
+                                    <Col md="auto">
+                                        <Card.Text className="car-price"> Rp {value.price} </Card.Text>
+                                        <Button className="btn-book" variant="primary" onClick={()=>bookHandler(value.car_id)}>Detail</Button></Col>
+                                </Row>
+                            </Card.Body>
+                        </Card>
+                    )
+                })}
+            </div>
         </div>
         </>
     )

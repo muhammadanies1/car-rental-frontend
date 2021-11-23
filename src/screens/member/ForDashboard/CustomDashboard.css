@@ -14,6 +14,41 @@
     padding-top: 20px;
 }
 
+#container-car{
+    margin-right: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+#card-with-status{
+    margin-top: 30px;
+    margin-left: 122px;
+    margin-right: 130px;
+    margin-bottom: 50px;
+    border: 1px solid;
+    border-color: #ebebeb;
+    background-color: #ebebeb;
+    border-radius: 10px;
+    padding-left: 35px;
+    padding-bottom: 50px;
+    padding-top: 20px;
+}
+
+#card-search-board{
+    margin-top: 30px;
+    margin-left: 122px;
+    margin-right: 130px;
+    margin-bottom: 50px;
+    border: 1px solid;
+    border-color: #ebebeb;
+    background-color: #ebebeb;
+    border-radius: 10px;
+    padding-left: 35px;
+    padding-bottom: 50px;
+    padding-top: 20px;
+}
+
 .input-search {
     margin-left: 120px;
     margin-right: 130px;

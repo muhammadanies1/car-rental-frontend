@@ -12,7 +12,7 @@ function SearchBoard(props){
     }
 
     return(
-        <div >
+        <div id="card-search-board">
             {props.cars.map((value) => {
                         return (
                             <Card className="card-car" style={{ width: '25rem' }}>
