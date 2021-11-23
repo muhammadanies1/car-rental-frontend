@@ -1,23 +1,25 @@
-import {Table } from "react-bootstrap";
-import {Button as BtnBoo} from "react-bootstrap"
-import {useState , useEffect} from "react";
+import { Button } from "react-bootstrap";
+import { useState , useEffect } from "react";
+import { useNavigate} from "react-router-dom";
+import DataTable from "react-data-table-component";
+import { useDispatch, useSelector } from "react-redux";
+import { carActions } from "../../store/car";
 import "./CarApprove.css";
 import axios from "axios";
-import { useNavigate} from "react-router-dom";
-import { Button } from '@mui/material';
 
 function CarApprove() {
-    let navigate = useNavigate();
 
-    const [partner, setPartner] = useState([]);    
+    const listDetailPartnerCars = useSelector((state) => state.car.listDetailPartnerCars);
+    const [isLoading, setIsLoading] = useState(false);
+    let navigate = useNavigate();
+    let dispatch = useDispatch();
+
     useEffect(()=>{
-        axios
-        .get("/api/partners")
-        .then((res)=>{
-            setPartner(res.data.data);
-        })
-    },[setPartner]);
-    // console.log(partner);
+        axios.get("/api/partners").then((res)=>{
+            dispatch(carActions.listDetailPartnerCars(res.data.data));
+            setIsLoading(false);
+        });
+    },[dispatch]);
 
     function toPartnerCar(partnerId){
         navigate('/admin/partner/detail/car/'+partnerId)
@@ -26,37 +28,36 @@ function CarApprove() {
         navigate("/admin/dashboard");
     }
 
+    const columns = [
+        {
+            name: "Partner Name",
+            selector: row => row.partner_name,
+            sortable: true,
+        },
+        {
+            name: "Action",
+            selector: row => {
+            return <Button variant="primary" 
+                    size="sm" onClick={()=> toPartnerCar(row.partner_id)}>Detail</Button>
+        },
+            sortable: true,
+        },
+    ];
+
     return(
         <>
+        <p className="p-allTR"> Cars Need Approve </p>
+        <hr className="garis-tr" />
         <div id="container-approveCar">
-            <Button className="balance" variant="secondary" size="lg" disabled>
-                Balance: Rp 50.000.000
-            </Button>
-            <hr />
-            <Table className="table-cars" striped bordered hover size="sm">
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>Partner Name</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody >
-                    {partner.map((value,index)=>{
-                        return (
-                            <tr>
-                        <td>{index +1}</td>
-                        <td>{value.partner_name}</td>
-                        <td>
-                            <BtnBoo variant="primary" size="sm" onClick={()=> toPartnerCar(value.partner_id)}>Detail</BtnBoo>
-                        </td>
-                    </tr>
-                        );
-                    })}
-                </tbody>
-            </Table>
-            <Button variant="contained" color="primary" style={{float:"left"}} onClick={goBack}>Back</Button>
-            
+        <DataTable
+        columns={columns}
+        data={listDetailPartnerCars}
+        progressPending={isLoading}
+        pagination
+        />
+            <Button variant="primary" 
+                style={{float:"left", marginTop:"10px", borderRadius:"10px"}} 
+                onClick={goBack}> Back </Button>
         </div>
         </>
     )

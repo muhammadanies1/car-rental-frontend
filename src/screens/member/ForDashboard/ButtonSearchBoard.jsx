@@ -1,6 +1,8 @@
 import { Button, FormControl, Form } from "react-bootstrap";
 import { useState } from "react";
 import axios from "axios";
+import SearchBoard from "./SearchBoard";
+import "./CustomDashboard.css";
 import Swal from "sweetalert2";
 
 function ButtonSearchBoard(props) {
@@ -40,7 +42,7 @@ function ButtonSearchBoard(props) {
     };
 
     return (
-        <div>
+        <div className="input-search">
             <Form className="d-flex search-input">
                 <FormControl type="search" placeholder="I need a car at" className="me-2" aria-label="Search" onChange={searchHandler} />
                 <Button variant="outline-success" onClick={buttonSearchHandler}> Search </Button>

@@ -1,16 +1,19 @@
 import { useState } from "react";
-import { Form, FormControl, Card, Button, Col, Row, Container } from "react-bootstrap";
-import axios from "axios";
+import { Card, Button, Col, Row } from "react-bootstrap";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import CircularProgress from '@mui/material/CircularProgress';
+import axios from "axios";
+
 const NotFinish = () => {
-    const [carProcess, setCarProcess] = useState({});
     const user_id = JSON.parse(localStorage.getItem("user_id"));
+    const [carProcess, setCarProcess] = useState({});
     const [isLoading, setIsLoading] = useState(false);
     const [car, setCar] = useState({});
     const [partner, setPartner] = useState({});
     let navigate = useNavigate();
+    
     useEffect(() => {
         setIsLoading(true)
         axios.get(`/api/process/${user_id}`)
@@ -28,6 +31,14 @@ const NotFinish = () => {
         if(carProcess.paid_status == "Reserved"){
         axios.put("/api/transaction/return/" + carProcess.transaction_id)
             .then(res => {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Done!',
+                    text: 'car return succes',
+                    showConfirmButton: false,
+                    timer: 1000,
+                    timerProgressBar: true,
+                });
                 window.location.reload();
             })
         }else if(carProcess.paid_status == "Waiting for payment"){
@@ -74,13 +85,13 @@ const NotFinish = () => {
         }
     }
     return(
-
-         <div id="card-with-status">
-                <h4>Your Transaction</h4>
-                <hr />
+    <>
+        <p className="p-YourTR">Your Transaction</p>
+        <hr className="garis-hr"/>
+        <div id="card-with-status">
                 {isLoading === true 
                 ?
-                <p>Lagi Loading</p>
+                <CircularProgress />
                 :
                 // <p>Test</p>
                 <Card className="card-car" style={{ width: '25rem' }}>
@@ -105,6 +116,7 @@ const NotFinish = () => {
                 }
                 
         </div>
+    </>
     )
 
 }

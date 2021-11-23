@@ -1,5 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100&family=Roboto:wght@100;300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700&display=swap');
 
+.container-top{
+    margin-left: 122px;
+    margin-right: 105px;
+}
+
+.p-myCar{
+    margin-top: 30px;
+    font-family: 'Merriweather', serif;
+    text-align: center;
+    font-size: 20px;
+}
 
 #container-dashboardPartner{
     margin-top: 30px;
@@ -13,6 +25,7 @@
     padding-left: 35px;
     padding-right: 35px;
     padding-bottom: 50px;
+    padding-top: 30px;
 }
 
 #flexbox-car {
@@ -24,7 +37,6 @@
 
 .btn-add {
     margin-top: 30px !important;
-    margin-left: 30px !important;
     background-color: #667EEA !important;
     text-align: center; 
     font-family: 'Roboto', sans-serif;

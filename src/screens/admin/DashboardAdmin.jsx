@@ -1,15 +1,12 @@
 import { Card, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import "./DashboardAdmin.css";
-import CardTransactionAdmin from "./CardTransactionAdmin";
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
+import "./DashboardAdmin.css";
 
 function DashboardAdmin () {
     let navigate = useNavigate();
-    const user_id = JSON.parse(localStorage.getItem("user_id"));
-    const [user, setUser] = useState({});
+    
     function toPartners(){
         navigate("/admin/partners");
     }
@@ -18,21 +15,13 @@ function DashboardAdmin () {
         navigate("/admin/cars");
     }
     
-    useEffect(() => {
-        axios.get(`/api/user/${user_id}`)
-                    .then(res => {
-                        console.log(res.data.data);
-                        setUser(res.data.data)
-                        // setIsLoading(false);
-                    })
-    },[setUser])
+    function toTransaction(){
+        navigate("/admin/transaction")
+    }
+
     return (
         <>
         <div id="container-dashboardAdmin">
-            <Button className="balance" variant="secondary" size="lg" disabled>
-                Balance: Rp {user.balance}
-            </Button>
-            <hr />
             <div className="flex-container">
                 <Card className="card-approve-partner" onClick={toPartners}>
                     <Card.Body>
@@ -48,7 +37,14 @@ function DashboardAdmin () {
                         </div>
                     </Card.Body>
                 </Card>
-                <CardTransactionAdmin/>
+
+                <Card className="card-transaction" onClick={toTransaction}>
+                    <Card.Body>
+                        <p>Transaction</p>
+                        <div className="total">
+                        </div>
+                    </Card.Body>
+                </Card>
             </div>    
         </div>
         </>

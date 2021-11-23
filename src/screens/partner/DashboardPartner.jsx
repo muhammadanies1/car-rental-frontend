@@ -63,13 +63,16 @@ function DashboardPartner(props) {
 
     }, [dispatch])
 
-    // console.log(partner);
+    console.log(partner);
     return (
         <>
-        <div id="container-dashboardPartner">
+        <div className="container-top">
             <Button className="btn-add" variant="primary" size="sm" onClick={() => setModalShow(true)}> + Add Car </Button>
             <Button className="balance" variant="primary" size="sm" disabled> Balance: Rp {balance} </Button>
+            <p className="p-myCar">My Car</p>
             <hr />
+        </div>
+        <div id="container-dashboardPartner">
             <div id="flexbox-car">
             {cars.map((value) => {
                 return (

@@ -24,6 +24,9 @@ const RentCar = () => {
     let param = useParams();
     let userID = localStorage.getItem("user_id");
     let car_id = param.car_id;
+    let parseLat = Number(lat);
+    let parseLong = Number(long);
+
     useEffect(() => {
         axios.get(`/api/car/id/${car_id}`)
             .then(res => {
@@ -31,24 +34,14 @@ const RentCar = () => {
                 setDetailCar(res.data.data);
                 setCity(res.data.data.partner.city);
                 setPartnerName(res.data.data.partner.partner_name);
-                setLat(parseFloat(res.data.data.partner.latitude));
-                setLong(parseFloat(res.data.data.partner.longtitude));
+                setLat(res.data.data.partner.latitude);
+                setLong(res.data.data.partner.longtitude);
             });
             
     }, [dispatch,setDetailCar]);
-
-    // function bookNow(carId){
-    //     axios.get(`/api/car/id/${car_id}`).then((res) => {
-    //         setDetailCar(res.data.data);
-    //             setCity(res.data.data.partner.city);
-    //             setPartnerName(res.data.data.partner.partner_name);
-    //             setLat(parseFloat(res.data.data.partner.latitude));
-    //             setLong(parseFloat(res.data.data.partner.longtitude));
-    //     });
-    // }
-
+    
     const [viewport, setViewport] = useState({
-        width: "57vw",
+        width: "48vw",
         height: "73vh",
         latitude: -6.261058,
         longitude: 106.642164,
@@ -57,7 +50,9 @@ const RentCar = () => {
     
     return(
         <>
-            <p className="name-partner">Jonathan RentCar</p>
+            <p className="PDetailCar">Detail Car</p>
+            <hr className="garis-tr" />
+            <div className="container-detailCar">
             <Row>
                 <Col sm={4}>
                 <Card className="card-detail-car" style={{ width: '25rem' }}>
@@ -90,22 +85,22 @@ const RentCar = () => {
                     >
                     
                     <Marker 
-                        latitude={-6.261058} 
-                        longitude={106.642164} 
+                        latitude={parseLat} 
+                        longitude={parseLong} 
                         offsetLeft={-20} 
                         offsetTop={-10}>
                         <RoomIcon className="marker" onClick={() => togglePopup(true)} style={{ fontSize:viewport.zoom * 5, color: "slateblue" }}/>
                     </Marker>
                     {
                         showPopup &&
-                        <Popup latitude={-6.261058} 
-                        longitude={106.642164} 
+                        <Popup latitude={parseLat} 
+                        longitude={parseLong} 
                         closeButton={true} 
                         closeOnClick={false} 
                         anchor="right" 
                         onClose={() => togglePopup(false) }
                         >
-                        <div className="card-pop-up">
+                        <div className="card-popUp">
                             <label>Name Partner</label>
                                 <p>{partnerName}</p>
                             <label>City</label>
@@ -119,6 +114,7 @@ const RentCar = () => {
                     </Card>
                 </Col>
             </Row>
+            </div>
             <FormRentCar userId={userID} carId={car_id} show={modalShow} onHide={() => setModalShow(false)} />
         </>
         
