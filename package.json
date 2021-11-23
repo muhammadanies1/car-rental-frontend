@@ -24,6 +24,7 @@
     "jquery": "^3.6.0",
     "jwt-decode": "^3.1.2",
     "mapbox-gl": "^2.6.0",
+    "moment": "^2.29.1",
     "react": "^17.0.2",
     "react-bootstrap": "^2.0.2",
     "react-data-table-component": "^7.4.5",
