@@ -13,12 +13,12 @@ function NavBarAdmin(){
 
     function toPartner(events){
         events.preventDefault();
-        navigate("/admin/partners");
+        navigate("/admin/allpartners");
     }
 
     function toCar(events){
         events.preventDefault();
-        navigate("/admin/cars");
+        navigate("/admin/allcars");
     }
     
     function logout(events){

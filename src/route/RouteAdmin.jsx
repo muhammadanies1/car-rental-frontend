@@ -6,6 +6,9 @@ import PartnerApprove from "../screens/admin/PartnerApprove";
 import DetailPartner from "../screens/admin/DetailPartner";
 import TransactionAdmin from "../screens/admin/TransactionAdmin";
 import Balance from "../screens/admin/Balance";
+import ShowPartners from "../screens/admin/ShowPartners";
+import ShowCarsByDetailPartners from "../screens/admin/ShowCarsByDetailPartners";
+import ShowCars from "../screens/admin/ShowCars";
 
 function RouteAdmin(){
     return(
@@ -19,6 +22,10 @@ function RouteAdmin(){
                 <Route path="/admin/partners" element={<PartnerApprove />} />
                 <Route path="/admin/partner/detail/car/:partnerId" element={<DetailPartner />} />
                 <Route path ="admin/transaction" element={<TransactionAdmin />} />
+                <Route path ="/admin/allpartners" element={<ShowPartners />} />
+                <Route path="/admin/partner/detail/allcar/:partnerId" element={<ShowCarsByDetailPartners />} />    
+                <Route path="/admin/allcars" element={<ShowCars />} />
+                  
             </Routes>
         </>
     )

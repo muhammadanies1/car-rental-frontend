@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import axios from "axios";
 import { Button, Table } from "react-bootstrap";
 import "./ReturnCar.css";
+import { useNavigate } from "react-router-dom";
 
 function ReturnCar(props){
 
@@ -11,7 +12,7 @@ function ReturnCar(props){
     const [transaction, setTransaction] = useState([]);
     const [partner, setPartner] = useState({});
     const [cars, setCars] = useState([]);
-    
+    let navigate = useNavigate();
     const user_id = JSON.parse(localStorage.getItem("user_id"));
 
     useEffect(() => {
@@ -29,10 +30,10 @@ function ReturnCar(props){
     console.log(transaction);
     
     function updateStatusReturnCar(transaction_id) {
-        axios.put("/api/car/waiting/" + transaction_id).then((res) => {
-            console.log(res);
-            window.location.reload();
-        });
+        // axios.put("/api/car/waiting/" + transaction_id).then((res) => {
+        //     console.log(res);
+        //     window.location.reload();
+        // });
     }
 
     return(
