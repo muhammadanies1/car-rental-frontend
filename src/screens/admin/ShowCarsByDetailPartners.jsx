@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {carActions} from '../../store/car'
 import "./DetailPartner.css";
 
-const DetailPartner = () => {
+const ShowCarsByDetailPartner = () => {
   
   const listCarByPartnerId = useSelector((state) => state.car.listCarByPatnerId);
   const [isLoading, setIsLoading] = useState(false);
@@ -58,17 +58,13 @@ const DetailPartner = () => {
       },
       sortable: true,
     },
-    {
-      name: "Action",
-      selector: row => {
-        let data =  row.status_acc ?
-        ""
-        :
-        <button className="btn btn-secondary btn-md" onClick={()=> updateStatus(row.car_id)}>Acc Car</button>
-        return data;
-      },
-      sortable: true,
-    },
+    // {
+    //   name: "Action",
+    //   selector: row => {
+    //     return <button className="btn btn-secondary btn-md" onClick={()=> updateStatus(row.car_id)}>Acc Car</button>
+    //   },
+    //   sortable: true,
+    // },
   ];
   function updateStatus(carId) {
     axios
@@ -80,7 +76,7 @@ const DetailPartner = () => {
     })
   }
   function goBack(){
-    navigate("/admin/cars");
+    navigate("/admin/allcars");
   }
   return (
     <>
@@ -101,4 +97,4 @@ const DetailPartner = () => {
   );
 };
 
-export default DetailPartner;
+export default ShowCarsByDetailPartner;
