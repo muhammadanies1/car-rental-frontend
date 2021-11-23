@@ -85,7 +85,6 @@ const NotFinish = () => {
                 ?
                 <CircularProgress />
                 :
-                // <p>Test</p>
                 <Card className="card-car" style={{ width: '25rem' }}>
                 <Card.Img className="card-img" variant="top" src={car.image} />
                 <Card.Body>

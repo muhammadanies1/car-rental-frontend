@@ -1,11 +1,14 @@
 import { useState } from 'react';
 import ReactMapGL, {  Popup } from 'react-map-gl';
+import Swal from 'sweetalert2';
 
 import "./RegisterPartner.css";
 import { postJoinPartner } from '../../api/PartnerApi';
+import { useNavigate } from 'react-router-dom';
 
 function RegisterPartner() {
     const [newCoordinate, setNewCoordinate] = useState(null);
+    let navigate = useNavigate();
     const [form, setForm] = useState({
         partner_name:"",
         city:"",
@@ -23,7 +26,7 @@ function RegisterPartner() {
     }
 
     const [viewport, setViewport] = useState({
-        width: "71vw",
+        width: "75vw",
         height: "100vh",
         latitude: -6.261058,
         longitude: 106.642164,
@@ -41,10 +44,24 @@ function RegisterPartner() {
     const handleSubmit= (events) => {
         events.preventDefault();
         postJoinPartner(form).then((res) => {
-            alert("Join Berhasil!");
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Your location has pined!',
+                showConfirmButton: false,
+                timer: 2000
+            });
+            navigate("/");
         })
         .catch((err) => {
-            alert("Gagal Join!");
+            Swal.fire({
+                position: 'top-end',
+                icon: 'error',
+                title: 'Your location not saved!',
+                showConfirmButton: false,
+                timer: 2000
+            });
+            navigate("/partner/register");
         })
     }
 
