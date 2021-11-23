@@ -31,6 +31,14 @@ const NotFinish = () => {
         if(carProcess.paid_status == "Reserved"){
         axios.put("/api/transaction/return/" + carProcess.transaction_id)
             .then(res => {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Done!',
+                    text: 'car return succes',
+                    showConfirmButton: false,
+                    timer: 1000,
+                    timerProgressBar: true,
+                });
                 window.location.reload();
             })
         }else if(carProcess.paid_status == "Waiting for payment"){
