@@ -4,7 +4,8 @@ import { useState } from "react";
 import axios from "axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import addDays from 'date-fns/addDays'  ;
+import addDays from 'date-fns/addDays'  
+import moment from 'moment';
 import Swal from "sweetalert2";
 
 function FormRentCar(props) {
@@ -14,6 +15,7 @@ function FormRentCar(props) {
 
     
     const [startDate, setStartDate] = useState(new Date());
+    const [selectedDate, setselectedDate] = useState("");
     const [form, setForm] = useState({
         loan_time:"",
         booking_date:"",
@@ -44,17 +46,18 @@ function FormRentCar(props) {
 
     function dateHandler(events){
         setForm(()=>{
+            setselectedDate(events);
             return(
                 {
                     ...form,
                     user:{user_id: userID},
                     car:{car_id: carID},
-                    booking_date:events.toISOString().slice(0, 10), //ubah format new date ke string 2021-11-23
+                    booking_date:moment(new Date(events)).format("YYYY-MM-DD"), //ubah format new date ke string 2021-11-23
                 }
             )
         })
     }
-
+    // console.log(selectedDate);
     function loanTimeHandler(events){
         // console.log(events.toISOString().slice(0, 10));
         return setForm({
@@ -64,7 +67,7 @@ function FormRentCar(props) {
             car:{car_id: carID}
         });
     };
-    console.log(form);
+    console.log(form.booking_date);
     return (
         <Modal {...props} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
             <Modal.Header closeButton>
@@ -80,9 +83,8 @@ function FormRentCar(props) {
                     placeholder="Enter booking date"onChange={formHandler} /> */}
                     <DatePicker 
                     name="booking_date"
-                    selected={startDate}
+                    selected={selectedDate}
                     dateFormat="yyyy-MM-dd"
-                    strictParsing
                     onChange={dateHandler}
                     minDate={new Date()}
                     maxDate={addDays(new Date(), 7)} />
