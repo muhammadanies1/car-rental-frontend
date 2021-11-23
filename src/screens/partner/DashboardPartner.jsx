@@ -36,7 +36,7 @@ function DashboardPartner(props) {
     }
 
     function updateStatusLoanCar(val) {
-        console.log(val);
+        val.preventDefault();
         axios.post("/api/car/status/" + val.car_id).then((res) => {
             //   alert("berhasil update status");
             window.location.reload();
@@ -45,8 +45,6 @@ function DashboardPartner(props) {
     }
 
     useEffect(() => {
-        // console.log("MASUK KESINI PARTNER DASHBOARD")
-        // setIsLoading(true);
         axios.get(`/api/partner/user/${user_id}`)
             .then(res => {
                 console.log(res.data.data)
@@ -88,10 +86,10 @@ function DashboardPartner(props) {
                                         <Card.Text className="car-price"> Rp {value.price} </Card.Text>
                                         {
                                             value.status_loan == "available" ?
-                                            <Button variant="success" id="btn-status" onClick={() => updateStatusLoanCar(value)}>
+                                            <Button disabled variant="success" id="btn-status" onClick={() => updateStatusLoanCar(value)}>
                                                     Available</Button>
                                                 :
-                                                <Button variant="danger" id="btn-status" onClick={() => updateStatusLoanCar(value)}>
+                                                <Button disabled variant="danger" id="btn-status" onClick={() => updateStatusLoanCar(value)}>
                                                     Non-Available</Button>
                                         }
                                     </Col>
