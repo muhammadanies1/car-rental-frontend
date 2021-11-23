@@ -1,4 +1,3 @@
-import { Form, FormControl, Card, Button, Col, Row, Container } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
@@ -46,22 +45,20 @@ function DashboardMember() {
     console.log(cars);
     return (
         <>
-            <div id="container-dashboard">
-                {carProcess != null && carProcess.paid_status != "Finish" ?
+            {carProcess != null && carProcess.paid_status != "Finish" ?
                     <NotFinish />
+                :
+                cars.length != 0 ?
+                    <div>
+                        <ButtonSearchBoard setCars={setCars} />
+                        <StatusFinish cars={cars} />
+                    </div>
                     :
-                    cars.length != 0 ?
-                        <div>
-                            <ButtonSearchBoard setCars={setCars} />
+                    <div>
+                        <ButtonSearchBoard setCars={setCars} />
                             <StatusFinish cars={cars} />
-                        </div>
-                        :
-                        <div>
-                            <ButtonSearchBoard setCars={setCars} />
-                            <StatusFinish cars={cars} />
-                        </div>
-                }
-            </div>
+                    </div>
+            }
         </>
 
     )

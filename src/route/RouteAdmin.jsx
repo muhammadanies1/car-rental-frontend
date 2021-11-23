@@ -5,11 +5,13 @@ import CarApprove from "../screens/admin/CarApprove";
 import PartnerApprove from "../screens/admin/PartnerApprove";
 import DetailPartner from "../screens/admin/DetailPartner";
 import TransactionAdmin from "../screens/admin/TransactionAdmin";
+import Balance from "../screens/admin/Balance";
 
 function RouteAdmin(){
     return(
         <>
             <NavBarAdmin />
+            <Balance />
             <Routes>
                 <Route path="/" element={<DashboardAdmin />} />
                 <Route path="/admin/dashboard" element={<DashboardAdmin />} />

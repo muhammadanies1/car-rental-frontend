@@ -1,4 +1,4 @@
-.container-detailPartner{
+.container-return{
     margin-top: 30px;
     margin-left: 122px;
     margin-right: 130px;
@@ -11,12 +11,4 @@
     padding-right: 35px;
     padding-bottom: 50px;
     padding-top: 30px;
-}
-
-.dataTbl-Partner{
-    margin-top: 30px;
-}
-
-#btn-back {
-    margin-top: 20px;
 }
