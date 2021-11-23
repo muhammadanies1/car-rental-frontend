@@ -2,19 +2,12 @@ import axios from "axios";
 import { Button, Modal, Form, FloatingLabel, Card} from "react-bootstrap";
 import {useState , useEffect} from "react";
 function DetailCars(props){
-    // console.log(props.car_id);
-    // const partnerId = props.car_id;
     const [Car, setCar] = useState([]);
+    
     useEffect(() => {
-        // console.log(props.car_id);
         axios.get(`/api/car/${props.car_id}`)
         .then((res) => {
-            // console.log(...res.data.data);
-            // car = res.data.data;
             setCar(...res.data.data);
-            // setCar((prevsValue)=>{
-            //     return [prevsValue,...res.data.data]
-            // })
         })
     });
 
@@ -34,7 +27,7 @@ function DetailCars(props){
                             <Card.Body disabled>
                             <img
                                 src={Car.image}
-                                alt="Gambar blom ada"
+                                alt="Image product"
                                 height="300px"
                                 width="100%"
                                 className="mt-4"

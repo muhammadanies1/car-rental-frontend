@@ -57,9 +57,9 @@ function FormRentCar(props) {
             )
         })
     }
-    // console.log(selectedDate);
+
     function loanTimeHandler(events){
-        // console.log(events.toISOString().slice(0, 10));
+
         return setForm({
             ...form,
             [events.target.name]: events.target.value,
@@ -67,7 +67,7 @@ function FormRentCar(props) {
             car:{car_id: carID}
         });
     };
-    console.log(form.booking_date);
+
     return (
         <Modal {...props} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
             <Modal.Header closeButton>
@@ -78,9 +78,6 @@ function FormRentCar(props) {
                 <FloatingLabel controlId="floatingInput" label="Loan Day" className="mb-2">
                     <Form.Control name="loan_time" type="number" placeholder="Enter loan day" onChange={loanTimeHandler} />
                 </FloatingLabel>
-                {/* <FloatingLabel controlId="floatingInput" label="Booking Date" className="mb-2"> */}
-                    {/* <Form.Control name="booking_date" type="date" 
-                    placeholder="Enter booking date"onChange={formHandler} /> */}
                     <DatePicker 
                     name="booking_date"
                     placeholderText="Please Select A Date"
@@ -89,8 +86,6 @@ function FormRentCar(props) {
                     onChange={dateHandler}
                     minDate={new Date()}
                     maxDate={addDays(new Date(), 7)} />
-                    
-                {/* </FloatingLabel> */}
             </Form>
             </Modal.Body>
             <Modal.Footer>

@@ -4,16 +4,19 @@ import { useEffect } from "react";
 import axios from "axios";
 import { Button, Table } from "react-bootstrap";
 import "./ReturnCar.css";
+import CeklistReturn from "../../components/modals/CeklistReturn";
 import { useNavigate } from "react-router-dom";
 
-function ReturnCar(props){
+function ReturnCar(){
 
+    const [modalShow, setModalShow] = useState(false);
     const dispatch = useDispatch();
     const [transaction, setTransaction] = useState([]);
     const [partner, setPartner] = useState({});
     const [cars, setCars] = useState([]);
     let navigate = useNavigate();
     const user_id = JSON.parse(localStorage.getItem("user_id"));
+    const [transID, setTransID] = useState(0);
 
     useEffect(() => {
         axios.get(`/api/partner/user/${user_id}`)
@@ -29,12 +32,21 @@ function ReturnCar(props){
 
     console.log(transaction);
     
-    function updateStatusReturnCar(transaction_id) {
-        // axios.put("/api/car/waiting/" + transaction_id).then((res) => {
-        //     console.log(res);
-        //     window.location.reload();
-        // });
-    }
+    // function updateStatusReturnCar(transaction_id) {
+    //     axios.put("/api/car/waiting/" + transaction_id).then((res) => {
+    //         window.location.reload();
+    //     });
+    // }
+
+    // function detailModal(transaction_id){
+    //     setTransID(transaction_id);
+    //     setModalShow(true)
+    // function updateStatusReturnCar(transaction_id) {
+    //     // axios.put("/api/car/waiting/" + transaction_id).then((res) => {
+    //     //     console.log(res);
+    //     //     window.location.reload();
+    //     // });
+    // }
 
     return(
         <>
@@ -62,9 +74,11 @@ function ReturnCar(props){
                         <td>
                             {value.paid_status === "Return"
                             ?
-                            <Button variant="primary" size="sm" onClick={()=> updateStatusReturnCar(value.transaction_id)}>
-                                {value.paid_status}
+                            <>
+                            <Button variant="primary" size="sm" onClick={()=> detailModal(value.transaction_id) }>
+                                Detail
                             </Button>
+                            </>
                             :
                             value.paid_status == "Finish"
                             ?
@@ -79,6 +93,7 @@ function ReturnCar(props){
                 </tbody>
             </Table>
         </div>
+        <CeklistReturn trID={transID} show={modalShow} onHide={() => setModalShow(false)}/>
         </>
     )
 }
