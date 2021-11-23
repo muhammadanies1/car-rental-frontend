@@ -16,7 +16,7 @@ function StatusFinish(props){
         <>
         <p className="pMoreThan">More than 100+ cars</p>
         <hr className="garis-hr"/>
-        <div id="container-car">
+        <div id="containerCarFinish">
         {props.cars.map((value) => {
             return (
                 <Card className="card-car" style={{ width: '25rem' }}>
