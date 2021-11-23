@@ -83,6 +83,7 @@ function FormRentCar(props) {
                     placeholder="Enter booking date"onChange={formHandler} /> */}
                     <DatePicker 
                     name="booking_date"
+                    placeholderText="Please Select A Date"
                     selected={selectedDate}
                     dateFormat="yyyy-MM-dd"
                     onChange={dateHandler}
