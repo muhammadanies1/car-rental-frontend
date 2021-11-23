@@ -3,6 +3,8 @@ import { Form, FormControl, Card, Button, Col, Row, Container } from "react-boot
 import axios from "axios";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+
 const NotFinish = () => {
     const [carProcess, setCarProcess] = useState({});
     const user_id = JSON.parse(localStorage.getItem("user_id"));
@@ -27,6 +29,14 @@ const NotFinish = () => {
         if(carProcess.paid_status == "Reserved"){
         axios.put("/api/transaction/return/" + carProcess.transaction_id)
             .then(res => {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Done!',
+                    text: 'car return succes',
+                    showConfirmButton: false,
+                    timer: 1000,
+                    timerProgressBar: true,
+                });
                 window.location.reload();
             })
         }else if(carProcess.paid_status == "Waiting for payment"){

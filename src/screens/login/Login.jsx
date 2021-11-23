@@ -48,6 +48,15 @@ function Login() {
             LoginApi(form).then((response) => {
                 let token = response.data.data;
                 dispatch(loginActions.login(token));
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Done!',
+                    text: 'Your login success',
+                    showConfirmButton: false,
+                    timer: 1000,
+                    timerProgressBar: true,
+                });
+
             })
             .catch((error) => {
                 Swal.fire({
