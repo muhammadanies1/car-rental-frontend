@@ -9,21 +9,21 @@ import {carActions} from '../../store/car'
 import "./DetailPartner.css";
 
 const DetailPartner = () => {
-  let param = useParams();
-  let navigate = useNavigate();
-  const dispatch = useDispatch();
+  
   const listCarByPartnerId = useSelector((state) => state.car.listCarByPatnerId);
   const [isLoading, setIsLoading] = useState(false);
+  const dispatch = useDispatch();
+  let navigate = useNavigate();
+  let param = useParams();
+  
   useEffect(() => {
     setIsLoading(true)
     axios.get(`/api/car/` + param.partnerId).then((res) => {
-      // setCar(res.data.data);
-      console.log(res);
       dispatch(carActions.getCarByPartnerId(res.data.data));
       setIsLoading(false)
     });
   }, [dispatch]);
-  // console.log(listCarByPartnerId);
+  
   const columns = [
     {
       name: "Merek",
@@ -80,16 +80,18 @@ const DetailPartner = () => {
   }
   return (
     <>
-    
+    <p className="p-allTR"> Detail Partner Car </p>
+    <hr className="garis-tr" />
     <div className="container-detailPartner">
-      <DataTable className="dataTbl-Partner"
-        title="Partner Cars"
+      <DataTable
         columns={columns}
         data={listCarByPartnerId}
         progressPending={isLoading}
         pagination
         />
-      <Button variant="contained" color="primary" style={{float:"left"}} onClick={goBack}>Back</Button>
+      <Button variant="contained" id="btn-back" 
+              color="primary" 
+              onClick={goBack}>Back</Button>
     </div>
     </>
   );

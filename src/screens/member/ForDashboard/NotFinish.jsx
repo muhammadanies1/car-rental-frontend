@@ -1,17 +1,19 @@
 import { useState } from "react";
-import { Form, FormControl, Card, Button, Col, Row, Container } from "react-bootstrap";
-import axios from "axios";
+import { Card, Button, Col, Row } from "react-bootstrap";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import CircularProgress from '@mui/material/CircularProgress';
+import axios from "axios";
 
 const NotFinish = () => {
-    const [carProcess, setCarProcess] = useState({});
     const user_id = JSON.parse(localStorage.getItem("user_id"));
+    const [carProcess, setCarProcess] = useState({});
     const [isLoading, setIsLoading] = useState(false);
     const [car, setCar] = useState({});
     const [partner, setPartner] = useState({});
     let navigate = useNavigate();
+    
     useEffect(() => {
         setIsLoading(true)
         axios.get(`/api/process/${user_id}`)
@@ -43,29 +45,35 @@ const NotFinish = () => {
             console.log(" sampun mlebet" + carProcess.transaction_id);
             axios.put("/api/transaction/paidoff/" + carProcess.transaction_id)
             .then(res => {
+                console.log();
                 window.snap.pay(res.data.data,{
-                    onCapture : function (result){
+                    onSuccess : function (result){
                         navigate({
                           pathname: "/member/dashboard",
                         });
                         window.location.reload();
                     },
                     onPending : function (result) {
-                        alert("pending");
                         navigate({
                             pathname: "/member/dashboard",
                           });
                         window.location.reload();
                     },
                     onError: function (result) {
-                        alert("error")
                         navigate({
                             pathname: "/member/dashboard",
                           });
                           window.location.reload();
                       },
                     onClose: function () {
-                        alert("Transaction Was Not Paid")
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'You Have Unpaid Transaction!',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                        });
                         navigate({
                             pathname: "/member/dashboard",
                           });
@@ -77,13 +85,13 @@ const NotFinish = () => {
         }
     }
     return(
-
-         <div id="card-with-status">
-                <h4>Your Transaction</h4>
-                <hr />
+    <>
+        <p className="p-YourTR">Your Transaction</p>
+        <hr className="garis-hr"/>
+        <div id="card-with-status">
                 {isLoading === true 
                 ?
-                <p>Lagi Loading</p>
+                <CircularProgress />
                 :
                 // <p>Test</p>
                 <Card className="card-car" style={{ width: '25rem' }}>
@@ -108,6 +116,7 @@ const NotFinish = () => {
                 }
                 
         </div>
+    </>
     )
 
 }

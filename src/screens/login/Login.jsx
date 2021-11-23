@@ -90,7 +90,7 @@ function Login() {
                         <Form.Control name="password" type="password" placeholder="Password" />
                     </FloatingLabel>
                     <Button variant="primary" size="lg" onClick={loginHandler}> Login </Button>
-                    <div className="forget-pass"> I forgot my password. Click here to reset. <i class="fas fa-arrow-right"></i> </div>
+                    <div className="forget-pass"> Register here to join as member <i class="fas fa-arrow-right"></i> </div>
                     <Button variant="outline-primary" size="lg" className="register-new" onClick={toRegister}> Register New Account </Button>
                 </Form>
             </Card.Body>

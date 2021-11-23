@@ -30,18 +30,6 @@ function RegisterPartner() {
         zoom: 10
     });
 
-    // useEffect(() => {
-    //     const getPins = async () => {
-    //         try {
-    //             const res = await axios.get("/api/partners");
-    //             setPins(res.data);
-    //         } catch(err) {
-    //             console.log(err);
-    //         }
-    //     };
-    //     getPins();
-    // }, []);
-
     const handleAddClick = (events) => {
         const [long, lat] = events.lngLat;
         setNewCoordinate({
@@ -63,9 +51,9 @@ function RegisterPartner() {
 
     return(
         <>
+        <h4 className="title-joinPartner">Join Partner</h4>
+        <hr className="garis-join"/>
         <div id="container-joinPartner">
-            <h4 className="title-joinPartner">Join Partner</h4>
-            <hr />
             <div className="container-join-partner" gap={3}>
                 <ReactMapGL
                     {...viewport}

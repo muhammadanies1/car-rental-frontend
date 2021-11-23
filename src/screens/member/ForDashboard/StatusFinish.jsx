@@ -16,7 +16,6 @@ function StatusFinish(props){
 
     return(
         <>
-        {/* <div id="container-dashboard"> */}
             <h4>More than 100+ cars</h4>
             <hr className="more"/>
             <div id="container-car">

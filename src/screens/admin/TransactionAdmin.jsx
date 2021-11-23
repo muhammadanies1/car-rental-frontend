@@ -5,18 +5,20 @@ import ModalShowDetail from "./ModalShowDetail";
 import { useDispatch, useSelector } from "react-redux";
 import { transactionActions } from "../../store/transaction";
 import { useNavigate } from "react-router-dom";
-import { Button } from '@mui/material';
+import { Button } from 'react-bootstrap';
+import Breadcrumb from 'react-bootstrap/Breadcrumb'
 import "./TransactionAdmin.css";
 
 const TransactionAdmin = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const dispatch = useDispatch();
-  let navigate = useNavigate();
   const listTransaction = useSelector((state) => state.transaction.listTransaction);
   const [transactionId, setTransactionId] = useState();
   const [paidStatus, setpaidStatus] = useState();
   const [car, setCar] = useState({});
   const [modalShow, setModalShow] = useState(false);
+  const dispatch = useDispatch();
+  let navigate = useNavigate();
+
   useEffect(() => {
     setIsLoading(true);
     axios.get(`/api/transactions`).then((res) => {
@@ -24,7 +26,8 @@ const TransactionAdmin = () => {
     setIsLoading(false);
     });
   }, []);
-  // console.log(listTransaction);
+
+
   function detailTransaction(carId,transactionId,paidStatus) {
     axios.get("/api/car/id/"+carId).then((res) => {
       setCar(res.data.data)
@@ -33,10 +36,11 @@ const TransactionAdmin = () => {
     });
     setModalShow(true);
   }
-  // console.log(transactionId);
+
   function goBack(){
     navigate("/admin/dashboard");
   }
+
   const columns = [
     {
       name: "Transaction Id",
@@ -59,7 +63,7 @@ const TransactionAdmin = () => {
       selector: (row) => row.paid_status,
     },
     {
-      name: "Detail",
+      name: "Action",
       selector: (row) => {
         return (
           <button
@@ -75,22 +79,28 @@ const TransactionAdmin = () => {
 
   return (
     <>
-    <div className="container-adminTransaction">
-      <DataTable
-        title="All Transaction"
-        columns={columns}
-        data={listTransaction}
-        progressPending={isLoading}
-        pagination
+      <p className="p-allTR">All Transaction</p>
+      <hr className="garis-tr" />
+      <div className="container-adminTransaction">
+        <DataTable
+          // title="All Transaction"
+          columns={columns}
+          data={listTransaction}
+          progressPending={isLoading}
+          pagination
+          />
+
+        <ModalShowDetail
+        detailcar={car} 
+        paid_status={paidStatus}
+        transaction_id = {transactionId}
+        show={modalShow} 
+        onHide={() => setModalShow(false)}
         />
-      <ModalShowDetail
-      detailcar={car} 
-      paid_status={paidStatus}
-      transaction_id = {transactionId}
-      show={modalShow} 
-      onHide={() => setModalShow(false)}
-      />
-      <Button variant="contained" color="primary" style={{float:"left"}} onClick={goBack}>Back</Button>
+
+      <Button variant="primary" 
+      style={{float:"left", marginTop:"10px", borderRadius:"10px"}} 
+      onClick={goBack}>Back</Button>
       </div>
     </>
   );

@@ -1,9 +1,9 @@
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
-import { Button, Card, Row, Col, Table } from "react-bootstrap";
-import { transactionActions } from "../../store/transaction";
+import { Button, Table } from "react-bootstrap";
+import "./ReturnCar.css";
 
 function ReturnCar(props){
 
@@ -17,11 +17,9 @@ function ReturnCar(props){
     useEffect(() => {
         axios.get(`/api/partner/user/${user_id}`)
             .then(res => {
-                console.log(res.data.data)
                 setPartner(res.data.data)
                 axios.get(`/api/transaction/partner/${res.data.data.partner_id}`)
                 .then(res => {
-                    console.log(res.data);
                     setTransaction(res.data.data);
                 })
             })
@@ -39,6 +37,7 @@ function ReturnCar(props){
 
     return(
         <>
+        <div className="container-return">
         <Table className="table-cars" striped bordered hover size="sm">
                 <thead>
                     <tr>
@@ -78,7 +77,7 @@ function ReturnCar(props){
                     })}
                 </tbody>
             </Table>
-         
+        </div>
         </>
     )
 }

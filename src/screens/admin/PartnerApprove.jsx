@@ -1,23 +1,27 @@
-import {Table, Container } from "react-bootstrap";
-import { useEffect } from "react";
-import "./PartnerApprove.css";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
 import { Button } from '@mui/material';
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import {partnerActions} from '../../store/partner';
+import { partnerActions } from '../../store/partner';
+import DataTable from "react-data-table-component";
+import axios from "axios";
+import "./PartnerApprove.css";
+
+
 function PartnerApprove() {
-  const dispatch = useDispatch();
+
   const listPartnerAcc = useSelector((state) => state.partner.listPartnerAcc);
-  // const [partner, setPartner] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const dispatch = useDispatch();
   let navigate = useNavigate();
+
   useEffect(() => {
     axios.get("/api/partner/false").then((res) => {
-      // setPartner(res.data.data);
       dispatch(partnerActions.getListPartnerAcc(res.data.data));
+      setIsLoading(false);
     });
   }, [dispatch]);
-  console.log(listPartnerAcc);
+  
   function updateStatusAccPartner(partnerId) {
     axios.put("/api/partner/acc/" + partnerId).then((res) => {
       alert("berhasil update status");
@@ -25,48 +29,52 @@ function PartnerApprove() {
       navigate("/admin/partners");
     });
   }
+
   function goBack(){
     navigate("/admin/dashboard");
   }
 
+  const columns = [
+    {
+        name: "Partner Name",
+        selector: row => row.partner_name,
+        sortable: true,
+    },
+    {
+      name: "City",
+      selector: row => row.city,
+      sortable: true,
+    },
+    {
+      name: "Status Approvement",
+      selector: row =>" "+ row.status_acc + " ",
+      sortable: true,
+    },
+    {
+        name: "Action",
+        selector: row => {
+        return <Button variant="contained" 
+                color="success" 
+                onClick={()=> updateStatusAccPartner(row.partner_id)}>Acc Partner</Button>
+    },
+        sortable: true,
+    },
+];
+
   return (
     <>
+      <p className="p-allTR"> Partners Need Approve </p>
+      <hr className="garis-tr" />
       <div id="container-adminPartner">
-        <Button className="balance" variant="secondary" size="lg" disabled>
-          Balance: Rp 50.000.000
-        </Button>
-        <hr />
-        <div className="justify-content-center mt-3 m-3">
-          <Table className="table-approvePartner" striped bordered hover size="md">
-            <thead>
-              <tr>
-                <th>No</th>
-                <th>Partner Name</th>
-                <th>City</th>
-                <th>Status Acc</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {listPartnerAcc.map((value, index) => {
-                return (
-                  <tr>
-                    <td>{index + 1}</td>
-                    <td>{value.partner_name}</td>
-                    <td>{value.city}</td>
-                    <td>{"" + value.status_acc + ""}</td>
-                    <td>
-                      <Button variant="contained" color="success"  onClick={() => updateStatusAccPartner(value.partner_id)}>
-                        Acc Partner
-                      </Button>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </Table>
-          <Button variant="contained" color="primary" style={{float:"left"}} onClick={goBack}>Back</Button>
-        </div>
+      <DataTable
+        columns={columns}
+        data={listPartnerAcc}
+        progressPending={isLoading}
+        pagination
+        />
+        <Button variant="contained" id="btn-back-partner" 
+          color="primary"
+          onClick={goBack}>Back</Button>
       </div>
     </>
   );

@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100&family=Roboto:wght@100;300&display=swap');
 
-#container-dashboard {
+.container-dashboard {
     margin-top: 30px;
     margin-left: 122px;
     margin-right: 130px;
