@@ -5,6 +5,7 @@ import axios from "axios";
 import { Button, Table } from "react-bootstrap";
 import "./ReturnCar.css";
 import CeklistReturn from "../../components/modals/CeklistReturn";
+import { useNavigate } from "react-router-dom";
 
 function ReturnCar(){
 
@@ -13,6 +14,7 @@ function ReturnCar(){
     const [transaction, setTransaction] = useState([]);
     const [partner, setPartner] = useState({});
     const [cars, setCars] = useState([]);
+    let navigate = useNavigate();
     const user_id = JSON.parse(localStorage.getItem("user_id"));
     const [transID, setTransID] = useState(0);
 
@@ -36,10 +38,15 @@ function ReturnCar(){
     //     });
     // }
 
-    function detailModal(transaction_id){
-        setTransID(transaction_id);
-        setModalShow(true)
-    }
+    // function detailModal(transaction_id){
+    //     setTransID(transaction_id);
+    //     setModalShow(true)
+    // function updateStatusReturnCar(transaction_id) {
+    //     // axios.put("/api/car/waiting/" + transaction_id).then((res) => {
+    //     //     console.log(res);
+    //     //     window.location.reload();
+    //     // });
+    // }
 
     return(
         <>
