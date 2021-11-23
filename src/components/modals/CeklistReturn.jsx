@@ -3,15 +3,16 @@ import { Modal, Button, Form } from "react-bootstrap";
 import axios from "axios";
 
 function CeklistReturn(props) {
-    // console.log(props.trID);
+    console.log(props.trID);
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const [choice, setChoice] = useState([]);
     const [total, setTotal] = useState([]);
+    let trId = props.trID;
     
     const [payloadPinalty, setPayloadPinalty] = useState({
-        penalty:0,
+        penaltyCarCondition:"",
     });
     
     let result;
@@ -24,17 +25,30 @@ function CeklistReturn(props) {
         })
         
         // setPinalty(result);
+        // setPayloadPinalty({
+        //     penalty:result,
+        // });
         setPayloadPinalty({
-            penalty:result,
+            ...payloadPinalty,
+            penaltyCarCondition:result,
         });
-
-        axios.put(`/api/car/waiting/${props.trID}`,payloadPinalty)
+        // axios.put(`/api/car/waiting/${props.trID}`,{
+        //     // {
+        //         penaltyCarCondition: result,
+        //     // }
+        // })
+        // .then((res) => {
+        //     console.log(res);
+        //     window.location.reload();
+        // });
+        axios.put(`/api/car/waiting/${trId}`,payloadPinalty)
         .then((res) => {
+            console.log(res);
             window.location.reload();
         });
-
     }
 
+    // console.log(payloadPinalty.penaltyCarCondition);
     // function updateStatusReturnCar(transaction_id) {
     //     axios.put("/api/car/waiting/" + transaction_id).then((res) => {
     //         window.location.reload();

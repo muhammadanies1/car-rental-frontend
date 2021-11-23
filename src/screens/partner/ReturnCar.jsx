@@ -38,16 +38,17 @@ function ReturnCar(){
     //     });
     // }
 
-    // function detailModal(transaction_id){
-    //     setTransID(transaction_id);
-    //     setModalShow(true)
+    function detailModal(transaction_id){
+        setTransID(transaction_id);
+        setModalShow(true);
     // function updateStatusReturnCar(transaction_id) {
-    //     // axios.put("/api/car/waiting/" + transaction_id).then((res) => {
-    //     //     console.log(res);
-    //     //     window.location.reload();
-    //     // });
-    // }
+        // axios.put("/api/car/waiting/" + transaction_id).then((res) => {
+        //     console.log(res);
+        //     window.location.reload();
+        // });
+    }
 
+    console.log(transID);
     return(
         <>
         <div className="container-return">
