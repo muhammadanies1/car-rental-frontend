@@ -4,7 +4,9 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import CircularProgress from '@mui/material/CircularProgress';
+import "./CustomDashboard.css";
 import axios from "axios";
+
 
 const NotFinish = () => {
     const user_id = JSON.parse(localStorage.getItem("user_id"));
