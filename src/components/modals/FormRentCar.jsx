@@ -4,7 +4,8 @@ import { useState } from "react";
 import axios from "axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import addDays from 'date-fns/addDays'  
+import addDays from 'date-fns/addDays'  ;
+import Swal from "sweetalert2";
 
 function FormRentCar(props) {
     let carID = props.carId;
@@ -21,13 +22,24 @@ function FormRentCar(props) {
     });
 
     function addTransaction(){
-        console.log(form);
-        axios.post(`/api/membertransaction/add`,form).then((res) => {
-            alert("Transaksi berhasil ditambahkan!");
-            navigate("/member/dashboard");
-            window.location.reload();
-            
-        });
+        if(form.loan_time === "" && form.booking_date === ""){
+            Swal.fire({
+                icon: 'info',
+                title: 'Attention...',
+                text: 'Please input loan day and booking date',
+                showConfirmButton: false,
+                timer: 2000,
+                timerProgressBar: true,
+            });
+        }else{
+            console.log(form);
+            axios.post(`/api/membertransaction/add`,form).then((res) => {
+                alert("Transaksi berhasil ditambahkan!");
+                navigate("/member/dashboard");
+                window.location.reload();
+                
+            });
+        }
     }
 
     function dateHandler(events){
@@ -60,8 +72,8 @@ function FormRentCar(props) {
             </Modal.Header>
             <Modal.Body>
             <Form  className="d-grid gap-2">
-                <FloatingLabel controlId="floatingInput" label="Loan Time" className="mb-2">
-                    <Form.Control name="loan_time" type="number" placeholder="Enter loan time" onChange={loanTimeHandler} />
+                <FloatingLabel controlId="floatingInput" label="Loan Day" className="mb-2">
+                    <Form.Control name="loan_time" type="number" placeholder="Enter loan day" onChange={loanTimeHandler} />
                 </FloatingLabel>
                 {/* <FloatingLabel controlId="floatingInput" label="Booking Date" className="mb-2"> */}
                     {/* <Form.Control name="booking_date" type="date" 
