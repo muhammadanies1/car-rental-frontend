@@ -24,6 +24,9 @@ const RentCar = () => {
     let param = useParams();
     let userID = localStorage.getItem("user_id");
     let car_id = param.car_id;
+    let parseLat = Number(lat);
+    let parseLong = Number(long);
+
     useEffect(() => {
         axios.get(`/api/car/id/${car_id}`)
             .then(res => {
@@ -36,18 +39,7 @@ const RentCar = () => {
             });
             
     }, [dispatch,setDetailCar]);
-    let parseLat = Number(lat);
-    let parseLong = Number(long);
-    // function bookNow(carId){
-    //     axios.get(`/api/car/id/${car_id}`).then((res) => {
-    //         setDetailCar(res.data.data);
-    //             setCity(res.data.data.partner.city);
-    //             setPartnerName(res.data.data.partner.partner_name);
-    //             setLat(parseFloat(res.data.data.partner.latitude));
-    //             setLong(parseFloat(res.data.data.partner.longtitude));
-    //     });
-    // }
-
+    
     const [viewport, setViewport] = useState({
         width: "48vw",
         height: "73vh",
