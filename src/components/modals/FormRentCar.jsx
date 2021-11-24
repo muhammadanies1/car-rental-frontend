@@ -16,9 +16,10 @@ function FormRentCar(props) {
     
     const [startDate, setStartDate] = useState(new Date());
     const [selectedDate, setselectedDate] = useState("");
+    const dateTime = new Date();
     const [form, setForm] = useState({
         loan_time:"",
-        booking_date:"",
+        booking_date:moment(new Date(dateTime)).format("YYYY-MM-DD"),
         user:{user_id: 0},
         car:{car_id: 0}
     });
@@ -32,8 +33,9 @@ function FormRentCar(props) {
                 showConfirmButton: false,
                 timer: 2000,
                 timerProgressBar: true,
-            });
+            }); 
         }else{
+            console.log(form.booking_date);
             console.log(form);
             axios.post(`/api/membertransaction/add`,form ,
             {headers: {Authorization : `Bearer ${token}`}}
