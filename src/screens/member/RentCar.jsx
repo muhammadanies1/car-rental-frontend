@@ -26,9 +26,11 @@ const RentCar = () => {
     let car_id = param.car_id;
     let parseLat = Number(lat);
     let parseLong = Number(long);
-
+    let token = localStorage.getItem("token");
     useEffect(() => {
-        axios.get(`/api/car/id/${car_id}`)
+        axios.get(`/api/car/id/${car_id}`,
+        {headers: {Authorization : `Bearer ${token}`}}
+        )
             .then(res => {
                 dispatch(carActions.getCarByCarId(res.data.data));
                 setDetailCar(res.data.data);

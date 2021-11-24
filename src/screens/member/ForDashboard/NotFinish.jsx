@@ -67,6 +67,7 @@ const NotFinish = () => {
                         window.location.reload();
                     },
                     onError: function (result) {
+                        alert("eror")
                         navigate({
                             pathname: "/member/dashboard",
                           });

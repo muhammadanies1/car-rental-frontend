@@ -21,14 +21,16 @@ function DashboardPartner(props) {
     const [modalShow, setModalShow] = useState(false);
     const [balance, setBalance] = useState(0);
     const user_id = JSON.parse(localStorage.getItem("user_id"));
-
+    let token = localStorage.getItem("token");
+ 
     const setUlang = (payload) => {
-        console.log(payload);
         setCars(payload)
     }
-
+    
     const setUlangLagi = (payload) => {
-        axios.get(`/api/car/${payload}`)
+        axios.get(`/api/car/${payload}`,
+        {headers: {Authorization : `Bearer ${token}`}}
+        )
             .then(res => {
                 dispatch(carActions.getCarByPartner(res.data))
                 setUlang(res.data.data)
@@ -37,7 +39,8 @@ function DashboardPartner(props) {
 
     function updateStatusLoanCar(val) {
         val.preventDefault();
-        axios.post("/api/car/status/" + val.car_id).then((res) => {
+        axios.post("/api/car/status/" + val.car_id ,
+        {headers: {Authorization : `Bearer ${token}`}}).then((res) => {
             //   alert("berhasil update status");
             window.location.reload();
             setUlangLagi(val.partner.partner_name);
@@ -45,13 +48,16 @@ function DashboardPartner(props) {
     }
 
     useEffect(() => {
-        axios.get(`/api/partner/user/${user_id}`)
+        axios.get(`/api/partner/user/${user_id}`,
+        {headers: {Authorization : `Bearer ${token}`}})
             .then(res => {
                 console.log(res.data.data)
                 dispatch(partnerActions.getPartner(res.data.data))
                 setPartner(res.data.data);
                 setBalance(res.data.data.user.balance);
-                axios.get(`/api/car/${res.data.data.partner_id}`)
+                axios.get(`/api/car/${res.data.data.partner_id}`,
+                {headers: {Authorization : `Bearer ${token}`}}
+                )
                     .then(res => {
                         dispatch(carActions.getCarByPartner(res.data))
                         setCars(res.data.data)

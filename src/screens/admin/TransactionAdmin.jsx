@@ -22,9 +22,9 @@ const TransactionAdmin = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    axios.get(`/api/transactions` ,
-      {headers: {Authorization : `Bearer ${token}`}}
-      ).then((res) => {
+    axios.get(`/api/transactions`,
+    {headers: {Authorization : `Bearer ${token}`}}
+    ).then((res) => {
     dispatch(transactionActions.getAllTransaction(res.data.data));
     setIsLoading(false);
     });

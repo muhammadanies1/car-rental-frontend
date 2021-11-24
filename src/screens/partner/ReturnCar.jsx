@@ -20,10 +20,14 @@ function ReturnCar(){
     const [transID, setTransID] = useState(0);
 
     useEffect(() => {
-        axios.get(`/api/partner/user/${user_id}`)
+        axios.get(`/api/partner/user/${user_id}`,
+        {headers: {Authorization : `Bearer ${token}`}}
+        )
             .then(res => {
                 setPartner(res.data.data)
-                axios.get(`/api/transaction/partner/${res.data.data.partner_id}`)
+                axios.get(`/api/transaction/partner/${res.data.data.partner_id}`,
+                {headers: {Authorization : `Bearer ${token}`}}
+                )
                 .then(res => {
                     setTransaction(res.data.data);
                 })
@@ -33,20 +37,10 @@ function ReturnCar(){
 
     console.log(transaction);
     
-    // function updateStatusReturnCar(transaction_id) {
-    //     axios.put("/api/car/waiting/" + transaction_id).then((res) => {
-    //         window.location.reload();
-    //     });
-    // }
 
     function detailModal(transaction_id){
         setTransID(transaction_id);
         setModalShow(true);
-    // function updateStatusReturnCar(transaction_id) {
-        // axios.put("/api/car/waiting/" + transaction_id).then((res) => {
-        //     console.log(res);
-        //     window.location.reload();
-        // });
     }
 
     console.log(transID);

@@ -8,14 +8,16 @@ import "./CarApprove.css";
 import axios from "axios";
 
 function ShowCars() {
-
+    let token = localStorage.getItem("token");
     const listDetailPartnerCars = useSelector((state) => state.car.listDetailPartnerCars);
     const [isLoading, setIsLoading] = useState(false);
     let navigate = useNavigate();
     let dispatch = useDispatch();
 
     useEffect(()=>{
-        axios.get("/api/partners").then((res)=>{
+        axios.get("/api/partners",
+        {headers: {Authorization : `Bearer ${token}`}}
+        ).then((res)=>{
             dispatch(carActions.listDetailPartnerCars(res.data.data));
             setIsLoading(false);
         });
