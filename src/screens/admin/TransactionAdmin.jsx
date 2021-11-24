@@ -18,10 +18,13 @@ const TransactionAdmin = () => {
   const [modalShow, setModalShow] = useState(false);
   const dispatch = useDispatch();
   let navigate = useNavigate();
+  let token = localStorage.getItem("token");
 
   useEffect(() => {
     setIsLoading(true);
-    axios.get(`/api/transactions`).then((res) => {
+    axios.get(`/api/transactions` ,
+      {headers: {Authorization : `Bearer ${token}`}}
+      ).then((res) => {
     dispatch(transactionActions.getAllTransaction(res.data.data));
     setIsLoading(false);
     });
@@ -29,7 +32,9 @@ const TransactionAdmin = () => {
 
 
   function detailTransaction(carId,transactionId,paidStatus) {
-    axios.get("/api/car/id/"+carId).then((res) => {
+    axios.get("/api/car/id/"+carId ,
+    {headers: {Authorization : `Bearer ${token}`}}
+    ).then((res) => {
       setCar(res.data.data)
       setTransactionId(transactionId);
       setpaidStatus(paidStatus);

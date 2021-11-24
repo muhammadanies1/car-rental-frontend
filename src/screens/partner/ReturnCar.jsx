@@ -13,13 +13,17 @@ function ReturnCar(props){
     const [partner, setPartner] = useState({});
     const [cars, setCars] = useState([]);
     let navigate = useNavigate();
+    let token = localStorage.getItem("token");
     const user_id = JSON.parse(localStorage.getItem("user_id"));
-
+    let headers = { 'Authorization': 'Bearer ' + token };
+    const requestOptions = {
+        headers: headers,
+    };
     useEffect(() => {
-        axios.get(`/api/partner/user/${user_id}`)
+        axios.get(`/api/partner/user/${user_id}`,requestOptions)
             .then(res => {
                 setPartner(res.data.data)
-                axios.get(`/api/transaction/partner/${res.data.data.partner_id}`)
+                axios.get(`/api/transaction/partner/${res.data.data.partner_id}`,requestOptions)
                 .then(res => {
                     setTransaction(res.data.data);
                 })
