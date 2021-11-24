@@ -11,50 +11,23 @@ function CeklistReturn(props) {
     const [total, setTotal] = useState([]);
     let trId = props.trID;
     
-    const [payloadPinalty, setPayloadPinalty] = useState({
-        penaltyCarCondition:"",
-    });
-    
     let result;
     function forTotal(){
         let loopValue = choice.forEach((el) => {
             total.push(el.value);
         })
+        
         result = total.reduce((prevs,current) => {
             return prevs+current;
         })
         
-        // setPinalty(result);
-        // setPayloadPinalty({
-        //     penalty:result,
-        // });
-        setPayloadPinalty({
-            ...payloadPinalty,
-            penaltyCarCondition:result,
-        });
-        // axios.put(`/api/car/waiting/${props.trID}`,{
-        //     // {
-        //         penaltyCarCondition: result,
-        //     // }
-        // })
-        // .then((res) => {
-        //     console.log(res);
-        //     window.location.reload();
-        // });
-        axios.put(`/api/car/waiting/${trId}`,payloadPinalty)
+        console.log(result)
+        axios.put(`/api/car/waiting/${trId}`, { "penaltyCarCondition": result })
         .then((res) => {
             console.log(res);
             window.location.reload();
         });
     }
-
-    // console.log(payloadPinalty.penaltyCarCondition);
-    // function updateStatusReturnCar(transaction_id) {
-    //     axios.put("/api/car/waiting/" + transaction_id).then((res) => {
-    //         window.location.reload();
-    //     });
-    // }
-
 
 
     const [kondisi, setKondisi] = useState([
@@ -120,6 +93,7 @@ function CeklistReturn(props) {
         }
     }
 
+    console.log(choice);
 return (
     <>
         <Modal {...props}>
