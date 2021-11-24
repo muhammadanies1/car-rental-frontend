@@ -14,9 +14,14 @@ function ShowPartners() {
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
   let navigate = useNavigate();
+  let token = localStorage.getItem("token");
+    
 
   useEffect(() => {
-    axios.get("/api/partners").then((res) => {
+    axios.get("/api/partners", 
+    {headers: {Authorization : `Bearer ${token}`}}
+    ).then((res) => {
+      console.log(res);
       dispatch(partnerActions.getListPartnerAcc(res.data.data));
       setIsLoading(false);
     });
