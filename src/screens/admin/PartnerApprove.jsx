@@ -1,11 +1,12 @@
+import "./PartnerApprove.css";
 import { Button } from '@mui/material';
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { partnerActions } from '../../store/partner';
 import DataTable from "react-data-table-component";
+import Swal from "sweetalert2";
 import axios from "axios";
-import "./PartnerApprove.css";
 
 
 function PartnerApprove() {
@@ -24,7 +25,14 @@ function PartnerApprove() {
   
   function updateStatusAccPartner(partnerId) {
     axios.put("/api/partner/acc/" + partnerId).then((res) => {
-      alert("berhasil update status");
+      Swal.fire({
+        icon: 'success',
+        title: 'Done!',
+        text: 'Partner approved!',
+        showConfirmButton: false,
+        timer: 2000,
+        timerProgressBar: true,
+    });
       window.location.reload();
       navigate("/admin/partners");
     });

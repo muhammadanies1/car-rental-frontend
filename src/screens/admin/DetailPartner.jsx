@@ -26,12 +26,12 @@ const DetailPartner = () => {
   
   const columns = [
     {
-      name: "Merek",
+      name: "Car Merk",
       selector: row => row.merk,
       sortable: true,
     },
     {
-      name: "Stnk Number",
+      name: "STNK Number",
       selector: row => row.stnk_number,
       sortable: true,
     },
@@ -43,17 +43,17 @@ const DetailPartner = () => {
       sortable: true,
     },
     {
-      name: "Deskripsi",
+      name: "Description",
       selector: row => row.description,
       sortable: true,
     },  
     {
-      name: "Status Acc",
+      name: "Car Status",
       selector: row => {
         let data = row.status_acc ? 
         <span style={{cursor:"auto" , color:"green"}}>Accepted</span>
         : 
-        <span style={{cursor:"auto",color:"red"}}>Not Acc</span>
+        <span style={{cursor:"auto",color:"red"}}>Not Accepted</span>
         return data;
       },
       sortable: true,
@@ -64,7 +64,7 @@ const DetailPartner = () => {
         let data =  row.status_acc ?
         ""
         :
-        <button className="btn btn-secondary btn-md" onClick={()=> updateStatus(row.car_id)}>Acc Car</button>
+        <button className="btn btn-secondary btn-md" onClick={()=> updateStatus(row.car_id)}>Accept Car</button>
         return data;
       },
       sortable: true,
