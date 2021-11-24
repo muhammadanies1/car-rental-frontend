@@ -21,10 +21,13 @@ function DashboardMember() {
     const user_id = JSON.parse(localStorage.getItem("user_id"));
     const [userTransaction, setUserTransaction] = useState();
     const [isLoading, setIsLoading] = useState(false);
+    let token = localStorage.getItem("token");
 
     useEffect(() => {
         setIsLoading(true);
-        axios.get(`/api/process/${user_id}`)
+        axios.get(`/api/process/${user_id}`,
+        {headers: {Authorization : `Bearer ${token}`}}
+        )
             .then(res => {
                 setCarProcess(res.data.data);
                 if (carProcess != null) {
@@ -32,7 +35,9 @@ function DashboardMember() {
                 }
             })
 
-        axios.get(`/api/cars/status/true`)
+        axios.get(`/api/cars/status/true`,
+        {headers: {Authorization : `Bearer ${token}`}}
+        )
             .then(res => {
                 console.log(res);
                 dispatch(carActions.getAllCarTrue(res.data))

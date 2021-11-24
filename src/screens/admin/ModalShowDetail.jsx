@@ -3,12 +3,14 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 function ModalShowDetail(props) {
     let navigate = useNavigate();
+    let token = localStorage.getItem("token");
     const transactionId = props.transaction_id;
     function updateBalance() {
         axios
-        .put("/api/transaction/finish/"+ transactionId)
+        .put("/api/transaction/finish/"+ transactionId,
+        {headers: {Authorization : `Bearer ${token}`}}
+        )
         .then((res)=>{
-            alert("berhasil update balance")
             window.location.reload();
             navigate("/admin/transaction");
         })
