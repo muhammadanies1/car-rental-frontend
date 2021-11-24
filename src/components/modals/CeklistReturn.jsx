@@ -10,7 +10,7 @@ function CeklistReturn(props) {
     const [choice, setChoice] = useState([]);
     const [total, setTotal] = useState([]);
     let trId = props.trID;
-    
+    let token = localStorage.getItem("token");
     const [payloadPinalty, setPayloadPinalty] = useState({
         penaltyCarCondition:"",
     });
@@ -23,39 +23,19 @@ function CeklistReturn(props) {
         result = total.reduce((prevs,current) => {
             return prevs+current;
         })
-        
-        // setPinalty(result);
-        // setPayloadPinalty({
-        //     penalty:result,
-        // });
+  
         setPayloadPinalty({
             ...payloadPinalty,
             penaltyCarCondition:result,
         });
-        // axios.put(`/api/car/waiting/${props.trID}`,{
-        //     // {
-        //         penaltyCarCondition: result,
-        //     // }
-        // })
-        // .then((res) => {
-        //     console.log(res);
-        //     window.location.reload();
-        // });
-        axios.put(`/api/car/waiting/${trId}`,payloadPinalty)
+        axios.put(`/api/car/waiting/${trId}`,payloadPinalty ,
+        {headers: {Authorization : `Bearer ${token}`}}
+        )
         .then((res) => {
             console.log(res);
             window.location.reload();
         });
     }
-
-    // console.log(payloadPinalty.penaltyCarCondition);
-    // function updateStatusReturnCar(transaction_id) {
-    //     axios.put("/api/car/waiting/" + transaction_id).then((res) => {
-    //         window.location.reload();
-    //     });
-    // }
-
-
 
     const [kondisi, setKondisi] = useState([
         {

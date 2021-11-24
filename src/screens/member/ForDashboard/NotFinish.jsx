@@ -15,10 +15,15 @@ const NotFinish = () => {
     const [car, setCar] = useState({});
     const [partner, setPartner] = useState({});
     let navigate = useNavigate();
-    
+    let token = localStorage.getItem("token");
+    let headers = { 'Authorization': 'Bearer ' + token };
+    const requestOptions = {
+        headers: headers,
+    };
     useEffect(() => {
         setIsLoading(true)
-        axios.get(`/api/process/${user_id}`)
+        axios.get(`/api/process/${user_id}`,requestOptions
+        )
         .then(res => {
             // setTimeout(()=>{
                 setCarProcess(res.data.data);
@@ -62,6 +67,7 @@ const NotFinish = () => {
                         window.location.reload();
                     },
                     onError: function (result) {
+                        alert("eror")
                         navigate({
                             pathname: "/member/dashboard",
                           });

@@ -12,7 +12,7 @@ function FormRentCar(props) {
     let carID = props.carId;
     let userID = props.userId;
     let navigate = useNavigate();
-
+    let token = localStorage.getItem("token");
     
     const [startDate, setStartDate] = useState(new Date());
     const [selectedDate, setselectedDate] = useState("");
@@ -35,7 +35,9 @@ function FormRentCar(props) {
             });
         }else{
             console.log(form);
-            axios.post(`/api/membertransaction/add`,form).then((res) => {
+            axios.post(`/api/membertransaction/add`,form ,
+            {headers: {Authorization : `Bearer ${token}`}}
+            ).then((res) => {
                 alert("Transaksi berhasil ditambahkan!");
                 navigate("/member/dashboard");
                 window.location.reload();
