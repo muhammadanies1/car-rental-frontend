@@ -11,26 +11,28 @@ function CeklistReturn(props) {
     const [choice, setChoice] = useState([]);
     const [total, setTotal] = useState([]);
     let trId = props.trID;
-    
-    const [payloadPinalty, setPayloadPinalty] = useState({
-        penaltyCarCondition:"",
-    });
+    let token = localStorage.getItem("token");
     
     let result;
     function forTotal(){
         let loopValue = choice.forEach((el) => {
             total.push(el.value);
         })
+        
         result = total.reduce((prevs,current) => {
             return prevs+current;
         })
-        
-        setPayloadPinalty({
-            ...payloadPinalty,
-            penaltyCarCondition:result,
-        });
-        
-        axios.put(`/api/car/waiting/${trId}`,payloadPinalty)
+        console.log(result)
+        axios.put(`/api/car/waiting/${trId}`, { "penaltyCarCondition": result },
+        {headers: {Authorization : `Bearer ${token}`}}
+        )
+        // setPayloadPinalty({
+        //     ...payloadPinalty,
+        //     penaltyCarCondition:result,
+        // });
+        // axios.put(`/api/car/waiting/${trId}`,payloadPinalty ,
+        // {headers: {Authorization : `Bearer ${token}`}}
+        // )
         .then((res) => {
             Swal.fire({
                 icon: 'success',
@@ -107,6 +109,7 @@ function CeklistReturn(props) {
         }
     }
 
+    console.log(choice);
 return (
     <>
         <Modal {...props}>

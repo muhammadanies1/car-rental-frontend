@@ -12,13 +12,14 @@ function FormRentCar(props) {
     let carID = props.carId;
     let userID = props.userId;
     let navigate = useNavigate();
-
+    let token = localStorage.getItem("token");
     
     const [startDate, setStartDate] = useState(new Date());
     const [selectedDate, setselectedDate] = useState("");
+    const dateTime = new Date();
     const [form, setForm] = useState({
         loan_time:"",
-        booking_date:"",
+        booking_date:moment(new Date(dateTime)).format("YYYY-MM-DD"),
         user:{user_id: 0},
         car:{car_id: 0}
     });
@@ -32,10 +33,13 @@ function FormRentCar(props) {
                 showConfirmButton: false,
                 timer: 2000,
                 timerProgressBar: true,
-            });
+            }); 
         }else{
+            console.log(form.booking_date);
             console.log(form);
-            axios.post(`/api/membertransaction/add`,form).then((res) => {
+            axios.post(`/api/membertransaction/add`,form ,
+            {headers: {Authorization : `Bearer ${token}`}}
+            ).then((res) => {
                 Swal.fire({
                     icon: 'success',
                     title: 'Done!',

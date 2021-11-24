@@ -7,9 +7,10 @@ import axios from "axios";
 
 function InputCar(props) {
     console.log(props.partner.partner_id);
+    let navigate = useNavigate();
     const listCar = useSelector((state) => state.car);
     const dispatch = useDispatch();
-
+    let token = localStorage.getItem("token");
     let [image, setImage] = useState();
     const [photo, setPhoto] = useState({
         images:"",
@@ -56,7 +57,9 @@ function InputCar(props) {
         let partner_id = props.partner.partner_id
         console.log(props.partner.partner_id);
         console.log(formData);
-        axios.post(`/api/car/add/${partner_id}`, formData)
+        axios.post(`/api/car/add/${partner_id}`, formData ,
+        {headers: {Authorization : `Bearer ${token}`}}
+        )
         .then((res)=>{
             
             Swal.fire({
@@ -67,8 +70,9 @@ function InputCar(props) {
                 timer: 1000,
                 timerProgressBar: true,
             });
-            
-            axios.get(`/api/car/${props.partner.partner_id}`)
+                axios.get(`/api/car/${props.partner.partner_id}`,
+                {headers: {Authorization : `Bearer ${token}`}}
+                )
                 .then(res =>{
                     dispatch(carActions.getCarByPartner(res.data))
                     props.setUlang(res.data.data)

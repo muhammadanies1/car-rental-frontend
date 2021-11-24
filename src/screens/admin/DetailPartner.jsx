@@ -7,6 +7,7 @@ import { Button } from '@mui/material';
 import { useDispatch, useSelector } from "react-redux";
 import {carActions} from '../../store/car'
 import "./DetailPartner.css";
+import Swal from 'sweetalert2'
 
 const DetailPartner = () => {
   
@@ -15,10 +16,13 @@ const DetailPartner = () => {
   const dispatch = useDispatch();
   let navigate = useNavigate();
   let param = useParams();
+  let token = localStorage.getItem("token");
   
   useEffect(() => {
     setIsLoading(true)
-    axios.get(`/api/car/` + param.partnerId).then((res) => {
+    axios.get(`/api/car/` + param.partnerId,
+    {headers: {Authorization : `Bearer ${token}`}}
+    ).then((res) => {
       dispatch(carActions.getCarByPartnerId(res.data.data));
       setIsLoading(false)
     });
@@ -71,13 +75,30 @@ const DetailPartner = () => {
     },
   ];
   function updateStatus(carId) {
-    axios
-    .put("/api/car/status_acc/"+carId)
-    .then((res)=>{
-      alert("berhasil update status acc")
-      window.location.reload();
-      navigate("/admin/partner/detail/car/"+param.partnerId);
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios
+        .put("/api/car/status_acc/"+carId)
+        .then((res)=>{
+          Swal.fire(
+            'Success',
+            'Car Accepted'
+          )
+          window.location.reload();
+          navigate("/admin/partner/detail/car/"+param.partnerId);
+        })
+        
+      }
     })
+  
   }
   function goBack(){
     navigate("/admin/cars");
