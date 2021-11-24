@@ -7,12 +7,6 @@ import { partnerActions } from '../../store/partner';
 import DataTable from "react-data-table-component";
 import Swal from "sweetalert2";
 import axios from "axios";
-<<<<<<< HEAD
-
-=======
-import "./PartnerApprove.css";
-import Swal from 'sweetalert2'
->>>>>>> 2a258ed4be1b1f5910980e8ee23ec9a0a50148f6
 
 function PartnerApprove() {
 
@@ -32,20 +26,6 @@ function PartnerApprove() {
   }, [dispatch]);
   
   function updateStatusAccPartner(partnerId) {
-<<<<<<< HEAD
-    axios.put("/api/partner/acc/" + partnerId).then((res) => {
-      Swal.fire({
-        icon: 'success',
-        title: 'Done!',
-        text: 'Partner approved!',
-        showConfirmButton: false,
-        timer: 2000,
-        timerProgressBar: true,
-    });
-      window.location.reload();
-      navigate("/admin/partners");
-    });
-=======
     Swal.fire({
       title: 'Are You Sure Want To Acc This Partner?',
       text: "You won't be able to revert this!",
@@ -67,8 +47,6 @@ function PartnerApprove() {
         });
       }
     })
-   
->>>>>>> 2a258ed4be1b1f5910980e8ee23ec9a0a50148f6
   }
 
   function goBack(){
