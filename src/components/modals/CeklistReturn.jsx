@@ -26,13 +26,6 @@ function CeklistReturn(props) {
         axios.put(`/api/car/waiting/${trId}`, { "penaltyCarCondition": result },
         {headers: {Authorization : `Bearer ${token}`}}
         )
-        // setPayloadPinalty({
-        //     ...payloadPinalty,
-        //     penaltyCarCondition:result,
-        // });
-        // axios.put(`/api/car/waiting/${trId}`,payloadPinalty ,
-        // {headers: {Authorization : `Bearer ${token}`}}
-        // )
         .then((res) => {
             Swal.fire({
                 icon: 'success',
@@ -49,17 +42,17 @@ function CeklistReturn(props) {
     const [kondisi, setKondisi] = useState([
         {
             id:1,
-            kondisi_name: "Apakah surat dan kunci kembali?",
+            kondisi_name: "Are the stnk and key back secure?",
             value: 0,
         },
         {
             id:2,
-            kondisi_name: "Apakah ada body mobil Anda ada yang lecet atau penyok?",
+            kondisi_name: "Is there any scratches on the car body?",
             value: 0,
         },
         {
             id:3,
-            kondisi_name: "Apakah ban dalam kondisi baik baik saja?",
+            kondisi_name: "Are the tires in good condition?",
             value: 0,
         },
     ]);
@@ -93,7 +86,7 @@ function CeklistReturn(props) {
 
         if (!found) {
             setChoice(prevValue => {
-                searchData.value = 20
+                searchData.value = 30000
                 prevValue.push(searchData)
                 return [...prevValue]
             })
@@ -101,7 +94,7 @@ function CeklistReturn(props) {
             choice.forEach((el, i) => {
                 if (el.id == id) {
                     setChoice((prevsValue) => {
-                        prevsValue[i].value = 20
+                        prevsValue[i].value = 30000
                         return [...prevsValue]
                     })
                 }
