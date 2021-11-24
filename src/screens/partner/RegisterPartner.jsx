@@ -45,7 +45,6 @@ function RegisterPartner() {
         events.preventDefault();
         postJoinPartner(form).then((res) => {
             Swal.fire({
-                position: 'top-end',
                 icon: 'success',
                 title: 'Your location has pined!',
                 showConfirmButton: false,
