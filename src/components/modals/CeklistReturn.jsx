@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
+import Swal from "sweetalert2";
 import axios from "axios";
 
 function CeklistReturn(props) {
@@ -33,7 +34,14 @@ function CeklistReturn(props) {
         // {headers: {Authorization : `Bearer ${token}`}}
         // )
         .then((res) => {
-            console.log(res);
+            Swal.fire({
+                icon: 'success',
+                title: 'Done!',
+                text: 'Confirmation succes',
+                showConfirmButton: false,
+                timer: 1000,
+                timerProgressBar: true,
+            });
             window.location.reload();
         });
     }

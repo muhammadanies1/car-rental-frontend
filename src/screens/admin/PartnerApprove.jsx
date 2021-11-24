@@ -1,12 +1,12 @@
+import "./PartnerApprove.css";
 import { Button } from '@mui/material';
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { partnerActions } from '../../store/partner';
 import DataTable from "react-data-table-component";
+import Swal from "sweetalert2";
 import axios from "axios";
-import "./PartnerApprove.css";
-import Swal from 'sweetalert2'
 
 function PartnerApprove() {
 
@@ -47,7 +47,6 @@ function PartnerApprove() {
         });
       }
     })
-   
   }
 
   function goBack(){

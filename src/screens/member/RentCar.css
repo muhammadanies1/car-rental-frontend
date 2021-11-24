@@ -23,7 +23,7 @@
 
 .card-detail-car{
     font-family: 'Roboto', sans-serif;
-    width: 370px !important;
+    width: 400px !important;
     height: 500px !important;
     box-shadow: 5px 5px #7d7d7d;
 }
@@ -59,6 +59,7 @@
     font-size: small;
     margin: 0 auto;
     background-color: #667EEA;
+    text-align: center;
 }
 
 .btn-book:hover {
@@ -75,12 +76,12 @@
     justify-content: left;
     background-color: #e1e3fc;
     height: 100px;
-    width: 360px;
+    width: 390px;
 }
 .card-maps{
-    margin-left: 20px;
+    margin-left: 50px;
     height: 500px !important;
-    width: 680px !important;
+    width: 650px !important;
     box-shadow: 5px 5px #7d7d7d;
 }
 

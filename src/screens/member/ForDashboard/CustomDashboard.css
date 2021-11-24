@@ -15,7 +15,6 @@
 }
 
 #container-car{
-    margin-right: 50px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -71,4 +70,21 @@
     font-family: 'Merriweather', serif;
     font-size: 20px;
     margin-left: 120px;
+}
+
+.btn-detail {
+    border-radius: 20px;
+    font-size: small;
+    margin: 0 auto;
+    background-color: #667EEA;
+    text-align: center;
+    width: 80px;
+}
+
+.btn-detail:hover{
+    background-color: #00ad17!important;
+    color: white !important;
+    font-family: 'Roboto', sans-serif !important;
+    font-weight: bold !important;
+    border-color: #00ad17 !important;
 }

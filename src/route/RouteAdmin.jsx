@@ -21,11 +21,10 @@ function RouteAdmin(){
                 <Route path="/admin/cars" element={<CarApprove />} />
                 <Route path="/admin/partners" element={<PartnerApprove />} />
                 <Route path="/admin/partner/detail/car/:partnerId" element={<DetailPartner />} />
-                <Route path ="admin/transaction" element={<TransactionAdmin />} />
+                <Route path ="/admin/transaction" element={<TransactionAdmin />} />
                 <Route path ="/admin/allpartners" element={<ShowPartners />} />
                 <Route path="/admin/partner/detail/allcar/:partnerId" element={<ShowCarsByDetailPartners />} />    
                 <Route path="/admin/allcars" element={<ShowCars />} />
-                  
             </Routes>
         </>
     )

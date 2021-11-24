@@ -1,13 +1,13 @@
+import "./DashboardPartner.css";
 import { Button, Card, Row, Col } from "react-bootstrap";
 import InputCar from "../../components/modals/InputCar";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { partnerActions } from "../../store/partner";
-import "./DashboardPartner.css";
 import { useState } from "react";
 import { useEffect } from "react";
-import axios from "axios";
 import { carActions } from "../../store/car";
+import axios from "axios";
 
 function DashboardPartner(props) {
 
@@ -61,7 +61,6 @@ function DashboardPartner(props) {
                     .then(res => {
                         dispatch(carActions.getCarByPartner(res.data))
                         setCars(res.data.data)
-                        // setIsLoading(false);
                     })
             })
 

@@ -1,9 +1,10 @@
 import { Button, Modal, Form, FloatingLabel } from "react-bootstrap";
 import { useState } from "react";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { carActions } from "../../store/car";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import axios from "axios";
 
 function InputCar(props) {
     console.log(props.partner.partner_id);
@@ -61,8 +62,15 @@ function InputCar(props) {
         {headers: {Authorization : `Bearer ${token}`}}
         )
         .then((res)=>{
-            console.log("ok");
-            alert("berhasil");
+            
+            Swal.fire({
+                icon: 'success',
+                title: 'Done!',
+                text: 'Success add new car',
+                showConfirmButton: false,
+                timer: 1000,
+                timerProgressBar: true,
+            });
                 axios.get(`/api/car/${props.partner.partner_id}`,
                 {headers: {Authorization : `Bearer ${token}`}}
                 )
@@ -70,7 +78,6 @@ function InputCar(props) {
                     dispatch(carActions.getCarByPartner(res.data))
                     props.setUlang(res.data.data)
                     console.log("ok")
-                    // setIsLoading(false);
                 })
             props.onHide();
         })

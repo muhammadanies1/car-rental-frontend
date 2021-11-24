@@ -30,8 +30,8 @@ function Register() {
         });
     };
 
-    function toLogin() {
-        navigate("/");
+    function toLogin(){
+        navigate("/login");
     }
 
     function registerHandler(events) {
@@ -99,9 +99,9 @@ function Register() {
                         timer: 3000,
                         timerProgressBar: true,
                     });
-                    navigate("/");
-                })
-                .catch((error) => {
+                    
+                    navigate("/login");        
+                }, (error) => {
                     Swal.fire({
                         icon: 'error',
                         title: 'Oops...',

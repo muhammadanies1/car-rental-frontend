@@ -3,9 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { useNavigate } from "react-router-dom";
 import { Fragment, useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
-
 import { loginActions } from "./store/login";
-
 import RoutePartner from "./route/RoutePartner";
 import RouteMember from "./route/RouteMember";
 import RouteAdmin from "./route/RouteAdmin";
@@ -31,19 +29,16 @@ function App() {
 
   const cekAuth = async () => {
     if(token && role_id == 3){
-      await dispatch(loginActions.admin) ;
+      await dispatch(loginActions.admin);
       <RouteAdmin />
-      // navigate("/admin/dashboard")
     } else if(token && role_id == 2){
       await dispatch(loginActions.partner);
       <RoutePartner />
-      // navigate("/partner/dashboard")
     } else if(token && role_id == 1){
       await dispatch(loginActions.login);
       <RouteMember />
-      // navigate("/member/dashboard")
     } else if(!token){
-      navigate("/")
+      <UnregisteredRoute />
     }
   }
   
@@ -59,11 +54,11 @@ function App() {
     <Fragment>
       {
         token && role_id == 3 ? (
-          <RouteAdmin /> ) :
+        <RouteAdmin /> ) :
         token && role_id == 2 ? (
-          <RoutePartner /> ) :
+        <RoutePartner /> ) :
         token && role_id == 1 ? (
-          <RouteMember /> ) : (
+        <RouteMember /> ) : (
           <UnregisteredRoute />)
         }
     </Fragment>
