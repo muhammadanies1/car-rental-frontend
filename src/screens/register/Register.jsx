@@ -43,15 +43,50 @@ function Register() {
         let phone_number = form.phone_number;
 
             if(username === "" && password === "" && name ==="" && address==="" && phone_number === ""){
-                alert("tidak boleh kosong ya!");
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Please complete the registration data',
+                    showConfirmButton: false,
+                    timer: 2000,
+                    timerProgressBar: true,
+                });
             }else if(!validName.test(name)){
-                alert("Nama harus menggunakan huruf");
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Please enter name using letter characters',
+                    showConfirmButton: false,
+                    timer: 2000,
+                    timerProgressBar: true,
+                });
             }else if(!validUsername.test(username)){
-                alert("Username harus menggunakan email");
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Please enter username using email',
+                    showConfirmButton: false,
+                    timer: 2000,
+                    timerProgressBar: true,
+                });
             }else if(!validPhoneNumber.test(phone_number)){
-                alert("nomor telfon harus angka");
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Please enter phone number using numbers',
+                    showConfirmButton: false,
+                    timer: 2000,
+                    timerProgressBar: true,
+                });
             } else if(!validPassword.test(password)){
-                alert("Password min 6 karakter 1 Huruf besar, satu simbol dan satu angka")
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Password must be at least 6 characters including one uppercase letter, one lowercase letter,  one number and one special character',
+                    showConfirmButton: false,
+                    timer: 2000,
+                    timerProgressBar: true,
+                });
             } else{
                 axios.post(`/api/register`,form).then((response) => {
                     Swal.fire({
@@ -68,7 +103,7 @@ function Register() {
                     Swal.fire({
                         icon: 'error',
                         title: 'Oops...',
-                        text: 'Registration Error',
+                        text: 'Please choose another username',
                         showConfirmButton: false,
                         timer: 3000,
                         timerProgressBar: true,
