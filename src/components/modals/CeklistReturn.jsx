@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
+import Swal from "sweetalert2";
 import axios from "axios";
 
 function CeklistReturn(props) {
@@ -24,38 +25,24 @@ function CeklistReturn(props) {
             return prevs+current;
         })
         
-        // setPinalty(result);
-        // setPayloadPinalty({
-        //     penalty:result,
-        // });
         setPayloadPinalty({
             ...payloadPinalty,
             penaltyCarCondition:result,
         });
-        // axios.put(`/api/car/waiting/${props.trID}`,{
-        //     // {
-        //         penaltyCarCondition: result,
-        //     // }
-        // })
-        // .then((res) => {
-        //     console.log(res);
-        //     window.location.reload();
-        // });
+        
         axios.put(`/api/car/waiting/${trId}`,payloadPinalty)
         .then((res) => {
-            console.log(res);
+            Swal.fire({
+                icon: 'success',
+                title: 'Done!',
+                text: 'Confirmation succes',
+                showConfirmButton: false,
+                timer: 1000,
+                timerProgressBar: true,
+            });
             window.location.reload();
         });
     }
-
-    // console.log(payloadPinalty.penaltyCarCondition);
-    // function updateStatusReturnCar(transaction_id) {
-    //     axios.put("/api/car/waiting/" + transaction_id).then((res) => {
-    //         window.location.reload();
-    //     });
-    // }
-
-
 
     const [kondisi, setKondisi] = useState([
         {

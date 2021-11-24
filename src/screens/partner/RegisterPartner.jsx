@@ -45,11 +45,13 @@ function RegisterPartner() {
         events.preventDefault();
         postJoinPartner(form).then((res) => {
             Swal.fire({
-                position: 'top-end',
                 icon: 'success',
-                title: 'Your location has pined!',
+                title: 'Done!',
+                text: 'Your location has pined!',
                 showConfirmButton: false,
-                timer: 2000
+                timer: 2000,
+                timerProgressBar: true,
+                
             });
             navigate("/");
         })

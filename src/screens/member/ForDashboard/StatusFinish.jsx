@@ -30,7 +30,7 @@ function StatusFinish(props){
                                     </Col>
                                     <Col md="auto">
                                         <Card.Text className="car-price"> Rp {value.price} </Card.Text>
-                                        <Button className="btn-book" variant="primary" onClick={()=>bookHandler(value.car_id)}>Detail</Button></Col>
+                                        <Button className="btn-detail" variant="primary" onClick={()=>bookHandler(value.car_id)}>Detail</Button></Col>
                                 </Row>
                             </Card.Body>
                         </Card>

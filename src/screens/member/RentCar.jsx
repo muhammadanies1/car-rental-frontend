@@ -41,7 +41,7 @@ const RentCar = () => {
     }, [dispatch,setDetailCar]);
     
     const [viewport, setViewport] = useState({
-        width: "48vw",
+        width: "45vw",
         height: "73vh",
         latitude: -6.261058,
         longitude: 106.642164,

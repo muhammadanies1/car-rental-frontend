@@ -36,7 +36,14 @@ function FormRentCar(props) {
         }else{
             console.log(form);
             axios.post(`/api/membertransaction/add`,form).then((res) => {
-                alert("Transaksi berhasil ditambahkan!");
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Done!',
+                    text: 'Booking car success',
+                    showConfirmButton: false,
+                    timer: 1000,
+                    timerProgressBar: true,
+                });
                 navigate("/member/dashboard");
                 window.location.reload();
                 

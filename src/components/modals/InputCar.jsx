@@ -1,14 +1,12 @@
 import { Button, Modal, Form, FloatingLabel } from "react-bootstrap";
 import { useState } from "react";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { carActions } from "../../store/car";
+import Swal from "sweetalert2";
+import axios from "axios";
 
 function InputCar(props) {
     console.log(props.partner.partner_id);
-    let navigate = useNavigate();
-    // const [cars, setCars] = useState([]);
     const listCar = useSelector((state) => state.car);
     const dispatch = useDispatch();
 
@@ -60,14 +58,21 @@ function InputCar(props) {
         console.log(formData);
         axios.post(`/api/car/add/${partner_id}`, formData)
         .then((res)=>{
-            console.log("ok");
-            alert("berhasil");
-                axios.get(`/api/car/${props.partner.partner_id}`)
+            
+            Swal.fire({
+                icon: 'success',
+                title: 'Done!',
+                text: 'Success add new car',
+                showConfirmButton: false,
+                timer: 1000,
+                timerProgressBar: true,
+            });
+            
+            axios.get(`/api/car/${props.partner.partner_id}`)
                 .then(res =>{
                     dispatch(carActions.getCarByPartner(res.data))
                     props.setUlang(res.data.data)
                     console.log("ok")
-                    // setIsLoading(false);
                 })
             props.onHide();
         })
@@ -76,8 +81,6 @@ function InputCar(props) {
         })
     }
 
-    // console.log(car);
-    // console.log(dataPhotos);
     return (
         <Modal {...props} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
             <Modal.Header closeButton>
