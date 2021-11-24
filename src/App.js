@@ -29,7 +29,7 @@ function App() {
 
   const cekAuth = async () => {
     if(token && role_id == 3){
-      await dispatch(loginActions.admin) ;
+      await dispatch(loginActions.admin);
       <RouteAdmin />
     } else if(token && role_id == 2){
       await dispatch(loginActions.partner);
@@ -38,7 +38,7 @@ function App() {
       await dispatch(loginActions.login);
       <RouteMember />
     } else if(!token){
-      navigate("/")
+      <UnregisteredRoute />
     }
   }
   
@@ -54,11 +54,11 @@ function App() {
     <Fragment>
       {
         token && role_id == 3 ? (
-          <RouteAdmin /> ) :
+        <RouteAdmin /> ) :
         token && role_id == 2 ? (
-          <RoutePartner /> ) :
+        <RoutePartner /> ) :
         token && role_id == 1 ? (
-          <RouteMember /> ) : (
+        <RouteMember /> ) : (
           <UnregisteredRoute />)
         }
     </Fragment>

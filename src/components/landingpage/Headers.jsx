@@ -10,7 +10,7 @@ const Headers = ({ navbarLinks }) => {
     };
 
     return ( 
-        <nav className = "navbar">
+        <nav className = "navbar-landing">
             <span className = "navbar__logo" > Wheelosity </span> {
                 menuClicked ? ( 
                 <FiX size = { 25 }

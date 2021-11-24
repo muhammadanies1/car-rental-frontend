@@ -31,7 +31,7 @@ function Register() {
     };
 
     function toLogin(){
-        navigate("/");
+        navigate("/login");
     }
 
     function registerHandler(events){
@@ -63,7 +63,7 @@ function Register() {
                         timerProgressBar: true,
                     });
                     
-                    navigate("/");        
+                    navigate("/login");        
                 }, (error) => {
                     Swal.fire({
                         icon: 'error',
