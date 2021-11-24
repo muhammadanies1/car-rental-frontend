@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from 'react-bootstrap';
 import Breadcrumb from 'react-bootstrap/Breadcrumb'
 import "./TransactionAdmin.css";
+import Footer from "../../components/footer/Footer";
 
 const TransactionAdmin = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -107,6 +108,7 @@ const TransactionAdmin = () => {
       style={{float:"left", marginTop:"10px", borderRadius:"10px"}} 
       onClick={goBack}>Back</Button>
       </div>
+      <Footer />
     </>
   );
 };

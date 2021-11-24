@@ -6,7 +6,8 @@ import Headers from "./Headers";
 import Hero from "./Hero";
 import Slider from "./Slider";
 import { useNavigate } from "react-router-dom";
-
+import Kosong from "../helper/Kosong";
+import Footer from "../footer/Footer";
 
 function Landingpage(){
     let navigate = useNavigate();
@@ -17,6 +18,8 @@ function Landingpage(){
     ];
 
     return(
+    <>
+        
         <div className="landing-page">
             <Headers navbarLinks = {navbarLinks} />
             <Hero imageSrc = { travel_01 } /> 
@@ -28,6 +31,10 @@ function Landingpage(){
                 subtitle = { "Your dream vacation is only a few clicks away." }
                 flipped = { true } />
         </div>
+    <Kosong />
+    <Footer/>
+    </>
+        
     )
 }
 

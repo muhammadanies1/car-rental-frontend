@@ -56,6 +56,7 @@ function Login() {
                     timer: 1000,
                     timerProgressBar: true,
                 });
+                navigate("/");
             })
             .catch((error) => {
                 Swal.fire({

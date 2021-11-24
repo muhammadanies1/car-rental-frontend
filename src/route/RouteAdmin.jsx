@@ -9,11 +9,14 @@ import Balance from "../screens/admin/Balance";
 import ShowPartners from "../screens/admin/ShowPartners";
 import ShowCarsByDetailPartners from "../screens/admin/ShowCarsByDetailPartners";
 import ShowCars from "../screens/admin/ShowCars";
+import Kosong from "../components/helper/Kosong";
+import Footer from "../components/footer/Footer";
 
 function RouteAdmin(){
     return(
         <>
             <NavBarAdmin />
+            <Kosong />
             <Balance />
             <Routes>
                 <Route path="/" element={<DashboardAdmin />} />

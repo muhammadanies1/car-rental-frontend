@@ -34,6 +34,15 @@ function FormRentCar(props) {
                 timer: 2000,
                 timerProgressBar: true,
             }); 
+        }else if(form.loan_time < 0){
+            Swal.fire({
+                icon: 'info',
+                title: 'Attention...',
+                text: 'Please input loan day more than 0!',
+                showConfirmButton: false,
+                timer: 2000,
+                timerProgressBar: true,
+            });
         }else{
             console.log(form.booking_date);
             console.log(form);
