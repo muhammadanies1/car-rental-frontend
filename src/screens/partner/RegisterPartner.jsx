@@ -57,7 +57,6 @@ function RegisterPartner() {
         })
         .catch((err) => {
             Swal.fire({
-                position: 'top-end',
                 icon: 'error',
                 title: 'Your location not saved!',
                 showConfirmButton: false,
