@@ -29,13 +29,13 @@ function NavBarAdmin(){
     return(
         <div>
         <>
-        <Navbar bg="light" expand="lg" className="navbar-member">
+        <Navbar bg="light" variant="light" expand="lg" className="navbar-member">
             <Container>
-                <Navbar.Brand href="#home">RentCar</Navbar.Brand>
+                <Navbar.Brand href="#home"style={{color:'white',fontFamily: 'MonteCarlo, cursive',fontSize:'2.5rem'}}> Wheelosity </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="me-auto navbar-ul">
-                            <Nav.Link onClick={ toDashboard }>Dashboard</Nav.Link>
+                            <Nav.Link onClick={ toDashboard } style={{color:'white'}}>Dashboard</Nav.Link>
                             <NavDropdown title="Admin" id="basic-nav-dropdown" >
                                 <NavDropdown.Item disabled > { username } </NavDropdown.Item>
                                 <NavDropdown.Divider />

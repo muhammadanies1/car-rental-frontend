@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { carActions } from "../../store/car";
 import "./CarApprove.css";
 import axios from "axios";
+import Footer from "../../components/footer/Footer";
 
 function ShowCars() {
     let token = localStorage.getItem("token");
@@ -61,6 +62,7 @@ function ShowCars() {
                 style={{float:"left", marginTop:"10px", borderRadius:"10px"}} 
                 onClick={goBack}> Back </Button>
         </div>
+        <Footer />
         </>
     )
 }

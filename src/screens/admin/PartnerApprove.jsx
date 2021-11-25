@@ -7,6 +7,8 @@ import { partnerActions } from '../../store/partner';
 import DataTable from "react-data-table-component";
 import Swal from "sweetalert2";
 import axios from "axios";
+import Footer from "../../components/footer/Footer";
+import FooterDashboard from "./FooterDashboard";
 
 function PartnerApprove() {
 
@@ -95,6 +97,7 @@ function PartnerApprove() {
           color="primary"
           onClick={goBack}>Back</Button>
       </div>
+      <FooterDashboard/>
     </>
   );
 }

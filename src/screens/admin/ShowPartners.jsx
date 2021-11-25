@@ -6,6 +6,7 @@ import { partnerActions } from '../../store/partner';
 import DataTable from "react-data-table-component";
 import axios from "axios";
 import "./PartnerApprove.css";
+import Footer from '../../components/footer/Footer';
 
 
 function ShowPartners() {
@@ -81,6 +82,7 @@ function ShowPartners() {
           color="primary"
           onClick={goBack}>Back</Button>
       </div>
+      <Footer/>
     </>
   );
 }

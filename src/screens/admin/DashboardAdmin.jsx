@@ -1,8 +1,7 @@
-import { Card, Button } from "react-bootstrap";
+import { Card} from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
-import axios from "axios";
 import "./DashboardAdmin.css";
+import FooterDashboard from "./FooterDashboard";
 
 function DashboardAdmin () {
     let navigate = useNavigate();
@@ -47,6 +46,7 @@ function DashboardAdmin () {
                 </Card>
             </div>    
         </div>
+        <FooterDashboard/>
         </>
     )
 }

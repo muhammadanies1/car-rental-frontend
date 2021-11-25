@@ -7,6 +7,7 @@ import { Button } from '@mui/material';
 import { useDispatch, useSelector } from "react-redux";
 import {carActions} from '../../store/car'
 import "./DetailPartner.css";
+import Footer from "../../components/footer/Footer";
 
 const ShowCarsByDetailPartner = () => {
   
@@ -93,6 +94,7 @@ const ShowCarsByDetailPartner = () => {
               color="primary" 
               onClick={goBack}>Back</Button>
     </div>
+    <Footer />
     </>
   );
 };
