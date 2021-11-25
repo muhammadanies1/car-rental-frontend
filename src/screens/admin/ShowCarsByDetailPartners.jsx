@@ -16,10 +16,14 @@ const ShowCarsByDetailPartner = () => {
   const dispatch = useDispatch();
   let navigate = useNavigate();
   let param = useParams();
+  let token = localStorage.getItem("token");
+    
   
   useEffect(() => {
     setIsLoading(true)
-    axios.get(`/api/car/` + param.partnerId).then((res) => {
+    axios.get(`/api/car/` + param.partnerId,
+    {headers: {Authorization : `Bearer ${token}`}}
+    ).then((res) => {
       dispatch(carActions.getCarByPartnerId(res.data.data));
       setIsLoading(false)
     });
@@ -69,7 +73,8 @@ const ShowCarsByDetailPartner = () => {
   ];
   function updateStatus(carId) {
     axios
-    .put("/api/car/status_acc/"+carId)
+    .put("/api/car/status_acc/"+carId,
+    {headers: {Authorization : `Bearer ${token}`}})
     .then((res)=>{
       alert("berhasil update status acc")
       window.location.reload();

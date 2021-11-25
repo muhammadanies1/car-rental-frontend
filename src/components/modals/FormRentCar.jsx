@@ -25,7 +25,7 @@ function FormRentCar(props) {
     });
 
     function addTransaction(){
-        if(form.loan_time === "" && form.booking_date === ""){
+        if(form.loan_time === ""){
             Swal.fire({
                 icon: 'info',
                 title: 'Attention...',

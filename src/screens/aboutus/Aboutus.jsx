@@ -16,13 +16,13 @@ function Aboutus(){
     return(
         <>
         <Headers navbarLinks = {navbarLinks} />
-        <Kosong/>
+        {/* <Kosong/> */}
+        <div className="coba">
+
             <div className="container-aboutUs">
                 <Card className="text-left">
-                <Card.Header>About Us</Card.Header>
+                <Card.Header className="title-aboutUs">About Us</Card.Header>
                     <Card.Body>
-                    <Card.Title>Welcome to Wheelosity</Card.Title>
-                    <Card.Subtitle>That wonderful feeling – you start the engine and your adventure begins…</Card.Subtitle>
                     <Card.Text>
                         At Wheelosity everything we do is about giving you the freedom to discover more. 
                         We’ll move mountains to find you the right rental car, and bring you a smooth, 
@@ -32,6 +32,7 @@ function Aboutus(){
                     </Card.Body>
                 </Card>
             </div>
+        </div>
             <FooterDashboard />
         </>
     )

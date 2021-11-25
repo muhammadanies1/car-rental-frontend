@@ -97,7 +97,7 @@ function PartnerApprove() {
           color="primary"
           onClick={goBack}>Back</Button>
       </div>
-      <FooterDashboard/>
+      <Footer/>
     </>
   );
 }

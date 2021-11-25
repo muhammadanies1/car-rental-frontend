@@ -4,6 +4,7 @@ import axios from "axios";
 import SearchBoard from "./SearchBoard";
 import "./CustomDashboard.css";
 import Swal from "sweetalert2";
+let token = localStorage.getItem("token");
 
 function ButtonSearchBoard(props) {
     console.log(props.search);
@@ -11,7 +12,8 @@ function ButtonSearchBoard(props) {
     const [search, setSearch] = useState("");
 
     function buttonSearchHandler(events) {
-        axios.get(`/api/car/city/` + search)
+        axios.get(`/api/car/city/` + search,
+        {headers: {Authorization : `Bearer ${token}`}})
             .then(res => {
                 if(res.data.data.length  !== 0){
                     props.setCars(res.data.data)
