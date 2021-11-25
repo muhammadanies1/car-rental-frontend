@@ -46,6 +46,8 @@ function ReturnCar(){
     console.log(transID);
     return(
         <>
+        <p className="pMoreThan" style={{ textAlign:'center', marginLeft:'0px', marginRight:'0px' }}>Partner Transaction</p>
+        <hr className="garis-hr"/>
         <div className="container-return">
         <Table className="table-cars" striped bordered hover size="sm">
                 <thead>
