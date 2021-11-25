@@ -2,6 +2,7 @@ import { Table } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import "./History.css";
+import Kosong from "../../components/helper/Kosong";
 
 function History() {
 
@@ -11,9 +12,7 @@ function History() {
     useEffect(() => {
         axios.get(`/api/member_transaction/${user_id}`)
             .then(res => {
-                // console.log(res);
                 setTransaction(res.data.data)
-                // console.log(res.data);
             })
 
     }, [])
@@ -21,6 +20,9 @@ function History() {
     let i = 0;
     return (
         <>
+        <Kosong />
+        <p className="pMoreThan" style={{ textAlign:'center', marginLeft:'0px', marginRight:'0px' }}>History Transaction</p>
+        <hr className="garis-hr"/>
         <div className="column-history">
             <Table className="table-history" striped bordered hover size="sm">
                 <thead>
@@ -50,22 +52,6 @@ function History() {
                 </tbody>
             </Table>
         </div>
-
-        {/* // <Card className="card-car" style={{ width: '25rem' }}>
-        //     <Card.Img className="card-img" variant="top" src={value.car.image} />
-        //     <Card.Body>
-        //         <Row>
-        //             <Col>
-        //                 <Card.Title className="car-name">{value.car.merk}</Card.Title>
-        //                 <Card.Subtitle className="card-subtitle">{value.car.partner.city}, {value.car.partner.partner_name}</Card.Subtitle>
-        //             </Col>
-        //             <Col md="auto">
-        //                 <Card.Text className="car-price"> Rp {value.car.price} </Card.Text>
-        //                 <span>{value.paid_status}</span>
-        //                 </Col>
-        //         </Row>
-        //     </Card.Body>
-        // </Card> */}
 
         </>
     )
