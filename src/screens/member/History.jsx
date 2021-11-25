@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import "./History.css";
 import Kosong from "../../components/helper/Kosong";
+let token = localStorage.getItem("token");
 
 function History() {
 
@@ -10,7 +11,8 @@ function History() {
     const user_id = JSON.parse(localStorage.getItem("user_id"));
 
     useEffect(() => {
-        axios.get(`/api/member_transaction/${user_id}`)
+        axios.get(`/api/member_transaction/${user_id}`,
+        {headers: {Authorization : `Bearer ${token}`}})
             .then(res => {
                 setTransaction(res.data.data)
             })
