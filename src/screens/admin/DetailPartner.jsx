@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {carActions} from '../../store/car'
 import "./DetailPartner.css";
 import Swal from 'sweetalert2'
+import Footer from "../../components/footer/Footer";
 
 const DetailPartner = () => {
   
@@ -118,6 +119,7 @@ const DetailPartner = () => {
               color="primary" 
               onClick={goBack}>Back</Button>
     </div>
+    <Footer />
     </>
   );
 };
