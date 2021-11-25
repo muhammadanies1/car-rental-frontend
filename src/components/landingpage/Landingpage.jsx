@@ -13,7 +13,7 @@ function Landingpage(){
     let navigate = useNavigate();
     const navbarLinks = [
         { navigate: "/", title: "Home" },
-        { navigate: "#", title: "About Us" },
+        { navigate: "/aboutus", title: "About Us" },
         { navigate: "/login", title: "Login" },
     ];
 

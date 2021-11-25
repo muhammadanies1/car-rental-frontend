@@ -99,7 +99,7 @@ function InputCar(props) {
                         <FloatingLabel controlId="floatingInput" label="Stnk Number" className="mb-2">
                             <Form.Control name="stnk_number" type="text" placeholder="Enter your stnk number" onChange={formHandler}/>
                         </FloatingLabel>
-                        <Form.Control name="images" type="file" placeholder="Choose your car photos" onChange={imageHandler}/>
+                        <Form.Control name="images" maxLength="20" type="file" placeholder="Choose your car photos" onChange={imageHandler}/>
                         <FloatingLabel controlId="floatingInput" label="Description" className="mb-2">
                             <Form.Control name="description" type="text" placeholder="Enter your car description" onChange={formHandler}/>
                         </FloatingLabel>

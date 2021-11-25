@@ -39,7 +39,7 @@ function NavBarMember(){
                     <Navbar.Collapse id="basic-navbar-nav" >
                         <Nav className="me-auto navbar-ul">
                             <Nav.Link onClick={ toDashboard } style={{color:'white'}}> Dashboard </Nav.Link>
-                            <Nav.Link href="#link" style={{color:'white'}}> About Us </Nav.Link>
+                            {/* <Nav.Link href="#link" style={{color:'white'}}> About Us </Nav.Link> */}
                             <NavDropdown title="Member" id="basic-nav-dropdown">
                                 <NavDropdown.Item disabled >{ username }</NavDropdown.Item>
                                 <NavDropdown.Divider />
