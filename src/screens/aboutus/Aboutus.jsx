@@ -24,7 +24,7 @@ function Aboutus(){
                     <Card.Title>Welcome to Wheelosity</Card.Title>
                     <Card.Subtitle>That wonderful feeling – you start the engine and your adventure begins…</Card.Subtitle>
                     <Card.Text>
-                        At Rentalcars.com everything we do is about giving you the freedom to discover more. 
+                        At Wheelosity everything we do is about giving you the freedom to discover more. 
                         We’ll move mountains to find you the right rental car, and bring you a smooth, 
                         hassle-free experience from start to finish. Here you can find out more about how 
                         we work.
